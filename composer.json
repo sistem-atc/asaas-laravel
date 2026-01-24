@@ -1,8 +1,16 @@
 {
     "name": "sistem_atc/asaas-laravel",
     "description": "SDK Asaas para Laravel com webhooks e metodos de envios",
+    "keywords": ["asaas", "laravel", "sdk", "payments", "gateway"],
+    "homepage": "https://github.com/sistem-atc/asaas-laravel",
     "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Kleber Pracidelli",
+            "email": "sistem.atc@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "SistemAtc\\Asaas\\": "src/"
