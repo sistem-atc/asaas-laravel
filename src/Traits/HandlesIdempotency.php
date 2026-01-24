@@ -1,0 +1,26 @@
+<?php
+
+namespace SistemAtc\Asaas\Traits;
+
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+
+trait HandlesIdempotency
+{
+    /**
+     * @param string $eventId O ID único do evento
+     * @param int $ttl Tempo em segundos para manter o registro (padrão 24h)
+     */
+    protected function wasAlreadyProcessed(string $eventId, int $ttl = 86400): bool
+    {
+        $cacheKey = "asaas_event_processed:{$eventId}";
+
+        if (Cache::has($cacheKey)) {
+            Log::info("Asaas Webhook: Event {$eventId} ignored (Idempotency triggered).");
+            return true;
+        }
+
+        Cache::put($cacheKey, true, $ttl);
+        return false;
+    }
+}

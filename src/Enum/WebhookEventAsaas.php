@@ -1,0 +1,216 @@
+<?php
+
+namespace SistemAtc\Asaas\Enum;
+
+enum WebhookEventAsaas: string
+{
+    case PAYMENT_CREATED = 'PAYMENT_CREATED';
+    case PAYMENT_AWAITING_RISK_ANALYSIS = 'PAYMENT_AWAITING_RISK_ANALYSIS';
+    case PAYMENT_APPROVED_BY_RISK_ANALYSIS = 'PAYMENT_APPROVED_BY_RISK_ANALYSIS';
+    case PAYMENT_REPROVED_BY_RISK_ANALYSIS = 'PAYMENT_REPROVED_BY_RISK_ANALYSIS';
+    case PAYMENT_AUTHORIZED = 'PAYMENT_AUTHORIZED';
+    case PAYMENT_UPDATED = 'PAYMENT_UPDATED';
+    case PAYMENT_CONFIRMED = 'PAYMENT_CONFIRMED';
+    case PAYMENT_RECEIVED = 'PAYMENT_RECEIVED';
+    case PAYMENT_CREDIT_CARD_CAPTURE_REFUSED = 'PAYMENT_CREDIT_CARD_CAPTURE_REFUSED';
+    case PAYMENT_ANTICIPATED = 'PAYMENT_ANTICIPATED';
+    case PAYMENT_OVERDUE = 'PAYMENT_OVERDUE';
+    case PAYMENT_DELETED = 'PAYMENT_DELETED';
+    case PAYMENT_RESTORED = 'PAYMENT_RESTORED';
+    case PAYMENT_REFUNDED = 'PAYMENT_REFUNDED';
+    case PAYMENT_PARTIALLY_REFUNDED = 'PAYMENT_PARTIALLY_REFUNDED';
+    case PAYMENT_REFUND_IN_PROGRESS = 'PAYMENT_REFUND_IN_PROGRESS';
+    case PAYMENT_RECEIVED_IN_CASH_UNDONE = 'PAYMENT_RECEIVED_IN_CASH_UNDONE';
+    case PAYMENT_CHARGEBACK_REQUESTED = 'PAYMENT_CHARGEBACK_REQUESTED';
+    case PAYMENT_CHARGEBACK_DISPUTE = 'PAYMENT_CHARGEBACK_DISPUTE';
+    case PAYMENT_AWAITING_CHARGEBACK_REVERSAL = 'PAYMENT_AWAITING_CHARGEBACK_REVERSAL';
+    case PAYMENT_DUNNING_RECEIVED = 'PAYMENT_DUNNING_RECEIVED';
+    case PAYMENT_DUNNING_REQUESTED = 'PAYMENT_DUNNING_REQUESTED';
+    case PAYMENT_BANK_SLIP_VIEWED = 'PAYMENT_BANK_SLIP_VIEWED';
+    case PAYMENT_CHECKOUT_VIEWED = 'PAYMENT_CHECKOUT_VIEWED';
+    case PAYMENT_SPLIT_CANCELLED = 'PAYMENT_SPLIT_CANCELLED';
+    case PAYMENT_SPLIT_DIVERGENCE_BLOCK = 'PAYMENT_SPLIT_DIVERGENCE_BLOCK';
+    case PAYMENT_SPLIT_DIVERGENCE_BLOCK_FINISHED = 'PAYMENT_SPLIT_DIVERGENCE_BLOCK_FINISHED';
+    case SUBSCRIPTION_CREATED = 'SUBSCRIPTION_CREATED';
+    case SUBSCRIPTION_UPDATED = 'SUBSCRIPTION_UPDATED';
+    case SUBSCRIPTION_INACTIVATED = 'SUBSCRIPTION_INACTIVATED';
+    case SUBSCRIPTION_DELETED = 'SUBSCRIPTION_DELETED';
+    case SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK = 'SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK';
+    case SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK_FINISHED = 'SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK_FINISHED';
+    case INVOICE_CREATED = 'INVOICE_CREATED';
+    case INVOICE_UPDATED = 'INVOICE_UPDATED';
+    case INVOICE_SYNCHRONIZED = 'INVOICE_SYNCHRONIZED';
+    case INVOICE_AUTHORIZED = 'INVOICE_AUTHORIZED';
+    case INVOICE_PROCESSING_CANCELLATION = 'INVOICE_PROCESSING_CANCELLATION';
+    case INVOICE_CANCELED = 'INVOICE_CANCELED';
+    case INVOICE_CANCELLATION_DENIED = 'INVOICE_CANCELLATION_DENIED';
+    case INVOICE_ERROR = 'INVOICE_ERROR';
+    case TRANSFER_CREATED = 'TRANSFER_CREATED';
+    case TRANSFER_PENDING = 'TRANSFER_PENDING';
+    case TRANSFER_IN_BANK_PROCESSING = 'TRANSFER_IN_BANK_PROCESSING';
+    case TRANSFER_BLOCKED = 'TRANSFER_BLOCKED';
+    case TRANSFER_DONE = 'TRANSFER_DONE';
+    case TRANSFER_FAILED = 'TRANSFER_FAILED';
+    case TRANSFER_CANCELLED = 'TRANSFER_CANCELLED';
+    case BILL_CREATED = 'BILL_CREATED';
+    case BILL_PENDING = 'BILL_PENDING';
+    case BILL_BANK_PROCESSING = 'BILL_BANK_PROCESSING';
+    case BILL_PAID = 'BILL_PAID';
+    case BILL_CANCELLED = 'BILL_CANCELLED';
+    case BILL_FAILED = 'BILL_FAILED';
+    case BILL_REFUNDED = 'BILL_REFUNDED';
+    case RECEIVABLE_ANTICIPATION_CANCELLED = 'RECEIVABLE_ANTICIPATION_CANCELLED';
+    case RECEIVABLE_ANTICIPATION_SCHEDULED = 'RECEIVABLE_ANTICIPATION_SCHEDULED';
+    case RECEIVABLE_ANTICIPATION_PENDING = 'RECEIVABLE_ANTICIPATION_PENDING';
+    case RECEIVABLE_ANTICIPATION_CREDITED = 'RECEIVABLE_ANTICIPATION_CREDITED';
+    case RECEIVABLE_ANTICIPATION_DEBITED = 'RECEIVABLE_ANTICIPATION_DEBITED';
+    case RECEIVABLE_ANTICIPATION_DENIED = 'RECEIVABLE_ANTICIPATION_DENIED';
+    case RECEIVABLE_ANTICIPATION_OVERDUE = 'RECEIVABLE_ANTICIPATION_OVERDUE';
+    case MOBILE_PHONE_RECHARGE_PENDING = 'MOBILE_PHONE_RECHARGE_PENDING';
+    case MOBILE_PHONE_RECHARGE_CANCELLED = 'MOBILE_PHONE_RECHARGE_CANCELLED';
+    case MOBILE_PHONE_RECHARGE_CONFIRMED = 'MOBILE_PHONE_RECHARGE_CONFIRMED';
+    case MOBILE_PHONE_RECHARGE_REFUNDED = 'MOBILE_PHONE_RECHARGE_REFUNDED';
+    case ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED = 'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED';
+    case ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL = 'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL';
+    case ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING = 'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING';
+    case ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED = 'ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED';
+    case ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED = 'ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED';
+    case ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL = 'ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL';
+    case ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING = 'ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING';
+    case ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED = 'ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED';
+    case ACCOUNT_STATUS_DOCUMENT_APPROVED = 'ACCOUNT_STATUS_DOCUMENT_APPROVED';
+    case ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL = 'ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL';
+    case ACCOUNT_STATUS_DOCUMENT_PENDING = 'ACCOUNT_STATUS_DOCUMENT_PENDING';
+    case ACCOUNT_STATUS_DOCUMENT_REJECTED = 'ACCOUNT_STATUS_DOCUMENT_REJECTED';
+    case ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED = 'ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED';
+    case ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL = 'ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL';
+    case ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING = 'ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING';
+    case ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED = 'ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED';
+    case CHECKOUT_CREATED = 'CHECKOUT_CREATED';
+    case CHECKOUT_CANCELED = 'CHECKOUT_CANCELED';
+    case CHECKOUT_EXPIRED = 'CHECKOUT_EXPIRED';
+    case CHECKOUT_PAID = 'CHECKOUT_PAID';
+    case BALANCE_VALUE_BLOCKED = 'BALANCE_VALUE_BLOCKED';
+    case BALANCE_VALUE_UNBLOCKED = 'BALANCE_VALUE_UNBLOCKED';
+    case INTERNAL_TRANSFER_CREDIT = 'INTERNAL_TRANSFER_CREDIT';
+    case INTERNAL_TRANSFER_DEBIT = 'INTERNAL_TRANSFER_DEBIT';
+    case ACCESS_TOKEN_CREATED = 'ACCESS_TOKEN_CREATED';
+    case ACCESS_TOKEN_ENABLED = 'ACCESS_TOKEN_ENABLED';
+    case ACCESS_TOKEN_DISABLED = 'ACCESS_TOKEN_DISABLED';
+    case ACCESS_TOKEN_DELETED = 'ACCESS_TOKEN_DELETED';
+    case ACCESS_TOKEN_EXPIRING_SOON = 'ACCESS_TOKEN_EXPIRING_SOON';
+    case ACCESS_TOKEN_EXPIRED = 'ACCESS_TOKEN_EXPIRED';
+
+
+    public function getLabel(): ?string
+    {
+        return match ($this) {
+            self::PAYMENT_CREATED => 'Cobrança Criada',
+            self::PAYMENT_AWAITING_RISK_ANALYSIS => 'Aguardando Análise de Risco',
+            self::PAYMENT_APPROVED_BY_RISK_ANALYSIS => 'Aprovado por Análise de Risco',
+            self::PAYMENT_REPROVED_BY_RISK_ANALYSIS => 'Reprovado por Análise de Risco',
+            self::PAYMENT_AUTHORIZED => 'Pagamento Autorizado',
+            self::PAYMENT_UPDATED => 'Cobrança Atualizada',
+            self::PAYMENT_CONFIRMED => 'Pagamento Confirmado (Saldo Pendente)',
+            self::PAYMENT_RECEIVED => 'Cobrança Recebida',
+            self::PAYMENT_CREDIT_CARD_CAPTURE_REFUSED => 'Falha na Captura do Cartão',
+            self::PAYMENT_ANTICIPATED => 'Cobrança Antecipada',
+            self::PAYMENT_OVERDUE => 'Cobrança Vencida',
+            self::PAYMENT_DELETED => 'Cobrança Removida',
+            self::PAYMENT_RESTORED => 'Cobrança Restaurada',
+            self::PAYMENT_REFUNDED => 'Cobrança Estornada',
+            self::PAYMENT_PARTIALLY_REFUNDED => 'Cobrança Estornada Parcialmente',
+            self::PAYMENT_REFUND_IN_PROGRESS => 'Estorno em Processamento',
+            self::PAYMENT_RECEIVED_IN_CASH_UNDONE => 'Recebimento em Dinheiro Desfeito',
+            self::PAYMENT_CHARGEBACK_REQUESTED => 'Chargeback Recebido',
+            self::PAYMENT_CHARGEBACK_DISPUTE => 'Em Disputa de Chargeback',
+            self::PAYMENT_AWAITING_CHARGEBACK_REVERSAL => 'Aguardando Repasse de Chargeback',
+            self::PAYMENT_DUNNING_RECEIVED => 'Recebimento de Negativação',
+            self::PAYMENT_DUNNING_REQUESTED => 'Requisição de Negativação',
+            self::PAYMENT_BANK_SLIP_VIEWED => 'Boleto Visualizado',
+            self::PAYMENT_CHECKOUT_VIEWED => 'Fatura Visualizada',
+            self::PAYMENT_SPLIT_CANCELLED => 'Split de Pagamento Cancelado',
+            self::PAYMENT_SPLIT_DIVERGENCE_BLOCK => 'Bloqueio por Divergência de Split',
+            self::PAYMENT_SPLIT_DIVERGENCE_BLOCK_FINISHED => 'Bloqueio de Split Finalizado',
+            self::SUBSCRIPTION_CREATED => 'Assinatura Criada',
+            self::SUBSCRIPTION_UPDATED => 'Assinatura Atualizada',
+            self::SUBSCRIPTION_INACTIVATED => 'Assinatura Inativada',
+            self::SUBSCRIPTION_DELETED => 'Assinatura Removida',
+            self::SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK => 'Assinatura Bloqueada por Split',
+            self::SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK_FINISHED => 'Bloqueio de Split da Assinatura Finalizado',
+            self::INVOICE_CREATED => 'Nota Fiscal Criada',
+            self::INVOICE_UPDATED => 'Nota Fiscal Atualizada',
+            self::INVOICE_SYNCHRONIZED => 'Nota Fiscal Enviada',
+            self::INVOICE_AUTHORIZED => 'Nota Fiscal Emitida',
+            self::INVOICE_PROCESSING_CANCELLATION => 'Cancelamento de NF em Processamento',
+            self::INVOICE_CANCELED => 'Nota Fiscal Cancelada',
+            self::INVOICE_CANCELLATION_DENIED => 'Cancelamento de NF Recusado',
+            self::INVOICE_ERROR => 'Nota Fiscal com Erro',
+            self::TRANSFER_CREATED => 'Transferência Criada',
+            self::TRANSFER_PENDING => 'Transferência Pendente',
+            self::TRANSFER_IN_BANK_PROCESSING => 'Transferência em Processamento Bancário',
+            self::TRANSFER_BLOCKED => 'Transferência Bloqueada',
+            self::TRANSFER_DONE => 'Transferência Realizada',
+            self::TRANSFER_FAILED => 'Transferência Falhou',
+            self::TRANSFER_CANCELLED => 'Transferência Cancelada',
+            self::BILL_CREATED => 'Pague Contas Criado',
+            self::BILL_PENDING => 'Pague Contas Pendente',
+            self::BILL_BANK_PROCESSING => 'Pague Contas em Processamento Bancário',
+            self::BILL_PAID => 'Pague Contas Pago',
+            self::BILL_CANCELLED => 'Pague Contas Cancelado',
+            self::BILL_FAILED => 'Pague Contas Falhou',
+            self::BILL_REFUNDED => 'Pague Contas Estornado',
+            self::RECEIVABLE_ANTICIPATION_CANCELLED => 'Antecipação Cancelada',
+            self::RECEIVABLE_ANTICIPATION_SCHEDULED => 'Antecipação Agendada',
+            self::RECEIVABLE_ANTICIPATION_PENDING => 'Antecipação em Análise',
+            self::RECEIVABLE_ANTICIPATION_CREDITED => 'Antecipação Creditada',
+            self::RECEIVABLE_ANTICIPATION_DEBITED => 'Antecipação Debitada',
+            self::RECEIVABLE_ANTICIPATION_DENIED => 'Solicitação de Antecipação Negada',
+            self::RECEIVABLE_ANTICIPATION_OVERDUE => 'Antecipação Vencida',
+            self::MOBILE_PHONE_RECHARGE_PENDING => 'Recarga de Celular Pendente',
+            self::MOBILE_PHONE_RECHARGE_CANCELLED => 'Recarga de Celular Cancelada',
+            self::MOBILE_PHONE_RECHARGE_CONFIRMED => 'Recarga de Celular Confirmada',
+            self::MOBILE_PHONE_RECHARGE_REFUNDED => 'Recarga de Celular Estornada',
+            self::ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED => 'Conta Bancária Aprovada',
+            self::ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL => 'Conta Bancária em Análise',
+            self::ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING => 'Conta Bancária Pendente',
+            self::ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED => 'Conta Bancária Reprovada',
+            self::ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED => 'Info. Comerciais Aprovadas',
+            self::ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL => 'Info. Comerciais em Análise',
+            self::ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING => 'Info. Comerciais Pendentes',
+            self::ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED => 'Info. Comerciais Reprovadas',
+            self::ACCOUNT_STATUS_DOCUMENT_APPROVED => 'Documentos Aprovados',
+            self::ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL => 'Documentos em Análise',
+            self::ACCOUNT_STATUS_DOCUMENT_PENDING => 'Documentos Pendentes',
+            self::ACCOUNT_STATUS_DOCUMENT_REJECTED => 'Documentos Reprovados',
+            self::ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED => 'Conta Aprovada',
+            self::ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL => 'Conta em Análise Geral',
+            self::ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING => 'Conta Pendente Geral',
+            self::ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED => 'Conta Reprovada Geral',
+            self::CHECKOUT_CREATED => 'Checkout Criado',
+            self::CHECKOUT_CANCELED => 'Checkout Cancelado',
+            self::CHECKOUT_EXPIRED => 'Checkout Expirado',
+            self::CHECKOUT_PAID => 'Checkout Pago',
+            self::BALANCE_VALUE_BLOCKED => 'Valor Bloqueado no Saldo',
+            self::BALANCE_VALUE_UNBLOCKED => 'Valor Desbloqueado no Saldo',
+            self::INTERNAL_TRANSFER_CREDIT => 'Crédito de Transferência Interna',
+            self::INTERNAL_TRANSFER_DEBIT => 'Débito de Transferência Interna',
+            self::ACCESS_TOKEN_CREATED => 'Chave de API Criada',
+            self::ACCESS_TOKEN_ENABLED => 'Chave de API Reativada',
+            self::ACCESS_TOKEN_DISABLED => 'Chave de API Desabilitada',
+            self::ACCESS_TOKEN_DELETED => 'Chave de API Removida',
+            self::ACCESS_TOKEN_EXPIRING_SOON => 'Chave de API Expirando em Breve',
+            self::ACCESS_TOKEN_EXPIRED => 'Chave de API Expirada',
+        };
+    }
+
+    public static function getPaidStatuses(): array
+    {
+        return [
+            self::PAYMENT_CONFIRMED->value,
+            self::PAYMENT_RECEIVED->value,
+            self::PAYMENT_APPROVED_BY_RISK_ANALYSIS->value,
+            self::PAYMENT_AUTHORIZED->value,
+        ];
+    }
+}

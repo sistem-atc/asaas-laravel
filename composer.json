@@ -1,0 +1,25 @@
+{
+    "name": "sistem_atc/asaas-laravel",
+    "description": "SDK Asaas para Laravel com webhooks e metodos de envios",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SistemAtc\\Asaas\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SistemAtc\\Asaas\\AsaasServiceProvider"
+            ],
+            "aliases": {
+                "Asaas": "SistemAtc\\Asaas\\Facades\\Asaas"
+            }
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^10.0|^11.0"
+    }
+}
