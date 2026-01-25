@@ -1,0 +1,42 @@
+{
+    "id": "evt_05b708f961d739ea7eba7e4db318f621&368604920",
+    "event": "INVOICE_CREATED",
+    "dateCreated": "2024-06-12 16:45:03",
+    "account": {
+        "id": "47ed0d25-f9fb-4b35-b23a-d8895caf92b7",
+        "ownerId": null
+    },
+    "invoice": {
+        "object": "invoice",
+        "id": "inv_000000000232",
+        "status": "SCHEDULED",
+        "customer": "cus_000000002750",
+        "type": "NFS-e",
+        "statusDescription": null,
+        "serviceDescription": "Nota fiscal da Fatura 101940. \nDescrição dos Serviços: ANÁLISE E DESENVOLVIMENTO DE SISTEMAS",
+        "pdfUrl": null,
+        "xmlUrl": null,
+        "rpsSerie": null,
+        "rpsNumber": null,
+        "number": null,
+        "validationCode": null,
+        "value": 300,
+        "deductions": 0,
+        "effectiveDate": "2018-07-03",
+        "observations": "Mensal referente aos trabalhos de Junho.",
+        "estimatedTaxesDescription": "",
+        "payment": "pay_145059895800",
+        "installment": null,
+        "taxes": {
+            "retainIss": false,
+            "iss": 3,
+            "cofins": 3,
+            "csll": 1,
+            "inss": 0,
+            "ir": 1.5,
+            "pis": 0.65
+        },
+        "municipalServiceCode": "1.01",
+        "municipalServiceName": "Análise e desenvolvimento de sistemas"
+    }
+}

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Event;
-use SistemAtc\Asaas\Events\WebhookReceived;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Bus;
+use SistemAtc\Asaas\Jobs\ProcessAsaasWebhook;
 
 test('it dispatches WebhookReceived event when a valid post is made', function () {
-    Event::fake();
+    Bus::fake();
     
     $payload = [
         'event' => 'PAYMENT_CONFIRMED',
@@ -16,7 +15,7 @@ test('it dispatches WebhookReceived event when a valid post is made', function (
         'asaas-access-token' => 'token-de-teste'
     ])->assertStatus(204);
 
-    Event::assertDispatched(WebhookReceived::class, function ($event) use ($payload) {
-        return $event->payload === $payload;
+    Bus::assertDispatched(ProcessAsaasWebhook::class, function ($job) use ($payload) {
+        return $job->payload === $payload;
     });
 });

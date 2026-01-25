@@ -3,12 +3,13 @@
 namespace SistemAtc\Asaas\Webhooks;
 
 use SistemAtc\Asaas\Bases\BaseAsaasHandler;
-use SistemAtc\Asaas\DTO\Webhook\AccessWebhookDTO;
-use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
+use SistemAtc\Asaas\Events\AsaasAccessEvent;
 use SistemAtc\Asaas\Traits\HandlesIdempotency;
+use SistemAtc\Asaas\DTO\Webhook\AccessTokenWebhookDTO;
+use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 
 /**
- * @property AccessWebhookDTO $event
+ * @property AccessTokenWebhookDTO $event
  */
 class AccessHandler extends BaseAsaasHandler
 {
@@ -19,37 +20,7 @@ class AccessHandler extends BaseAsaasHandler
     {
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
-        $this->{$method}();
+        AsaasAccessEvent::dispatch($this->event->event->value, $this->event);
+        if (method_exists($this, $method)) $this->{$method}();
     }
-
-    public function tokenCreated(): void
-    {
-        //Stay to implements
-    }
-
-    public function tokenEnabled(): void
-    {
-        //  Stay to implements
-    }
-
-    public function tokenDisabled(): void
-    {
-        //  Stay to implements
-    }
-
-    public function tokenDeleted(): void
-    {
-        //  Stay to implements
-    }
-
-    public function tokenExpiringSoon(): void
-    {
-        //  Stay to implements
-    }
-
-    public function tokenExpired(): void
-    {
-        //  Stay to implements
-    }
-
 }

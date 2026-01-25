@@ -3,9 +3,10 @@
 namespace SistemAtc\Asaas\Webhooks;
 
 use SistemAtc\Asaas\Bases\BaseAsaasHandler;
+use SistemAtc\Asaas\Traits\HandlesIdempotency;
 use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 use SistemAtc\Asaas\DTO\Webhook\SubscriptionWebhookDTO;
-use SistemAtc\Asaas\Traits\HandlesIdempotency;
+use SistemAtc\Asaas\Events\AsaasSubscriptionEvent;
 
 /**
  * @property SubscriptionWebhookDTO $event
@@ -19,36 +20,7 @@ class SubscriptionHandler extends BaseAsaasHandler
     {
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
-        $this->{$method}();
-    }
-
-    public function created(): void
-    {
-        // To do implementation
-    }
-
-    public function updated(): void
-    {
-        // To do implementation
-    }
-
-    public function inactivated(): void
-    {
-        // To do implementation
-    }
-
-    public function deleted(): void
-    {
-        // To do implementation
-    }
-
-    public function splitDivergenceBlock(): void
-    {
-        // To do implementation
-    }
-
-    public function splitDivergenceBlockFinished(): void
-    {
-        // To do implementation
+        AsaasSubscriptionEvent::dispatch($this->event->event->value, $this->event);
+        if (method_exists($this, $method)) $this->{$method}();
     }
 }

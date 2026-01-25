@@ -1,0 +1,24 @@
+{
+    "event": "TRANSFER_CREATED",
+    "transfer": {
+        "object": "transfer",
+        "id": "dc0cd262-5050-4c82-bddc-dc2463f7ff07",
+        "dateCreated": "2021-01-01",
+        "status": "DONE",
+        "effectiveDate": "2021-01-01 13:32:12",
+        "endToEndIdentifier": null,
+        "type": "ASAAS_ACCOUNT",
+        "value": 1000,
+        "transferFee": 0,
+        "scheduleDate": "2021-11-17",
+        "authorized": true,
+        "walletId": "1f7184ab-9671-4f43-9ab5-c2349e7bf61",
+        "account": {
+            "name": "Marcelo Almeida",
+            "cpfCnpj": "***.143.689-**"
+        },
+        "transactionReceiptUrl": "https://www.asaas.com/comprovantes/8962440029817277",
+        "operationType": "INTERNAL",
+        "description": null
+    }
+}

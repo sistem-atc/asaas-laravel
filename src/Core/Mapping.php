@@ -23,22 +23,21 @@ class Mapping
         $suffix = $this->getSuffix();
 
         $handlerBaseName = Str::studly(Str::lower($prefix)) . 'Handler';
-        $handlerClass = "App\\Services\\Asaas\\Webhooks\\{$handlerBaseName}";
+        $handlerClass = "SistemAtc\\Asaas\\Webhooks\\{$handlerBaseName}";
         $methodName = Str::camel(Str::lower($suffix));
-
+        
         if (!class_exists($handlerClass)) {
             Log::info("Webhook recebido, mas handler de classe não implementado: {$handlerClass}", [
                 'event' => $this->eventValue
             ]);
             return null;
         }
-
+        
         if (!method_exists($handlerClass, $methodName)) {
             Log::warning('Método não encontrado no handler.', [
                 'class' => $handlerClass,
                 'method' => $methodName
             ]);
-            return null;
         }
 
         return function (WebhookEventDTOInterface $eventDTO) use ($handlerClass, $methodName) {
