@@ -23,7 +23,6 @@ abstract class BaseMethods
 
             if ($response->failed()) {
                 $this->handleError($response);
-                return null;
             }
 
             return $response->json();
@@ -53,5 +52,8 @@ abstract class BaseMethods
             'payload'    => $response->json(),
             'ip_address' => request()->ip(),
         ]);
+
+        $errorDescription = $response->json('errors.0.description') ?? 'Erro desconhecido na API do Asaas.';
+        throw new \Exception($errorDescription);
     }
 }

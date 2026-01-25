@@ -21,5 +21,7 @@ public function register(): void
                 __DIR__.'/../config/asaas.php' => config_path('asaas.php'),
             ], 'asaas-config');
         }
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
     }
 }
