@@ -16,6 +16,11 @@
             "SistemAtc\\Asaas\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SistemAtc\\Asaas\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -30,5 +35,17 @@
         "php": "^8.2",
         "illuminate/support": "^10.0 || ^11.0 || ^12.0",
         "illuminate/http": "^10.0 || ^11.0 || ^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.9",
+        "pestphp/pest": "^4.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest"
     }
 }
