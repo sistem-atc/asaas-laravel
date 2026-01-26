@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/v/tag/sistem-atc/asaas-laravel?label=version)](https://github.com/sistem-atc/asaas-laravel/tags)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.0-blue)](https://www.php.net/)
-[![Laravel Version](https://img.shields.io/badge/laravel-%3E%3D9.0-red)](https://laravel.com/)
+[![Laravel Version](https://img.shields.io/badge/laravel-%3E%3D11.0-red)](https://laravel.com/)
 [![License](https://img.shields.io/github/license/sistem-atc/asaas-laravel)](LICENSE)
 
 Pacote Laravel completo para integração com a API do Asaas, incluindo suporte a Webhooks.
