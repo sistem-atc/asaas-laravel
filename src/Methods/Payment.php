@@ -6,6 +6,7 @@ use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\PaymentDTO;
 use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
+use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
 
 class Payment extends BaseMethods
 {
@@ -29,17 +30,37 @@ class Payment extends BaseMethods
     }
 
     public function payChargeWithCreditCard(){}
+
     public function billingInfo(){}
+
     public function viewingInfo(){}
+
     public function retrySingle(){}
+
     public function update(){}
+
     public function delete(){}
+
     public function restore(){}
+
     public function status(){}
+
     public function refund(){}
+
     public function getDigitableBill(){}
+
+    public function getQrCodePix(string $paymentId): QrCodeDTO
+    {
+        $response = $this->makeRequest('post', "/payments/{$paymentId}/pixQrCode");
+        return QrCodeDTO::fromArray($response);
+    }
+
     public function confirmCashReceipt(){}
+
     public function undoCashReceipt(){}
+
     public function salesSimulator(){}
+
     public function recoveryPaymentLimit(){}
+
 }
