@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas;
+namespace SistemAtc\Asaas\Services;
 
 class AsaasServiceRegistry
 {

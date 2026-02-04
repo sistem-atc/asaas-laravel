@@ -11,7 +11,7 @@ trait HandlesIdempotency
      * @param string $eventId O ID único do evento
      * @param int $ttl Tempo em segundos para manter o registro (padrão 24h)
      */
-    protected function wasAlreadyProcessed(string $eventId, int $ttl = 86400): bool
+    protected function wasAlreadyProcessed(string $eventId): bool
     {
         $cacheKey = "asaas_event_processed:{$eventId}";
 
@@ -20,7 +20,10 @@ trait HandlesIdempotency
             return true;
         }
 
+        $ttl = config('asaas.idempotency_ttl');
+
         Cache::put($cacheKey, true, $ttl);
+        
         return false;
     }
 }

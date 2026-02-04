@@ -42,4 +42,30 @@ return [
 
     'webhook_token' => env('ASAAS_WEBHOOK_TOKEN'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | TTL for Idempotency Handling
+    |--------------------------------------------------------------------------
+    |
+    | Time in seconds to keep records of processed webhook events
+    |
+    */
+
+    'idempotency_ttl' => env('ASAAS_IDEMPOTENCY_TTL', 86400),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Route events
+    |--------------------------------------------------------------------------
+    |
+    | Register the route that receive events.
+    |
+    */
+
+    'route_events' => [
+        'path' => env('ASAAS_ROUTE_EVENTS', '/asaas-events'),
+        'route_name' => env('ASAAS_ROUTE_EVENTS_NAME', 'asaas.webhook'),
+    ], 
+        
+
 ];

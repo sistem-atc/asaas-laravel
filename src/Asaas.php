@@ -5,7 +5,7 @@ namespace SistemAtc\Asaas;
 use Illuminate\Support\Facades\Http;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use Illuminate\Http\Client\PendingRequest;
-use SistemAtc\Asaas\AsaasServiceRegistry;
+use SistemAtc\Asaas\Services\AsaasServiceRegistry;
 
 /**
  * @method \SistemAtc\Asaas\Methods\AccountDocument accountDocument()

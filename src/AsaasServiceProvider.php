@@ -7,8 +7,10 @@ use Illuminate\Support\ServiceProvider;
 class AsaasServiceProvider extends ServiceProvider
 {
 
-public function register(): void
+    public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/asaas.php', 'asaas');
+        
         $this->app->singleton('asaas', function ($app) {
             return new \SistemAtc\Asaas\Asaas();
         });

@@ -20,18 +20,18 @@ class AccountDocument extends BaseMethods
         return $this->makeRequest('post', "/myAccount/documents/{$id}", $multipartData->toMultipart());
     }
 
-    public function viewDocumentSent(string $id)
+    public function viewDocumentSent(string $documentId)
     {
-        return $this->makeRequest('get', "/myAccount/documents/files/{$id}");
+        return $this->makeRequest('get', "/myAccount/documents/files/{$documentId}");
     }
 
-    public function updateSentDocument(string $id, $documentFile)
+    public function updateSentDocument(string $documentId, $documentFile)
     {
-        return $this->makeRequest('post', "/myAccount/documents/files/{$id}", $documentFile);
+        return $this->makeRequest('post', "/myAccount/documents/files/{$documentId}", $documentFile);
     }
 
-    public function removeSentDocument(string $id)
+    public function removeSentDocument(string $documentId)
     {
-        return $this->makeRequest('delete', "/myAccount/documents/files/{$id}");
+        return $this->makeRequest('delete', "/myAccount/documents/files/{$documentId}");
     }
 }
