@@ -18,6 +18,11 @@ class MobileHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof MobileWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para MobileWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasMobileEvent::dispatch($this->event->event->value, $this->event);

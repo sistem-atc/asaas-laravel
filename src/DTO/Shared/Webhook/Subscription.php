@@ -2,12 +2,13 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Fine;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
 
-class Subscription
+class Subscription implements DTOInterface
 {
     public function __construct(
         public readonly ?string $object,

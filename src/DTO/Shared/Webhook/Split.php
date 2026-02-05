@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Split
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Split implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

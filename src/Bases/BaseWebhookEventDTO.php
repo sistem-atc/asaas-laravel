@@ -35,6 +35,4 @@ abstract class BaseWebhookEventDTO implements WebhookEventDTOInterface
         return $this->account ?? null;
     }
 
-    abstract public function toArray(): ?array;
-
 }

@@ -18,6 +18,11 @@ class ReceivableHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof ReceivableWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para ReceivableWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasReceivableEvent::dispatch($this->event->event->value, $this->event);

@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
-class CreditCardHolderInfo
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class CreditCardHolderInfo implements DTOInterface
 {
     public function __construct(
         public readonly ?string $name,

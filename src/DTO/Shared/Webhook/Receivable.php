@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusReceivable;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Receivable
+class Receivable implements DTOInterface
 {
     public function __construct(
         public readonly ?string $object,

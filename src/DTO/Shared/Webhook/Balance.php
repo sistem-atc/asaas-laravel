@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Balance
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Balance implements DTOInterface
 {
     public function __construct(
         public readonly ?float $value,

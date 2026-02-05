@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Response\Payment;
 
 use Carbon\Carbon;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class QrCodeDTO
+class QrCodeDTO implements DTOInterface
 {
     public function __construct(
         public readonly ?string $encodedImage,

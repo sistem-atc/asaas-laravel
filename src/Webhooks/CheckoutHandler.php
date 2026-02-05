@@ -18,6 +18,11 @@ class CheckoutHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof CheckoutWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para CheckoutWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+        
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasCheckoutEvent::dispatch($this->event->event->value, $this->event);

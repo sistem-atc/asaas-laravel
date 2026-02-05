@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class CreditCard
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class CreditCard implements DTOInterface
 {
     public function __construct(
         public readonly ?string $creditCardNumber,

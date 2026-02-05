@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class InternalTransferData
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class InternalTransferData implements DTOInterface
 {
     public function __construct(
         public readonly ?string $description,

@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Enum\StatusDocument;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Documents
+class Documents implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

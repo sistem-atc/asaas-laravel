@@ -18,6 +18,11 @@ class AccountHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof AccountStatusWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para AccountStatusWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasAccountEvent::dispatch($this->event->event->value, $this->event);

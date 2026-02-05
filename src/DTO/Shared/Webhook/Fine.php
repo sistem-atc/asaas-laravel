@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Fine
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Fine implements DTOInterface
 {
     public function __construct(
         public readonly ?float $value,

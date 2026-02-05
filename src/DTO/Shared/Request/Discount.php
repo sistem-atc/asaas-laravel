@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Enum\DiscountType;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Discount
+class Discount implements DTOInterface
 {
     public function __construct(
         public readonly ?float $value,

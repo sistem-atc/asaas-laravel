@@ -3,10 +3,10 @@
 namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Bases\BaseMethods;
-use SistemAtc\Asaas\DTO\Request\PaymentDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
 use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
-use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
 
 class Payment extends BaseMethods
 {

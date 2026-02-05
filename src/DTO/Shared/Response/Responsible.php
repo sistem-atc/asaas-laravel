@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Enum\TypeDocument;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Responsible
+class Responsible implements DTOInterface
 {
     public function __construct(
         public readonly ?string $name,

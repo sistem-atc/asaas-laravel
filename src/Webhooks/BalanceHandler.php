@@ -18,6 +18,11 @@ class BalanceHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof BalanceWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para BalanceWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasBalanceEvent::dispatch($this->event->event->value, $this->event);

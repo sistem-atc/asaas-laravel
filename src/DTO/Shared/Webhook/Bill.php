@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusBill;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Bill
+class Bill implements DTOInterface
 {
     public function __construct(
         public readonly ?string $object,

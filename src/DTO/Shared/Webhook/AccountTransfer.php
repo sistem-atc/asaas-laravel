@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class AccountTransfer
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class AccountTransfer implements DTOInterface
 {
     public function __construct(
         public readonly ?string $name,

@@ -18,6 +18,11 @@ class InternalHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof InternalWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para InternalWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasInternalEvent::dispatch($this->event->event->value, $this->event);

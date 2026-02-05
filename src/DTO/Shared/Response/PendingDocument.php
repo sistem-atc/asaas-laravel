@@ -2,11 +2,12 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
-use SistemAtc\Asaas\DTO\Shared\Response\Documents;
 use SistemAtc\Asaas\Enum\StatusDocument;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\TypePendingDocument;
+use SistemAtc\Asaas\DTO\Shared\Response\Documents;
 
-class PendingDocument
+class PendingDocument implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

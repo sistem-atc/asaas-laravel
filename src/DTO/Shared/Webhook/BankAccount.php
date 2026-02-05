@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class BankAccount
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class BankAccount implements DTOInterface
 {
     public function __construct(
         public readonly ?Bank $bank,

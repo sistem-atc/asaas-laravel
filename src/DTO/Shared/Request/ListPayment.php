@@ -6,8 +6,9 @@ use Illuminate\Support\Carbon;
 use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Enum\InvoiceStatus;
 use SistemAtc\Asaas\Enum\StatusPayment;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class ListPayment
+class ListPayment implements DTOInterface
 {
     public function __construct(
         public readonly int $offset,

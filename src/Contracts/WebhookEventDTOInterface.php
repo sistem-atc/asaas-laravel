@@ -9,5 +9,6 @@ interface WebhookEventDTOInterface
     public function getEventType(): ?WebhookEventAsaas;
     public function getEventId(): ?string;
     public function getDateCreated(): ?string;
-    public function toArray(): ?array;
+    public static function fromArray(array $data): self;
+    public function toArray(): array;
 }

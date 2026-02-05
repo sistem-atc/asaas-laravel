@@ -7,6 +7,7 @@ enum BankAccountInfo: string
     case PENDING = 'PENDING';
     case APPROVED = 'APPROVED';
     case REJECTED = 'REJECTED';
+    case AWAITING_APPROVAL = 'AWAITING_APPROVAL';
 
     public function getLabel(): ?string
     {
@@ -14,6 +15,7 @@ enum BankAccountInfo: string
             self::PENDING => 'Pendente',
             self::APPROVED => 'Aprovado',
             self::REJECTED => 'Rejeitado',
+            self::AWAITING_APPROVAL => 'Aguardando Aprovação',
         };
     }
 }

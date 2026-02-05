@@ -2,6 +2,7 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Fine;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
@@ -9,7 +10,7 @@ use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Chargeback;
 use SistemAtc\Asaas\DTO\Shared\Webhook\CreditCard;
 
-class Payment
+class Payment implements DTOInterface
 {
     public function __construct(
         public readonly ?string $object,

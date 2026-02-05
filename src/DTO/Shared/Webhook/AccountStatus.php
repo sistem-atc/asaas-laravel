@@ -2,12 +2,13 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Enum\BankAccountInfo;
-use SistemAtc\Asaas\Enum\CommercialInfo;
-use SistemAtc\Asaas\Enum\Documentation;
 use SistemAtc\Asaas\Enum\General;
+use SistemAtc\Asaas\Enum\Documentation;
+use SistemAtc\Asaas\Enum\CommercialInfo;
+use SistemAtc\Asaas\Enum\BankAccountInfo;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class AccountStatus
+class AccountStatus implements DTOInterface
 {
 
     public function __construct(

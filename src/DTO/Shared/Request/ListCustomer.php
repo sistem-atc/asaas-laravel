@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
-class ListCustomer
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class ListCustomer implements DTOInterface
 {
 
     public function __construct(

@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Items
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Items implements DTOInterface
 {
 public function __construct(
         public readonly ?string $name,

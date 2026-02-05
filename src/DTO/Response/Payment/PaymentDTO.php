@@ -2,10 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Payment;
 
-use SistemAtc\Asaas\DTO\Shared\Response\CreditCard;
 use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Response\CreditCard;
 
-class PaymentDTO
+class PaymentDTO implements DTOInterface
 {
     public function __construct(
         public readonly ?string $object,

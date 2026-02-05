@@ -4,7 +4,7 @@ namespace SistemAtc\Asaas\Bases;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Http\Client\RequestException;
+use SistemAtc\Asaas\Exceptions\AsaasRequestException;
 
 abstract class BaseMethods
 {
@@ -16,26 +16,15 @@ abstract class BaseMethods
         $this->httpClient = $httpClient;
     }
 
-    protected function makeRequest(string $method, string $endpoint, array $data = []): ?array
+    protected function makeRequest(string $method, string $endpoint, array $data = []): array
     {
-        try {
-            $response = $this->httpClient->$method($endpoint, $data);
+        $response = $this->httpClient->$method($endpoint, $data);
 
-            if ($response->failed()) {
-                $this->handleError($response);
-            }
-
-            return $response->json();
-
-        } catch (RequestException $e) {
-            Log::error('Asaas Connection Error: ' . $e->getMessage(), [
-                'endpoint' => $endpoint,
-                        'method'   => $method
-            ]);
-
-            return null;
+        if ($response->failed()) {
+            $this->handleError($response);
         }
 
+        return $response->json() ?? [];
     }
 
     protected function handleError($response): void
@@ -53,7 +42,6 @@ abstract class BaseMethods
             'ip_address' => request()->ip(),
         ]);
 
-        $errorDescription = $response->json('errors.0.description') ?? 'Erro desconhecido na API do Asaas.';
-        throw new \Exception($errorDescription);
+        throw new AsaasRequestException($response);
     }
 }

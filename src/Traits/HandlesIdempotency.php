@@ -14,15 +14,14 @@ trait HandlesIdempotency
     protected function wasAlreadyProcessed(string $eventId): bool
     {
         $cacheKey = "asaas_event_processed:{$eventId}";
+        $ttl = config('asaas.idempotency_ttl');
 
-        if (Cache::has($cacheKey)) {
+        $isNew = Cache::add($cacheKey, true, $ttl);
+
+        if (!$isNew) {
             Log::info("Asaas Webhook: Event {$eventId} ignored (Idempotency triggered).");
             return true;
         }
-
-        $ttl = config('asaas.idempotency_ttl');
-
-        Cache::put($cacheKey, true, $ttl);
         
         return false;
     }

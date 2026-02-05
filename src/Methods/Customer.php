@@ -20,7 +20,7 @@ class Customer extends BaseMethods
 
     public function list(ListCustomer $filter): ?array
     {
-        $query = $filter ? http_build_query($filter->toArray()) : [];
+        $query = $filter ? '?' . http_build_query($filter->toArray()) : [];
         return $this->makeRequest('get', '/customers', $query);
     }
 

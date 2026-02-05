@@ -18,6 +18,11 @@ class AccessHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof AccessTokenWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para AccessTokenWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasAccessEvent::dispatch($this->event->event->value, $this->event);

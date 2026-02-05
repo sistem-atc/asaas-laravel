@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
-class Interest
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Interest implements DTOInterface
 {
     public function __construct(
         public readonly ?float $value,

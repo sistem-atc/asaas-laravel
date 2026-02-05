@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Discount
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Discount implements DTOInterface
 {
     public function __construct(
         public readonly ?float $value,

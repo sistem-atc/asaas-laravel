@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class AccessToken
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class AccessToken implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

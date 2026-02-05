@@ -1,19 +1,20 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request;
+namespace SistemAtc\Asaas\DTO\Request\Payment;
 
 use Illuminate\Support\Carbon;
 use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Request\Fine;
 use SistemAtc\Asaas\DTO\Shared\Request\Split;
 use SistemAtc\Asaas\DTO\Shared\Request\Callback;
 use SistemAtc\Asaas\DTO\Shared\Request\Discount;
 use SistemAtc\Asaas\DTO\Shared\Request\Interest;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCard;
+use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCardHolderInfo;
 
-class PaymentDTO
+class PaymentDTO implements DTOInterface
 {
     public function __construct(
         public readonly AsaasCustomer $customer,

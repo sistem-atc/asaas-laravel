@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Response\Customer;
 
 use SistemAtc\Asaas\Enum\TypePerson;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class CustomerCreateDTO
+class CustomerCreateDTO implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

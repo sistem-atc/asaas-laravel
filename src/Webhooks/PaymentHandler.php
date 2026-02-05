@@ -18,6 +18,11 @@ class PaymentHandler extends BaseAsaasHandler
 
     public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
     {
+
+        if (!$eventDTO instanceof PaymentWebhookDTO) {
+            throw new \InvalidArgumentException("Handler esperado para PaymentWebhookDTO, recebido: " . get_class($eventDTO));
+        }
+
         $this->setEvent($eventDTO);
         if ($this->wasAlreadyProcessed($this->event->id)) return;
         AsaasPaymentEvent::dispatch($this->event->event->value, $this->event);

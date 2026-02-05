@@ -3,8 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusMobile;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Mobile
+class Mobile implements DTOInterface
 {
     public function __construct(
         public readonly ?string $id,

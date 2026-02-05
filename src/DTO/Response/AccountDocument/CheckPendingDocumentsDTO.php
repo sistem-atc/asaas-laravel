@@ -2,9 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Response\AccountDocument;
 
+use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Response\PendingDocument;
 
-class CheckPendingDocumentsDTO
+class CheckPendingDocumentsDTO implements DTOInterface
 {
 
     /**

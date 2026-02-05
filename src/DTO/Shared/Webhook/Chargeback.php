@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-class Chargeback
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Chargeback implements DTOInterface
 {
     public function __construct(
         public readonly ?string $status,

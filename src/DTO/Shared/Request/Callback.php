@@ -2,7 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
-class Callback
+use SistemAtc\Asaas\Contracts\DTOInterface;
+
+class Callback implements DTOInterface
 {
     public function __construct(
         public readonly string $successUrl,
