@@ -7,9 +7,13 @@ use SistemAtc\Asaas\DTO\Shared\Webhook\Fine;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Subscription implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -53,29 +57,5 @@ class Subscription implements DTOInterface
             interest: isset($data['interest']) ? Interest::fromArray($data['interest']) : null,
             split: isset($data['split']) ? array_map(fn($s) => Split::fromArray($s), $data['split']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'dateCreated' => $this->dateCreated,
-            'customer' => $this->customer,
-            'paymentLink' => $this->paymentLink,
-            'value' => $this->value,
-            'nextDueDate' => $this->nextDueDate,
-            'cycle' => $this->cycle,
-            'description' => $this->description,
-            'billingType' => $this->billingType,
-            'deleted' => $this->deleted,
-            'status' => $this->status,
-            'externalReference' => $this->externalReference,
-            'sendPaymentByPostalService' => $this->sendPaymentByPostalService,
-            'discount' => $this->discount?->toArray(),
-            'fine' => $this->fine?->toArray(),
-            'interest' => $this->interest?->toArray(),
-            'split' => $this->split ? array_map(fn($s) => $s->toArray(), $this->split) : null,
-        ], fn($value) => !is_null($value));
     }
 }

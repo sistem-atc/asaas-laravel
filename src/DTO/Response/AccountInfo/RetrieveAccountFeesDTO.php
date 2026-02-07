@@ -10,9 +10,13 @@ use SistemAtc\Asaas\DTO\Shared\Response\AnticipationFees;
 use SistemAtc\Asaas\DTO\Shared\Response\NotificationFees;
 use SistemAtc\Asaas\DTO\Shared\Response\PaymentDunningFees;
 use SistemAtc\Asaas\DTO\Shared\Response\CreditBureauReportFees;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class RetrieveAccountFeesDTO implements DTOInterface
 {
+
+    use CastToArray;
+    
     public function __construct(
         public readonly ?PaymentFees $payment,
         public readonly ?TransferFees $transfer,
@@ -34,18 +38,5 @@ class RetrieveAccountFeesDTO implements DTOInterface
             invoice: isset($data['invoice']) ? InvoiceFees::fromArray($data['invoice']) : null,
             anticipation: isset($data['anticipation']) ? AnticipationFees::fromArray($data['anticipation']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'payment'            => $this->payment?->toArray(),
-            'transfer'           => $this->transfer?->toArray(),
-            'notification'       => $this->notification?->toArray(),
-            'creditBureauReport' => $this->creditBureauReport?->toArray(),
-            'paymentDunning'     => $this->paymentDunning?->toArray(),
-            'invoice'            => $this->invoice?->toArray(),
-            'anticipation'       => $this->anticipation?->toArray(),
-        ], fn($v) => !is_null($v));
     }
 }

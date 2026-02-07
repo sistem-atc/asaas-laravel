@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Response\Customer;
 
 use SistemAtc\Asaas\Enum\TypePerson;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CustomerCreateDTO implements DTOInterface
 {
+
+    use CastToArray;
+    
     public function __construct(
         public readonly ?string $id,
         public readonly ?string $dateCreated,
@@ -58,33 +62,5 @@ class CustomerCreateDTO implements DTOInterface
             observations: $data['observations'] ?? null,
             foreignCustomer: $data['foreignCustomer'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'dateCreated' => $this->dateCreated,
-            'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'mobilePhone' => $this->mobilePhone,
-            'address' => $this->address,
-            'addressNumber' => $this->addressNumber,
-            'complement' => $this->complement,
-            'province' => $this->province,
-            'city' => $this->city,
-            'cityName' => $this->cityName,
-            'country' => $this->country,
-            'postalCode' => $this->postalCode,
-            'cpfCnpj' => $this->cpfCnpj,
-            'personType' => $this->personType?->value,
-            'deleted' => $this->deleted,
-            'additionalEmails' => $this->additionalEmails,
-            'externalReference' => $this->externalReference,
-            'notificationDisabled' => $this->notificationDisabled,
-            'observations' => $this->observations,
-            'foreignCustomer' => $this->foreignCustomer,
-        ], fn($value) => !is_null($value));
     }
 }

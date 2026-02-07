@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Checkout implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $id,
         public readonly ?string $link,
@@ -39,24 +43,5 @@ class Checkout implements DTOInterface
             customer: $data['customer'] ?? null,
             customerData: $data['customerData'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'link' => $this->link,
-            'status' => $this->status,
-            'minutesToExpire' => $this->minutesToExpire,
-            'billingTypes' => $this->billingTypes,
-            'chargeTypes' => $this->chargeTypes,
-            'callback' => $this->callback?->toArray(),
-            'items' => array_map(fn($item) => $item->toArray(), $this->items ?? []),
-            'subscription' => $this->subscription?->toArray(),
-            'installment' => $this->installment,
-            'split' => array_map(fn($item) => $item->toArray(), $this->split ?? []),
-            'customer' => $this->customer,
-            'customerData' => $this->customerData,
-        ], fn($value) => !is_null($value));
     }
 }

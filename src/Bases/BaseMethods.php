@@ -3,12 +3,12 @@
 namespace SistemAtc\Asaas\Bases;
 
 use Illuminate\Support\Facades\Log;
+use SistemAtc\Asaas\Enum\HttpMethod;
 use Illuminate\Http\Client\PendingRequest;
 use SistemAtc\Asaas\Exceptions\AsaasRequestException;
 
 abstract class BaseMethods
 {
-
     protected PendingRequest $httpClient;
 
     public function __construct(PendingRequest $httpClient)
@@ -16,9 +16,16 @@ abstract class BaseMethods
         $this->httpClient = $httpClient;
     }
 
-    protected function makeRequest(string $method, string $endpoint, array $data = []): array
+    protected function makeRequest(HttpMethod $method, string $endpoint, array $data = []): array
     {
-        $response = $this->httpClient->$method($endpoint, $data);
+        $client = $this->httpClient;
+
+        $isMultipart = isset($data[0]['name'], $data[0]['contents']);
+        if ($isMultipart) {
+           $client = $client->asMultipart();
+        }
+
+        $response = $client->{$method->value}($endpoint, $data);
 
         if ($response->failed()) {
             $this->handleError($response);
@@ -29,13 +36,8 @@ abstract class BaseMethods
 
     protected function handleError($response): void
     {
-        $accessToken = (string) $response->header('asaas-access-token');
-        $tokenIdentifier = $accessToken
-            ? substr(hash('sha256', trim($accessToken)), 0, 12)
-            : 'N/A';
-
         Log::warning('Asaas HTTP Request Error', [
-            'token_id'   => $tokenIdentifier,
+            'token_id'   => 'token not logged for security reasons',
             'status'     => $response->status(),
             'url'        => $response->effectiveUri(),
             'payload'    => $response->json(),

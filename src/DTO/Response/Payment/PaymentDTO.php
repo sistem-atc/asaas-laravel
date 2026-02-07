@@ -5,9 +5,13 @@ namespace SistemAtc\Asaas\DTO\Response\Payment;
 use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Response\CreditCard;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentDTO implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -89,48 +93,5 @@ class PaymentDTO implements DTOInterface
             escrow: $data['escrow'] ?? null,
             refunds: $data['refunds'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'dateCreated' => $this->dateCreated,
-            'customer' => $this->customer,
-            'checkoutSession' => $this->checkoutSession,
-            'paymentLink' => $this->paymentLink,
-            'value' => $this->value,
-            'netValue' => $this->netValue,
-            'originalValue' => $this->originalValue,
-            'interestValue' => $this->interestValue,
-            'description' => $this->description,
-            'billingType' => $this->billingType?->value,
-            'confirmedDate' => $this->confirmedDate,
-            'creditCard' => $this->creditCard?->toArray(),
-            'pixTransaction' => $this->pixTransaction,
-            'status' => $this->status,
-            'dueDate' => $this->dueDate,
-            'originalDueDate' => $this->originalDueDate,
-            'paymentDate' => $this->paymentDate,
-            'clientPaymentDate' => $this->clientPaymentDate,
-            'installmentNumber' => $this->installmentNumber,
-            'invoiceUrl' => $this->invoiceUrl,
-            'invoiceNumber' => $this->invoiceNumber,
-            'externalReference' => $this->externalReference,
-            'deleted' => $this->deleted,
-            'anticipated' => $this->anticipated,
-            'anticipable' => $this->anticipable,
-            'creditDate' => $this->creditDate,
-            'estimatedCreditDate' => $this->estimatedCreditDate,
-            'transactionReceiptUrl' => $this->transactionReceiptUrl,
-            'nossoNumero' => $this->nossoNumero,
-            'bankSlipUrl' => $this->bankSlipUrl,
-            'lastInvoiceViewedDate' => $this->lastInvoiceViewedDate,
-            'lastBankSlipViewedDate' => $this->lastBankSlipViewedDate,
-            'postalService' => $this->postalService,
-            'escrow' => $this->escrow,
-            'refunds' => $this->refunds,
-        ], fn($v) => !is_null($v));
     }
 }

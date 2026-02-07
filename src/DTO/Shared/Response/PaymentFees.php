@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentFees implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?BankSlipFees $bankSlip,
         public readonly ?CreditCardFees $creditCard,
@@ -21,15 +25,5 @@ class PaymentFees implements DTOInterface
             debitCard: isset($data['debitCard']) ? DebitCardFees::fromArray($data['debitCard']) : null,
             pix: isset($data['pix']) ? PixFees::fromArray($data['pix']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'bankSlip'   => $this->bankSlip?->toArray(),
-            'creditCard' => $this->creditCard?->toArray(),
-            'debitCard'  => $this->debitCard?->toArray(),
-            'pix'        => $this->pix?->toArray(),
-        ], fn($v) => !is_null($v));
     }
 }

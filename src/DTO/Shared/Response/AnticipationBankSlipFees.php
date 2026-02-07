@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AnticipationBankSlipFees implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $monthlyFeePercentage
     ) {}
@@ -15,9 +19,5 @@ class AnticipationBankSlipFees implements DTOInterface
         return new self(
             monthlyFeePercentage: isset($data['monthlyFeePercentage']) ? (float) $data['monthlyFeePercentage'] : null
         );
-    }
-
-    public function toArray(): array { 
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v)); 
     }
 }

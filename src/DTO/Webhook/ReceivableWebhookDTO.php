@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Receivable;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class ReceivableWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class ReceivableWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             anticipation: isset($data['anticipation']) ? Receivable::fromArray($data['anticipation']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'anticipation' => $this->anticipation?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

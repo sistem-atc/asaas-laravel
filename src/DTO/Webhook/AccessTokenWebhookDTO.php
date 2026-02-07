@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\AccessToken;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AccessTokenWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class AccessTokenWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             accessToken: isset($data['accessToken']) ? AccessToken::fromArray($data['accessToken']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'access' => $this->accessToken?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

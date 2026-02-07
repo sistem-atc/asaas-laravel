@@ -3,9 +3,12 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class ListCustomer implements DTOInterface
 {
+
+    use CastToArray;
 
     public function __construct(
         public readonly int $offset,
@@ -28,18 +31,5 @@ class ListCustomer implements DTOInterface
             groupName: $data['groupName'] ?? null,
             externalReference: $data['externalReference'] ?? null
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-            'name' => $this->name,
-            'email' => $this->email,
-            'cpfCnpj' => $this->cpfCnpj,
-            'groupName' => $this->groupName,
-            'externalReference' => $this->externalReference,
-        ], fn($value) => !is_null($value));
     }
 }

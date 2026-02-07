@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AccessToken implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $id,
         public readonly ?string $name,
@@ -20,14 +24,4 @@ class AccessToken implements DTOInterface
             expirationDate: $data['expirationDate'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'name' => $this->name,
-            'expirationDate' => $this->expirationDate,
-        ], fn($value) => !is_null($value));
-    }
-
 }

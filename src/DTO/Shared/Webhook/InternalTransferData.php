@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class InternalTransferData implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $description,
         public readonly ?float $value,
@@ -22,15 +26,4 @@ class InternalTransferData implements DTOInterface
             type: $data['type'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'description' => $this->description,
-            'value' => $this->value,
-            'date' => $this->date,
-            'type' => $this->type,
-        ], fn($value) => !is_null($value));
-    }
-
 }

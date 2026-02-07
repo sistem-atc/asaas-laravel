@@ -7,9 +7,12 @@ use SistemAtc\Asaas\Enum\Documentation;
 use SistemAtc\Asaas\Enum\CommercialInfo;
 use SistemAtc\Asaas\Enum\BankAccountInfo;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AccountStatus implements DTOInterface
 {
+
+    use CastToArray;
 
     public function __construct(
         public readonly ?string $id,
@@ -29,16 +32,4 @@ class AccountStatus implements DTOInterface
             general: isset($data['general']) ? General::tryFrom($data['general']) : null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'commercialInfo' => $this->commercialInfo?->value,
-            'bankAccountInfo' => $this->bankAccountInfo?->value,
-            'documentation' => $this->documentation?->value,
-            'general' => $this->general?->value,
-        ], fn($value) => !is_null($value));
-    }
-
 }

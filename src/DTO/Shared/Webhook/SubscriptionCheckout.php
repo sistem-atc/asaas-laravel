@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class SubscriptionCheckout implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $cycle,
         public readonly ?string $nextDueDate,
@@ -19,14 +23,5 @@ class SubscriptionCheckout implements DTOInterface
             nextDueDate: $data['nextDueDate'] ?? null,
             endDate: $data['endDate'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'cycle' => $this->cycle,
-            'nextDueDate' => $this->nextDueDate,
-            'endDate' => $this->endDate,
-        ], fn($value) => !is_null($value));
     }
 }

@@ -3,10 +3,14 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Items implements DTOInterface
 {
-public function __construct(
+
+    use CastToArray;
+
+    public function __construct(
         public readonly ?string $name,
         public readonly ?string $description,
         public readonly ?int $quantity,
@@ -20,9 +24,5 @@ public function __construct(
             quantity: isset($data['quantity']) ? (int) $data['quantity'] : null,
             value: isset($data['value']) ? (float) $data['value'] : null,
         );
-    }
-
-    public function toArray(): array {
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v));
     }
 }

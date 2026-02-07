@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Invoice implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -59,34 +63,5 @@ class Invoice implements DTOInterface
             municipalServiceCode: $data['municipalServiceCode'] ?? null,
             municipalServiceName: $data['municipalServiceName'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'status' => $this->status,
-            'customer' => $this->customer,
-            'type' => $this->type,
-            'statusDescription' => $this->statusDescription,
-            'serviceDescription' => $this->serviceDescription,
-            'pdfUrl' => $this->pdfUrl,
-            'xmlUrl' => $this->xmlUrl,
-            'rpsSerie' => $this->rpsSerie,
-            'rpsNumber' => $this->rpsNumber,
-            'number' => $this->number,
-            'validationCode' => $this->validationCode,
-            'value' => $this->value,
-            'deductions' => $this->deductions,
-            'effectiveDate' => $this->effectiveDate,
-            'observations' => $this->observations,
-            'estimatedTaxesDescription' => $this->estimatedTaxesDescription,
-            'payment' => $this->payment,
-            'installment' => $this->installment,
-            'taxes' => $this->taxes?->toArray(),
-            'municipalServiceCode' => $this->municipalServiceCode,
-            'municipalServiceName' => $this->municipalServiceName,
-        ], fn($value) => !is_null($value));
     }
 }

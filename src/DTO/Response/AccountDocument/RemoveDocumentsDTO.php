@@ -3,10 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Response\AccountDocument;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class RemoveDocumentsDTO implements DTOInterface
 {
     
+    use CastToArray;
+
     public function __construct(
         public bool $deleted,
         public ?string $id,
@@ -18,13 +21,5 @@ class RemoveDocumentsDTO implements DTOInterface
             deleted: $data['deleted'] ?? false,
             id: $data['id'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'deleted' => $this->deleted,
-            'id' => $this->id,
-        ], fn($v) => !is_null($v));
     }
 }

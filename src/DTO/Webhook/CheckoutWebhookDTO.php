@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Checkout;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CheckoutWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+    
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class CheckoutWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             checkout: isset($data['checkout']) ? Checkout::fromArray($data['checkout']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'checkout' => $this->checkout?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

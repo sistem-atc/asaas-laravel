@@ -3,10 +3,14 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Callback implements DTOInterface
 {
-public function __construct(
+
+    use CastToArray;
+
+    public function __construct(
         public readonly ?string $cancelUrl,
         public readonly ?string $successUrl,
         public readonly ?string $expiredUrl,
@@ -18,9 +22,5 @@ public function __construct(
             successUrl: $data['successUrl'] ?? null,
             expiredUrl: $data['expiredUrl'] ?? null,
         );
-    }
-
-    public function toArray(): array {
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v));
     }
 }

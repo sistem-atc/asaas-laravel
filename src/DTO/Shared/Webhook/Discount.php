@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Discount implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $value,
         public readonly ?int $dueDateLimitDays,
@@ -21,15 +25,5 @@ class Discount implements DTOInterface
             limitedDate: $data['limitedDate'] ?? null,
             type: $data['type'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'value' => $this->value,
-            'dueDateLimitDays' => $this->dueDateLimitDays,
-            'limitedDate' => $this->limitedDate,
-            'type' => $this->type,
-        ], fn($value) => !is_null($value));
     }
 }

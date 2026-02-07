@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CreditCardFees implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $operationValue,
         public readonly ?float $oneInstallmentPercentage,
@@ -35,10 +39,5 @@ class CreditCardFees implements DTOInterface
             discountExpiration: $data['discountExpiration'] ?? null,
             daysToReceive: $data['daysToReceive'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v));
     }
 }

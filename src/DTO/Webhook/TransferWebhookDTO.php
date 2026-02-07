@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Transfer;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class TransferWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class TransferWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             transfer: isset($data['transfer']) ? Transfer::fromArray($data['transfer']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'transfer' => $this->transfer?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

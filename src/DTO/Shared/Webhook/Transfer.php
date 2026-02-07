@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\AccountTransfer;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Transfer implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -52,31 +56,5 @@ class Transfer implements DTOInterface
             operationType: $data['operationType'] ?? null,
             description: $data['description'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'dateCreated' => $this->dateCreated,
-            'status' => $this->status,
-            'effectiveDate' => $this->effectiveDate,
-            'endToEndIdentifier' => $this->endToEndIdentifier,
-            'type' => $this->type,
-            'value' => $this->value,
-            'netValue' => $this->netValue,
-            'transferFee' => $this->transferFee,
-            'scheduleDate' => $this->scheduleDate,
-            'authorized' => $this->authorized,
-            'walletId' => $this->walletId,
-            'failReason' => $this->failReason,
-            'transactionReceiptUrl' => $this->transactionReceiptUrl,
-            'account' => $this->account?->toArray(),
-            'bankAccount' => $this->bankAccount?->toArray(),
-            'operationType' => $this->operationType,
-            'description' => $this->description,
-
-        ], fn($value) => !is_null($value));
     }
 }

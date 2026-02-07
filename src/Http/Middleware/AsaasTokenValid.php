@@ -11,6 +11,10 @@ class AsaasTokenValid
     public function handle(Request $request, Closure $next): Response
     {
 
+        if (!config('asaas.use_webhook_security')) {
+            return $next($request);
+        }
+
         $receivedToken = trim((string) $request->header('asaas-access-token'));
         $expectedToken = (string) config('asaas.webhook_token');
 

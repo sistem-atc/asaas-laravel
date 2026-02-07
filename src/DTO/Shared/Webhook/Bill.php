@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusBill;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Bill implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -48,28 +52,5 @@ class Bill implements DTOInterface
             canBeCancelled: (bool) ($data['canBeCancelled'] ?? false),
             failReasons: $data['failReasons'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'status' => $this->status?->value,
-            'value' => $this->value,
-            'discount' => $this->discount,
-            'interest' => $this->interest,
-            'fine' => $this->fine,
-            'identificationField' => $this->identificationField,
-            'dueDate' => $this->dueDate,
-            'scheduleDate' => $this->scheduleDate,
-            'paymentDate' => $this->paymentDate,
-            'fee' => $this->fee,
-            'description' => $this->description,
-            'companyName' => $this->companyName,
-            'transactionReceiptUrl' => $this->transactionReceiptUrl,
-            'canBeCancelled' => $this->canBeCancelled,
-            'failReasons' => $this->failReasons,
-        ], fn($value) => !is_null($value));
     }
 }

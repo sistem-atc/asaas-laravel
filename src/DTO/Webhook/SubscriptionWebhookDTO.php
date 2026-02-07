@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Subscription;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class SubscriptionWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class SubscriptionWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             subscription: isset($data['subscription']) ? Subscription::fromArray($data['subscription']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'subscription' => $this->subscription?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

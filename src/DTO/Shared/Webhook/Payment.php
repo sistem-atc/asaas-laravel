@@ -9,9 +9,13 @@ use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Chargeback;
 use SistemAtc\Asaas\DTO\Shared\Webhook\CreditCard;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Payment implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -105,54 +109,5 @@ class Payment implements DTOInterface
             chargeback: isset($data['chargeback']) ? Chargeback::fromArray($data['chargeback']) : null,
             refunds: $data['refunds'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'dateCreated' => $this->dateCreated,
-            'customer' => $this->customer,
-            'subscription' => $this->subscription,
-            'installment' => $this->installment,
-            'paymentLink' => $this->paymentLink,
-            'dueDate' => $this->dueDate,
-            'originalDueDate' => $this->originalDueDate,
-            'value' => $this->value,
-            'netValue' => $this->netValue,
-            'originalValue' => $this->originalValue,
-            'interestValue' => $this->interestValue,
-            'nossoNumero' => $this->nossoNumero,
-            'description' => $this->description,
-            'externalReference' => $this->externalReference,
-            'billingType' => $this->billingType,
-            'status' => $this->status,
-            'pixTransaction' => $this->pixTransaction,
-            'confirmedDate' => $this->confirmedDate,
-            'paymentDate' => $this->paymentDate,
-            'clientPaymentDate' => $this->clientPaymentDate,
-            'installmentNumber' => $this->installmentNumber,
-            'creditDate' => $this->creditDate,
-            'custody' => $this->custody,
-            'estimatedCreditDate' => $this->estimatedCreditDate,
-            'invoiceUrl' => $this->invoiceUrl,
-            'bankSlipUrl' => $this->bankSlipUrl,
-            'transactionReceiptUrl' => $this->transactionReceiptUrl,
-            'invoiceNumber' => $this->invoiceNumber,
-            'deleted' => $this->deleted,
-            'anticipated' => $this->anticipated,
-            'anticipable' => $this->anticipable,
-            'lastInvoiceViewedDate' => $this->lastInvoiceViewedDate,
-            'lastBankSlipViewedDate' => $this->lastBankSlipViewedDate,
-            'postalService' => $this->postalService,
-            'creditCard' => $this->creditCard?->toArray(),
-            'discount' => $this->discount?->toArray(),
-            'fine' => $this->fine?->toArray(),
-            'interest' => $this->interest?->toArray(),
-            'split' => $this->split ? array_map(fn($s) => $s->toArray(), $this->split) : null,
-            'chargeback' => $this->chargeback?->toArray(),
-            'refunds' => $this->refunds,
-        ], fn($value) => !is_null($value));
     }
 }

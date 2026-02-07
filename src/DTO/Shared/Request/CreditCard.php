@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CreditCard implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $holderName,
         public readonly ?string $number,
@@ -23,16 +27,5 @@ class CreditCard implements DTOInterface
             expiryYear: $data['expiryYear'] ?? null,
             ccv: $data['ccv'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'holderName' => $this->holderName,
-            'number' => $this->number,
-            'expiryMonth' => $this->expiryMonth,
-            'expiryYear' => $this->expiryYear,
-            'ccv' => $this->ccv,
-        ], fn($value) => !is_null($value));
     }
 }

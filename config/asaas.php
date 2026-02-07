@@ -2,6 +2,8 @@
 
 return [
 
+    'environment' => 'sandbox', // Defines the environment: production or sandbox.
+
     /*
     |--------------------------------------------------------------------------
     | Production Settings (Defined by env production)
@@ -9,7 +11,7 @@ return [
     */
 
     'production' => [
-        'base_url'     => env('ASAAS_BASE_URL', 'https://api.assas.com'),
+        'base_url'     => env('ASAAS_BASE_URL', 'https://api.asaas.com'),
         'version'      => env('ASAAS_API_VERSION', 'v3'),
         'access_token' => env('ASAAS_ACCESS_TOKEN'),
         'pix_key'      => env('ASAAS_PIX_KEY'),
@@ -23,7 +25,7 @@ return [
     */
 
     'sandbox' => [
-        'base_url'     => env('ASAAS_SANDBOX_BASE_URL', 'https://sandbox.assas.com'),
+        'base_url'     => env('ASAAS_SANDBOX_BASE_URL', 'https://sandbox.asaas.com'),
         'version'      => env('ASAAS_SANDBOX_API_VERSION', 'v3'),
         'access_token' => env('ASAAS_SANDBOX_ACCESS_TOKEN'),
         'pix_key'      => env('ASAAS_SANDBOX_PIX_KEY'),
@@ -39,7 +41,8 @@ return [
     | webhook requests are legitimate and authorized.
     |
     */
-
+    
+    'use_webhook_security' => true,
     'webhook_token' => env('ASAAS_WEBHOOK_TOKEN'),
 
     /*

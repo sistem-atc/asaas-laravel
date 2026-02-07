@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class NotificationFees implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $phoneCallFeeValue,
         public readonly ?float $whatsAppFeeValue,
@@ -20,9 +24,4 @@ class NotificationFees implements DTOInterface
             messagingFeeValue: isset($data['messagingFeeValue']) ? (float) $data['messagingFeeValue'] : null,
         );
     }
-
-    public function toArray(): array { 
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v)); 
-    }
-
 }

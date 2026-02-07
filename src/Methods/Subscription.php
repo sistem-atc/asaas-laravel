@@ -2,13 +2,14 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 
 class Subscription extends BaseMethods
 {
     public function create(array $data): ?array
     {
-        return $this->makeRequest('post', '/subscriptions', $data);
+        return $this->makeRequest(HttpMethod::POST, '/subscriptions', $data);
     }
 
     public function list(): array

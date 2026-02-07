@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Interest implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $value,
     ) {}
@@ -16,12 +20,4 @@ class Interest implements DTOInterface
             value: $data['value'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'value' => $this->value,
-        ], fn($value) => !is_null($value));
-    }
-
 }

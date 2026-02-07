@@ -2,6 +2,7 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
@@ -13,19 +14,19 @@ class Payment extends BaseMethods
 
     public function create(PaymentDTO $data): ?PaymentoDTOResponse
     {
-        $response = $this->makeRequest('post','/payments',$data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
         return PaymentoDTOResponse::fromArray($response);
     }
 
     public function list(ListPayment $filter): ?array
     {
         $query = $filter ? http_build_query($filter->toArray()) : [];
-        return $this->makeRequest('get', '/payments', $query);
+        return $this->makeRequest(HttpMethod::GET, '/payments', $query);
     }
 
     public function capturePreAuthorization(string $id): ?PaymentoDTOResponse
     {
-        $response = $this->makeRequest('post', "/payments/{$id}/captureAuthorizedPayment", [$id]);
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/captureAuthorizedPayment", [$id]);
         return PaymentoDTOResponse::fromArray($response);
     }
 
@@ -51,7 +52,7 @@ class Payment extends BaseMethods
 
     public function getQrCodePix(string $paymentId): QrCodeDTO
     {
-        $response = $this->makeRequest('post', "/payments/{$paymentId}/pixQrCode");
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$paymentId}/pixQrCode");
         return QrCodeDTO::fromArray($response);
     }
 

@@ -8,9 +8,13 @@ use SistemAtc\Asaas\DTO\Shared\Response\CommercialInfoExpiration;
 use SistemAtc\Asaas\Enum\StatusRetrieveBusinessData;
 use SistemAtc\Asaas\Enum\TypeCompany;
 use SistemAtc\Asaas\Enum\TypePerson;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class RetrieveBusinessDataDTO implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?StatusRetrieveBusinessData $status,
         public readonly ?TypePerson $personType,
@@ -62,33 +66,5 @@ class RetrieveBusinessDataDTO implements DTOInterface
             availableCompanyNames: $data['availableCompanyNames'] ?? [],
             commercialInfoExpiration: isset($data['commercialInfoExpiration']) ? ($data['commercialInfoExpiration'] instanceof CommercialInfoExpiration ? $data['commercialInfoExpiration'] : CommercialInfoExpiration::fromArray($data['commercialInfoExpiration'])) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'status' => $this->status?->value,
-            'personType' => $this->personType?->value,
-            'cpfCnpj' => $this->cpfCnpj,
-            'name' => $this->name,
-            'birthDate' => $this->birthDate,
-            'companyName' => $this->companyName,
-            'companyType' => $this->companyType?->value,
-            'incomeValue' => $this->incomeValue,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'mobilePhone' => $this->mobilePhone,
-            'postalCode' => $this->postalCode,
-            'address' => $this->address,
-            'addressNumber' => $this->addressNumber,
-            'complement' => $this->complement,
-            'province' => $this->province,
-            'city' => $this->city?->toArray(),
-            'denialReason' => $this->denialReason,
-            'tradingName' => $this->tradingName,
-            'site' => $this->site,
-            'availableCompanyNames' => $this->availableCompanyNames,
-            'commercialInfoExpiration' => $this->commercialInfoExpiration?->toArray(),
-        ], fn($v) => !is_null($v));
     }
 }

@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Enum\TypeDocument;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Responsible implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $name,
         public readonly ?TypeDocument $type,
@@ -18,13 +22,5 @@ class Responsible implements DTOInterface
             name: $data['name'] ?? null,
             type: isset($data['type']) ? TypeDocument::tryFrom($data['type']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'name' => $this->name,
-            'type' => $this->type?->value,
-        ], fn($value) => !is_null($value));
     }
 }

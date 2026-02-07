@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Split implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $id,
         public readonly ?string $walletId,
@@ -31,20 +35,5 @@ class Split implements DTOInterface
             description: $data['description'] ?? null,
             totalFixedValue: $data['totalFixedValue'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'walletId' => $this->walletId,
-            'fixedValue' => $this->fixedValue,
-            'percentualValue' => $this->percentualValue,
-            'status' => $this->status,
-            'refusalReason' => $this->refusalReason,
-            'externalReference' => $this->externalReference,
-            'description' => $this->description,
-            'totalFixedValue' => $this->totalFixedValue,
-        ], fn($value) => !is_null($value));
     }
 }

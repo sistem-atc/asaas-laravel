@@ -2,12 +2,15 @@
 
 namespace SistemAtc\Asaas\DTO\Response\AccountDocument;
 
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Response\PendingDocument;
 
 class CheckPendingDocumentsDTO implements DTOInterface
 {
 
+    use CastToArray;
+    
     /**
      * @param PendingDocument[]|null $data
      */
@@ -23,13 +26,5 @@ class CheckPendingDocumentsDTO implements DTOInterface
             data: isset($data['data']) && is_array($data['data']) ? array_map(
                 static fn (array $item) => PendingDocument::fromArray($item), $data['data']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'rejectReasons' => $this->rejectReasons,
-            'data' => $this->data ? array_map(static fn (PendingDocument $item) => $item->toArray(), $this->data) : null,
-        ], fn($v) => !is_null($v));
     }
 }

@@ -13,8 +13,8 @@ trait HandlesIdempotency
      */
     protected function wasAlreadyProcessed(string $eventId): bool
     {
-        $cacheKey = "asaas_event_processed:{$eventId}";
-        $ttl = config('asaas.idempotency_ttl');
+        $cacheKey = "asaas:webhook:processed:{$eventId}";
+        $ttl = config('asaas.idempotency_ttl', 86400);
 
         $isNew = Cache::add($cacheKey, true, $ttl);
 

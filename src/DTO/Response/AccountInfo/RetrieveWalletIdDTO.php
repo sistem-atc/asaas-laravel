@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Response\WalletDTO;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class RetrieveWalletIdDTO implements DTOInterface
 {
+
+    use CastToArray;
+    
     /**
      * @param WalletDTO[]|null $data
      */
@@ -31,17 +35,5 @@ class RetrieveWalletIdDTO implements DTOInterface
                 ? array_map(fn($item) => WalletDTO::fromArray($item), $data['data']) 
                 : [],
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object'     => $this->object,
-            'hasMore'    => $this->hasMore,
-            'totalCount' => $this->totalCount,
-            'limit'      => $this->limit,
-            'offset'     => $this->offset,
-            'data'       => array_map(fn(WalletDTO $item) => $item->toArray(), $this->data ?? []),
-        ], fn($v) => !is_null($v));
     }
 }

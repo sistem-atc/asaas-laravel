@@ -3,9 +3,12 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AsaasCustomer implements DTOInterface
 {
+
+    use CastToArray;
 
     public function __construct(
         public readonly ?string $name,
@@ -55,30 +58,4 @@ class AsaasCustomer implements DTOInterface
             asaas_id: $data['asaas_id'] ?? $data['asaasId'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'name' => $this->name,
-            'cpfCnpj' => $this->cpfCnpj,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'mobilePhone' => $this->mobilePhone,
-            'address' => $this->address,
-            'addressNumber' => $this->addressNumber,
-            'complement' => $this->complement,
-            'province' => $this->province,
-            'postalCode' => $this->postalCode,
-            'externalReference' => $this->externalReference,
-            'notificationDisable' => $this->notificationDisable,
-            'additionalEmails' => $this->additionalEmails,
-            'municipalInscription' => $this->municipalInscription,
-            'stateInscription' => $this->stateInscription,
-            'observations' => $this->observations,
-            'groupName' => $this->groupName,
-            'company' => $this->company,
-            'foreignCustomer' => $this->foreignCustomer,
-        ], fn($value) => !is_null($value));
-    }
-
 }

@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusMobile;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Mobile implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $id,
         public readonly ?float $value,
@@ -26,17 +30,5 @@ class Mobile implements DTOInterface
             canBeCancelled: (bool) ($data['canBeCancelled'] ?? false),
             operatorName: $data['operatorName'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'value' => $this->value,
-            'phoneNumber' => $this->phoneNumber,
-            'status' => $this->status?->value,
-            'canBeCancelled' => $this->canBeCancelled,
-            'operatorName' => $this->operatorName,
-        ], fn($value) => !is_null($value));
     }
 }

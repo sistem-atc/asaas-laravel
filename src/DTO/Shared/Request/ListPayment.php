@@ -7,9 +7,13 @@ use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Enum\InvoiceStatus;
 use SistemAtc\Asaas\Enum\StatusPayment;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class ListPayment implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly int $offset,
         public readonly int $limit,
@@ -66,35 +70,4 @@ class ListPayment implements DTOInterface
             user: $data['user'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'offset' => $this->offset,
-            'limit' => $this->limit,
-            'customer' => $this->customer,
-            'customerGroupName' => $this->customerGroupName,
-            'billingType' => $this->billingType?->value,
-            'status' => $this->status?->value,
-            'subscription' => $this->subscription,
-            'installment' => $this->installment,
-            'externalReference' => $this->externalReference,
-            'paymentDate' => $this->paymentDate,
-            'invoiceStatus' => $this->invoiceStatus?->value,
-            'estimatedCreditDate' => $this->estimatedCreditDate,
-            'pixQrCodeId' => $this->pixQrCodeId,
-            'anticipated' => $this->anticipated,
-            'anticipable' => $this->anticipable,
-            'dateCreated[ge]' => $this->dateCreatedge,
-            'dateCreated[le]' => $this->dateCreatedle,
-            'paymentDate[ge]' => $this->paymentDatege,
-            'paymentDate[le]' => $this->paymentDatele,
-            'estimatedCreditDate[ge]' => $this->estimatedCreditDatege,
-            'estimatedCreditDate[le]' => $this->estimatedCreditDatele,
-            'dueDate[ge]' => $this->dueDatege,
-            'dueDate[le]' => $this->dueDatele,
-            'user' => $this->user,
-        ], fn($value) => !is_null($value));
-    }
-
 }

@@ -10,11 +10,7 @@ class AsaasEventsController extends Controller
 {
     public function payload(Request $request)
     {
-        ProcessAsaasWebhook::dispatch(
-            $request->all(), 
-            $request->header('asaas-access-token')
-        );
-
+        ProcessAsaasWebhook::dispatch($request->all());
         return response()->noContent(204);
     }
 }

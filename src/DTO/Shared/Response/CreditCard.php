@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CreditCard implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $creditCardNumber,
         public readonly ?string $creditCardBrand,
@@ -19,14 +23,5 @@ class CreditCard implements DTOInterface
             creditCardBrand: $data['creditCardBrand'] ?? null,
             creditCardToken: $data['creditCardToken'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'creditCardNumber' => $this->creditCardNumber,
-            'creditCardBrand' => $this->creditCardBrand,
-            'creditCardToken' => $this->creditCardToken,
-        ], fn($value) => !is_null($value));
     }
 }

@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class DeleteWhiteLabelSubaccountDTO implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $observations,
     ) {}
@@ -14,13 +18,6 @@ class DeleteWhiteLabelSubaccountDTO implements DTOInterface
     {
         return new self(
             observations: $data['observations'] ?? null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            get_object_vars($this), fn($v) => !is_null($v)
         );
     }
 }

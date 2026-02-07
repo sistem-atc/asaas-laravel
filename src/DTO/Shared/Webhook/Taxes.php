@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Taxes implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly bool $retainIss,
         public readonly float $iss,
@@ -27,18 +31,5 @@ class Taxes implements DTOInterface
             ir: (float) ($data['ir'] ?? 0),
             pis: (float) ($data['pis'] ?? 0),
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'retainIss' => $this->retainIss,
-            'iss' => $this->iss,
-            'cofins' => $this->cofins,
-            'csll' => $this->csll,
-            'inss' => $this->inss,
-            'ir' => $this->ir,
-            'pis' => $this->pis,
-        ], fn($value) => !is_null($value));
     }
 }

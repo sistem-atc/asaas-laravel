@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Callback implements DTOInterface
 {
+
+    use CastToArray;
+    
     public function __construct(
         public readonly string $successUrl,
         public readonly ?bool $autoRedirect,
@@ -18,13 +22,4 @@ class Callback implements DTOInterface
             autoRedirect: $data['autoRedirect'] ?? null,
         );
     }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'successUrl' => $this->successUrl,
-            'autoRedirect' => $this->autoRedirect,
-        ], fn($value) => !is_null($value));
-    }
-
 }

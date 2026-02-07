@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Enum\StatusDocument;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\TypePendingDocument;
 use SistemAtc\Asaas\DTO\Shared\Response\Documents;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class PendingDocument implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $id,
         public readonly ?StatusDocument $status,
@@ -34,20 +38,5 @@ class PendingDocument implements DTOInterface
             onboardingUrlExpirationDate: $data['onboardingUrlExpirationDate'] ?? null,
             documents: isset($data['documents']) && is_array($data['documents']) ? Documents::fromArray($data['documents']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'id' => $this->id,
-            'status' => $this->status?->value,
-            'type' => $this->type?->value,
-            'title' => $this->title,
-            'description' => $this->description,
-            'responsible' => $this->responsible?->toArray(),
-            'onboardingUrl' => $this->onboardingUrl,
-            'onboardingUrlExpirationDate' => $this->onboardingUrlExpirationDate,
-            'documents' => $this->documents?->toArray(),
-        ], fn($value) => !is_null($value));
     }
 }

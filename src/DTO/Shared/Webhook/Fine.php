@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Fine implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $value,
         public readonly ?string $type,
@@ -17,13 +21,5 @@ class Fine implements DTOInterface
             value: isset($data['value']) ? (float) $data['value'] : null,
             type: $data['type'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'value' => $this->value,
-            'type' => $this->type,
-        ], fn($value) => !is_null($value));
     }
 }

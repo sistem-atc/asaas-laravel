@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Chargeback implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $status,
         public readonly ?string $reason,
@@ -17,13 +21,5 @@ class Chargeback implements DTOInterface
             status: $data['status'] ?? null,
             reason: $data['reason'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'status' => $this->status,
-            'reason' => $this->reason,
-        ], fn($value) => !is_null($value));
     }
 }

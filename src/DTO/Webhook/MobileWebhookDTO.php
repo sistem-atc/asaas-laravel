@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Mobile;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class MobileWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -26,17 +30,6 @@ class MobileWebhookDTO extends BaseEventDTO
         return new static(
             ...$params,
             mobilePhoneRecharge: isset($data['mobilePhoneRecharge']) ? Mobile::fromArray($data['mobilePhoneRecharge']) : null,
-        );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(parent::toArray(),
-            [
-                'mobilePhoneRecharge' => $this->mobilePhoneRecharge?->toArray(),
-            ]),
-            fn($value) => !is_null($value)
         );
     }
 }

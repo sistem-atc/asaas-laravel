@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CreditCardHolderInfo implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $name,
         public readonly ?string $email,
@@ -29,19 +33,5 @@ class CreditCardHolderInfo implements DTOInterface
             phone: isset($data['phone']) ? preg_replace('/\D/', '', $data['phone']) : null,
             mobilePhone: isset($data['mobilePhone']) ? preg_replace('/\D/', '', $data['mobilePhone']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'name' => $this->name,
-            'email' => $this->email,
-            'cpfCnpj' => $this->cpfCnpj,
-            'postalCode' => $this->postalCode,
-            'addressNumber' => $this->addressNumber,
-            'addressComplement' => $this->addressComplement,
-            'phone' => $this->phone,
-            'mobilePhone' => $this->mobilePhone,
-        ], fn($value) => !is_null($value));
     }
 }

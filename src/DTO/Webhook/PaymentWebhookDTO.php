@@ -6,9 +6,13 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Payment;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentWebhookDTO extends BaseEventDTO
 {
+
+    use CastToArray;
+
     public function __construct(
         ?string $id,
         ?WebhookEventAsaas $event,
@@ -27,18 +31,5 @@ class PaymentWebhookDTO extends BaseEventDTO
             ...$params,
             payment: isset($data['payment']) ? Payment::fromArray($data['payment']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(
-            array_merge(
-                parent::toArray(),
-                [
-                    'payment' => $this->payment?->toArray(),
-                ]
-            ),
-            fn($value) => !is_null($value)
-            );
     }
 }

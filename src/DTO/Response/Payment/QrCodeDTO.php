@@ -3,10 +3,14 @@
 namespace SistemAtc\Asaas\DTO\Response\Payment;
 
 use Carbon\Carbon;
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class QrCodeDTO implements DTOInterface
 {
+
+    use CastToArray;
+    
     public function __construct(
         public readonly ?string $encodedImage,
         public readonly ?string $payload,
@@ -22,15 +26,5 @@ class QrCodeDTO implements DTOInterface
             expirationDate: isset($data['expirationDate']) ? Carbon::parse($data['expirationDate']) : null,
             description: $data['description'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'encodedImage' => $this->encodedImage,
-            'payload' => $this->payload,
-            'expirationDate' => $this->expirationDate?->toDateTimeString(),
-            'description' => $this->description,
-        ], fn($v) => !is_null($v));
     }
 }

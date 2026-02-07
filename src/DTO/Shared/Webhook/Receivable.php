@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Enum\StatusReceivable;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Receivable implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $id,
@@ -42,25 +46,5 @@ class Receivable implements DTOInterface
             value: isset($data['value']) ? (float) $data['value'] : null,
             denialObservation: $data['denialObservation'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object' => $this->object,
-            'id' => $this->id,
-            'installment' => $this->installment,
-            'payment' => $this->payment,
-            'status' => $this->status?->value,
-            'anticipationDate' => $this->anticipationDate,
-            'dueDate' => $this->dueDate,
-            'requestDate' => $this->requestDate,
-            'fee' => $this->fee,
-            'anticipationDays' => $this->anticipationDays,
-            'netValue' => $this->netValue,
-            'totalValue' => $this->totalValue,
-            'value' => $this->value,
-            'denialObservation' => $this->denialObservation,
-        ], fn($value) => !is_null($value));
     }
 }

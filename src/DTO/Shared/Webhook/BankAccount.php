@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class BankAccount implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?Bank $bank,
         public readonly ?string $accountName,
@@ -31,20 +35,5 @@ class BankAccount implements DTOInterface
             accountDigit: $data['accountDigit'] ?? null,
             pixAddressKey: $data['pixAddressKey'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'bank' => $this->bank?->toArray(),
-            'accountName' => $this->accountName,
-            'ownerName' => $this->ownerName,
-            'cpfCnpj' => $this->cpfCnpj,
-            'agency' => $this->agency,
-            'agencyDigit' => $this->agencyDigit,
-            'account' => $this->account,
-            'accountDigit' => $this->accountDigit,
-            'pixAddressKey' => $this->pixAddressKey,
-        ], fn($value) => !is_null($value));
     }
 }

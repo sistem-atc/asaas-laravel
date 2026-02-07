@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class Balance implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $value,
         public readonly ?string $date,
@@ -21,15 +25,5 @@ class Balance implements DTOInterface
             description: $data['description'] ?? null,
             type: $data['type'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'value' => $this->value,
-            'date' => $this->date,
-            'description' => $this->description,
-            'type' => $this->type,
-        ], fn($value) => !is_null($value));
     }
 }

@@ -13,9 +13,12 @@ use SistemAtc\Asaas\DTO\Shared\Request\Interest;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCard;
 use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCardHolderInfo;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentDTO implements DTOInterface
 {
+    use CastToArray;
+    
     public function __construct(
         public readonly AsaasCustomer $customer,
         public readonly BillingType $billingType,
@@ -65,32 +68,5 @@ class PaymentDTO implements DTOInterface
             authorizeOnly: $data['authorizeOnly'] ?? false,
             remoteIp: $data['remoteIp'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'customer' => $this->customer->asaas_id,
-            'billingType' => $this->billingType->value,
-            'value' => $this->value,
-            'dueDate' => $this->dueDate,
-            'description' => $this->description,
-            'daysAfterDueDateToRegistrationCancellation' => $this->daysAfterDueDateToRegistrationCancellation,
-            'externalReference' => $this->externalReference,
-            'installmentCount' => $this->installmentCount,
-            'totalValue' => $this->totalValue,
-            'installmentValue' => $this->installmentValue,
-            'discount' => $this->discount?->toArray(),
-            'interest' => $this->interest?->toArray(),
-            'fine' => $this->fine?->toArray(),
-            'postalService' => $this->postalService,
-            'split' => $this->split?->toArray(),
-            'callback' => $this->callback?->toArray(),
-            'creditCard' => $this->creditCard?->toArray(),
-            'creditCardHolderInfo' => $this->creditCardHolderInfo?->toArray(),
-            'creditCardToken' => $this->creditCardToken,
-            'authorizeOnly' => $this->authorizeOnly,
-            'remoteIp' => $this->remoteIp,
-        ], fn($value) => !is_null($value));
     }
 }

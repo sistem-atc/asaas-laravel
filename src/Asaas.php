@@ -49,7 +49,7 @@ class Asaas
 
     public function __construct()
     {
-        $environment = app()->environment('production') ? 'production' : 'sandbox';
+        $environment = config('asaas.environment');
         $this->baseUrl = config("asaas.{$environment}.base_url") ?? '';
         $this->version = config("asaas.{$environment}.version") ?? '';
         $this->accessToken = config("asaas.{$environment}.access_token") ?? '';

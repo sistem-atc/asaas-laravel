@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class DebitCardFees implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?float $operationValue,
         public readonly ?float $defaultPercentage,
@@ -19,10 +23,5 @@ class DebitCardFees implements DTOInterface
             defaultPercentage: isset($data['defaultPercentage']) ? (float) $data['defaultPercentage'] : null,
             daysToReceive: $data['daysToReceive'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter(get_object_vars($this), fn($v) => !is_null($v));
     }
 }

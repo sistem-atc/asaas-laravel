@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class RetrieveAsaasAccountNumberDTO implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $agency,
         public readonly ?string $account,
@@ -19,14 +23,5 @@ class RetrieveAsaasAccountNumberDTO implements DTOInterface
             account: $data['account'] ?? null,
             accountDigit: $data['accountDigit'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'agency'       => $this->agency,
-            'account'      => $this->account,
-            'accountDigit' => $this->accountDigit,
-        ], fn($v) => !is_null($v));
     }
 }

@@ -3,9 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class AccountTransfer implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $name,
         public readonly ?string $cpfCnpj,
@@ -17,13 +21,5 @@ class AccountTransfer implements DTOInterface
             name: $data['name'] ?? null,
             cpfCnpj: $data['cpfCnpj'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'name' => $this->name,
-            'cpfCnpj' => $this->cpfCnpj,
-        ], fn($value) => !is_null($value));
     }
 }

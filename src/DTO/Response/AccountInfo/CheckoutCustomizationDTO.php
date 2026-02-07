@@ -4,9 +4,13 @@ namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\StatusCheckoutCustomization;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class CheckoutCustomizationDTO implements DTOInterface
 {
+
+    use CastToArray;
+
     public function __construct(
         public readonly ?string $object,
         public readonly ?string $logoBackgroundColor,
@@ -30,19 +34,5 @@ class CheckoutCustomizationDTO implements DTOInterface
             observations: $data['observations'] ?? null,
             status: isset($data['status']) ? StatusCheckoutCustomization::tryFrom($data['status']) : null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'object'              => $this->object,
-            'logoBackgroundColor' => $this->logoBackgroundColor,
-            'infoBackgroundColor' => $this->infoBackgroundColor,
-            'fontColor'           => $this->fontColor,
-            'enabled'             => $this->enabled,
-            'logoUrl'             => $this->logoUrl,
-            'observations'        => $this->observations,
-            'status'              => $this->status?->value,
-        ], fn($v) => !is_null($v));
     }
 }

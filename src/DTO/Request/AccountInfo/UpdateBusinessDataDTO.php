@@ -2,12 +2,16 @@
 
 namespace SistemAtc\Asaas\DTO\Request\AccountInfo;
 
+use Carbon\Traits\Cast;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\TypeCompany;
 use SistemAtc\Asaas\Enum\TypePerson;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class UpdateBusinessDataDTO implements DTOInterface
 {
+    use CastToArray;
+    
     public function __construct(
         public readonly ?TypePerson $personType,
         public readonly ?string $cpfCnpj,
@@ -45,26 +49,5 @@ class UpdateBusinessDataDTO implements DTOInterface
             complement: $data['complement'] ?? null,
             province: $data['province'] ?? null,
         );
-    }
-
-    public function toArray(): array
-    {
-        return array_filter([
-            'personType'    => $this->personType->value,
-            'cpfCnpj'       => $this->cpfCnpj,
-            'birthDate'     => $this->birthDate,
-            'companyType'   => $this->companyType?->value,
-            'companyName'   => $this->companyName,
-            'incomeValue'   => $this->incomeValue,
-            'email'         => $this->email,
-            'phone'         => $this->phone,
-            'mobilePhone'   => $this->mobilePhone,
-            'site'          => $this->site,
-            'postalCode'    => $this->postalCode,
-            'address'       => $this->address,
-            'addressNumber' => $this->addressNumber,
-            'complement'    => $this->complement,
-            'province'      => $this->province,
-        ], fn($v) => !is_null($v));
     }
 }
