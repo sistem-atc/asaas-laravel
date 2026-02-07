@@ -20,13 +20,14 @@ class Payment extends BaseMethods
 
     public function list(ListPayment $filter): ?array
     {
-        $query = $filter ? http_build_query($filter->toArray()) : [];
-        return $this->makeRequest(HttpMethod::GET, '/payments', $query);
+        $query = $filter ? '?' . http_build_query($filter->toArray()) : '';
+        $endpoint = '/payments' . $query;
+        return $this->makeRequest(HttpMethod::GET, $endpoint);
     }
 
     public function capturePreAuthorization(string $id): ?PaymentoDTOResponse
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/captureAuthorizedPayment", [$id]);
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/captureAuthorizedPayment");
         return PaymentoDTOResponse::fromArray($response);
     }
 

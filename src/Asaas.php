@@ -50,10 +50,23 @@ class Asaas
     public function __construct()
     {
         $environment = config('asaas.environment');
+        
+        if (!in_array($environment, ['sandbox', 'production'])) {
+            throw new \InvalidArgumentException("Invalid environment: {$environment}. Must be 'sandbox' or 'production'.");
+        }
+        
         $this->baseUrl = config("asaas.{$environment}.base_url") ?? '';
         $this->version = config("asaas.{$environment}.version") ?? '';
         $this->accessToken = config("asaas.{$environment}.access_token") ?? '';
         $this->pixKey = config("asaas.{$environment}.pix_key") ?? '';
+
+        if (empty($this->baseUrl)) {
+            throw new \RuntimeException("Asaas base URL is not configured for environment: {$environment}");
+        }
+
+        if (empty($this->accessToken)) {
+            throw new \RuntimeException("Asaas access token is not configured for environment: {$environment}");
+        }
 
         $this->client = Http::asJson()
             ->baseUrl($this->baseUrl . '/' . $this->version)

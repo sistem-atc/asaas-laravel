@@ -21,8 +21,9 @@ class Customer extends BaseMethods
 
     public function list(ListCustomer $filter): ?array
     {
-        $query = $filter ? '?' . http_build_query($filter->toArray()) : [];
-        return $this->makeRequest(HttpMethod::GET, '/customers', $query);
+        $query = $filter ? '?' . http_build_query($filter->toArray()) : '';
+        $endpoint = '/customers' . $query;
+        return $this->makeRequest(HttpMethod::GET, $endpoint);
     }
 
     public function single_customer(AsaasCustomer $customer): ?array

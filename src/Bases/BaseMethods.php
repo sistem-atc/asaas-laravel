@@ -18,6 +18,14 @@ abstract class BaseMethods
 
     protected function makeRequest(HttpMethod $method, string $endpoint, array $data = []): array
     {
+        if (str_contains($endpoint, '..') || str_contains($endpoint, '//')) {
+            throw new \InvalidArgumentException("Invalid endpoint: {$endpoint}");
+        }
+
+        if (!str_starts_with($endpoint, '/')) {
+            $endpoint = '/' . $endpoint;
+        }
+
         $client = $this->httpClient;
 
         $isMultipart = isset($data[0]['name'], $data[0]['contents']);
