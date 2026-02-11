@@ -2,60 +2,38 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Attributes\ArrayOf;
+use SistemAtc\Asaas\Traits\AutoHydrate;
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Fine;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
-use SistemAtc\Asaas\Traits\CastToArray;
 
 class Subscription implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $object,
-        public readonly ?string $id,
-        public readonly ?string $dateCreated,
-        public readonly ?string $customer,
-        public readonly ?string $paymentLink,
-        public readonly ?float $value,
-        public readonly ?string $nextDueDate,
-        public readonly ?string $cycle,
-        public readonly ?string $description,
-        public readonly ?string $billingType,
-        public readonly bool $deleted,
-        public readonly ?string $status,
-        public readonly ?string $externalReference,
-        public readonly bool $sendPaymentByPostalService,
-        public readonly ?Discount $discount,
-        public readonly ?Fine $fine,
-        public readonly ?Interest $interest,
-        public readonly ?array $split,
+        public readonly ?string $object = null,
+        public readonly ?string $id = null,
+        public readonly ?string $dateCreated = null,
+        public readonly ?string $customer = null,
+        public readonly ?string $paymentLink = null,
+        public readonly ?float $value = null,
+        public readonly ?string $nextDueDate = null,
+        public readonly ?string $cycle = null,
+        public readonly ?string $description = null,
+        public readonly ?string $billingType = null,
+        public readonly ?bool $deleted = null,
+        public readonly ?string $status = null,
+        public readonly ?string $externalReference = null,
+        public readonly ?bool $sendPaymentByPostalService = null,
+        public readonly ?Discount $discount = null,
+        public readonly ?Fine $fine = null,
+        public readonly ?Interest $interest = null,
+        #[ArrayOf(Split::class)] public readonly ?array $split = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            object: $data['object'] ?? null,
-            id: $data['id'] ?? null,
-            dateCreated: $data['dateCreated'] ?? null,
-            customer: $data['customer'] ?? null,
-            paymentLink: $data['paymentLink'] ?? null,
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            nextDueDate: $data['nextDueDate'] ?? null,
-            cycle: $data['cycle'] ?? null,
-            description: $data['description'] ?? null,
-            billingType: $data['billingType'] ?? null,
-            deleted: (bool) ($data['deleted'] ?? false),
-            status: $data['status'] ?? null,
-            externalReference: $data['externalReference'] ?? null,
-            sendPaymentByPostalService: (bool) ($data['sendPaymentByPostalService'] ?? false),
-            discount: isset($data['discount']) ? Discount::fromArray($data['discount']) : null,
-            fine: isset($data['fine']) ? Fine::fromArray($data['fine']) : null,
-            interest: isset($data['interest']) ? Interest::fromArray($data['interest']) : null,
-            split: isset($data['split']) ? array_map(fn($s) => Split::fromArray($s), $data['split']) : null,
-        );
-    }
 }

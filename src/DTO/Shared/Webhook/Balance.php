@@ -2,28 +2,19 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Balance implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $value,
-        public readonly ?string $date,
-        public readonly ?string $description,
-        public readonly ?string $type,
+        public readonly ?float $value = null,
+        public readonly ?string $date = null,
+        public readonly ?string $description = null,
+        public readonly ?string $type = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            date: $data['date'] ?? null,
-            description: $data['description'] ?? null,
-            type: $data['type'] ?? null,
-        );
-    }
 }

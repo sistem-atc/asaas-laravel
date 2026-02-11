@@ -2,24 +2,17 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Fine implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $value,
-        public readonly ?string $type,
+        public readonly ?float $value = null,
+        public readonly ?string $type = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            type: $data['type'] ?? null,
-        );
-    }
 }

@@ -3,23 +3,16 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class CommercialInfoExpiration implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly bool $isExpired,
-        public readonly ?string $scheduledDate,
+        public readonly ?bool $isExpired = null,
+        public readonly ?string $scheduledDate = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            isExpired: $data['isExpired'] ?? false,
-            scheduledDate: $data['scheduledDate'] ?? null,
-        );
-    }
 }

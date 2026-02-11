@@ -2,26 +2,18 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Bank implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $ispb,
-        public readonly ?string $code,
-        public readonly ?string $name,
+        public readonly ?string $ispb = null,
+        public readonly ?string $code = null,
+        public readonly ?string $name = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            ispb: $data['ispb'] ?? null,
-            code: $data['code'] ?? null,
-            name: $data['name'] ?? null,
-        );
-    }
 }

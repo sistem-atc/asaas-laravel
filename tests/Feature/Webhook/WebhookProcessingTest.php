@@ -10,9 +10,7 @@ use SistemAtc\Asaas\DTO\Webhook\PaymentWebhookDTO;
 test('it processes the payload and dispatches the specialized payment event', function () {
     Event::fake();
 
-    $json = file_get_contents(__DIR__ . '/../Fixtures/payment.json');
-    $payload = json_decode($json, true);
-
+    $payload = $this->getFixture('Webhook/payment');
     $job = new ProcessAsaasWebhook($payload, 'token-de-teste');
     $job->handle();
     

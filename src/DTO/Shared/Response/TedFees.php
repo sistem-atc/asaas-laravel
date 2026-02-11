@@ -3,25 +3,16 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class TedFees implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $feeValue,
-        public readonly ?bool $consideredInMonthlyTransfersWithoutFee,
+        public readonly ?float $feeValue = null,
+        public readonly ?bool $consideredInMonthlyTransfersWithoutFee = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            feeValue: isset($data['feeValue']) ? (float) $data['feeValue'] : null,
-            consideredInMonthlyTransfersWithoutFee: isset($data['consideredInMonthlyTransfersWithoutFee']) 
-                ? (bool) $data['consideredInMonthlyTransfersWithoutFee'] 
-                : null,
-        );
-    }
 }

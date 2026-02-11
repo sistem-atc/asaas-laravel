@@ -2,24 +2,17 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Chargeback implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $status,
-        public readonly ?string $reason,
+        public readonly ?string $status = null,
+        public readonly ?string $reason = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            status: $data['status'] ?? null,
-            reason: $data['reason'] ?? null,
-        );
-    }
 }

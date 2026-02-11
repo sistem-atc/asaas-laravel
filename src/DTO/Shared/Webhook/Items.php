@@ -2,27 +2,19 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Items implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $name,
-        public readonly ?string $description,
-        public readonly ?int $quantity,
-        public readonly ?float $value,
+        public readonly ?string $name = null,
+        public readonly ?string $description = null,
+        public readonly ?int $quantity = null,
+        public readonly ?float $value = null,
     ) {}
-
-    public static function fromArray(array $data): self {
-        return new self(
-            name: $data['name'] ?? null,
-            description: $data['description'] ?? null,
-            quantity: isset($data['quantity']) ? (int) $data['quantity'] : null,
-            value: isset($data['value']) ? (float) $data['value'] : null,
-        );
-    }
 }

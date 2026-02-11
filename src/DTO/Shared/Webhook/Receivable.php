@@ -2,49 +2,30 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\StatusReceivable;
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 
 class Receivable implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $object,
-        public readonly ?string $id,
-        public readonly ?string $installment,
-        public readonly ?string $payment,
-        public readonly ?StatusReceivable $status,
-        public readonly ?string $anticipationDate,
-        public readonly ?string $dueDate,
-        public readonly ?string $requestDate,
-        public readonly ?float $fee,
-        public readonly ?int $anticipationDays,
-        public readonly ?float $netValue,
-        public readonly ?float $totalValue,
-        public readonly ?float $value,
-        public readonly ?string $denialObservation,
+        public readonly ?string $object = null,
+        public readonly ?string $id = null,
+        public readonly ?string $installment = null,
+        public readonly ?string $payment = null,
+        public readonly ?StatusReceivable $status = null,
+        public readonly ?string $anticipationDate = null,
+        public readonly ?string $dueDate = null,
+        public readonly ?string $requestDate = null,
+        public readonly ?float $fee = null,
+        public readonly ?int $anticipationDays = null,
+        public readonly ?float $netValue = null,
+        public readonly ?float $totalValue = null,
+        public readonly ?float $value = null,
+        public readonly ?string $denialObservation = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            object: $data['object'] ?? null,
-            id: $data['id'] ?? null,
-            installment: $data['installment'] ?? null,
-            payment: $data['payment'] ?? null,
-            status: isset($data['status']) ? StatusReceivable::tryFrom($data['status']) : null,
-            anticipationDate: $data['anticipationDate'] ?? null,
-            dueDate: $data['dueDate'] ?? null,
-            requestDate: $data['requestDate'] ?? null,
-            fee: isset($data['fee']) ? (float) $data['fee'] : null,
-            anticipationDays: isset($data['anticipationDays']) ? (int) $data['anticipationDays'] : null,
-            netValue: isset($data['netValue']) ? (float) $data['netValue'] : null,
-            totalValue: isset($data['totalValue']) ? (float) $data['totalValue'] : null,
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            denialObservation: $data['denialObservation'] ?? null,
-        );
-    }
 }

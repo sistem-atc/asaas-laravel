@@ -2,72 +2,43 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
-use Illuminate\Support\Carbon;
+use DateTime;
 use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Enum\InvoiceStatus;
 use SistemAtc\Asaas\Enum\StatusPayment;
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class ListPayment implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly int $offset,
-        public readonly int $limit,
-        public readonly ?string $customer,
-        public readonly ?string $customerGroupName,
-        public readonly ?BillingType $billingType,
-        public readonly ?StatusPayment $status,
-        public readonly ?string $subscription,
-        public readonly ?string $installment,
-        public readonly ?string $externalReference,
-        public readonly ?string $paymentDate,
-        public readonly ?InvoiceStatus $invoiceStatus,
-        public readonly ?string $estimatedCreditDate,
-        public readonly ?string $pixQrCodeId,
-        public readonly ?bool $anticipated,
-        public readonly ?bool $anticipable,
-        public readonly ?string $dateCreatedge,
-        public readonly ?string $dateCreatedle,
-        public readonly ?string $paymentDatege,
-        public readonly ?string $paymentDatele,
-        public readonly ?string $estimatedCreditDatege,
-        public readonly ?string $estimatedCreditDatele,
-        public readonly ?string $dueDatege,
-        public readonly ?string $dueDatele,
-        public readonly ?string $user,
+        public readonly int $offset = 0,
+        public readonly int $limit = 100,
+        public readonly ?string $customer = null,
+        public readonly ?string $customerGroupName = null,
+        public readonly ?BillingType $billingType = null,
+        public readonly ?StatusPayment $status = null,
+        public readonly ?string $subscription = null,
+        public readonly ?string $installment = null,
+        public readonly ?string $externalReference = null,
+        public readonly ?DateTime $paymentDate = null,
+        public readonly ?InvoiceStatus $invoiceStatus = null,
+        public readonly ?string $estimatedCreditDate = null,
+        public readonly ?string $pixQrCodeId = null,
+        public readonly ?bool $anticipated = null,
+        public readonly ?bool $anticipable = null,
+        public readonly ?string $dateCreatedge = null,
+        public readonly ?string $dateCreatedle = null,
+        public readonly ?string $paymentDatege = null,
+        public readonly ?string $paymentDatele = null,
+        public readonly ?string $estimatedCreditDatege = null,
+        public readonly ?string $estimatedCreditDatele = null,
+        public readonly ?string $dueDatege = null,
+        public readonly ?string $dueDatele = null,
+        public readonly ?string $user = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            offset: (int) ($data['offset'] ?? 0),
-            limit: (int) ($data['limit'] ?? 100),
-            customer: $data['customer'] ?? null,
-            customerGroupName: $data['customerGroupName'] ?? null,
-            billingType: isset($data['billingType']) ? (is_string($data['billingType']) ? BillingType::from($data['billingType']) : $data['billingType']) : null,
-            status: isset($data['status']) ? (is_string($data['status']) ? StatusPayment::from($data['status']) : $data['status']) : null,
-            subscription: $data['subscription'] ?? null,
-            installment: $data['installment'] ?? null,
-            externalReference: $data['externalReference'] ?? null,
-            paymentDate: isset($data['paymentDate']) ? Carbon::parse($data['paymentDate'])->format('Y-m-d') : null,
-            invoiceStatus: isset($data['invoiceStatus']) ? (is_string($data['invoiceStatus']) ? InvoiceStatus::from($data['invoiceStatus']) : $data['invoiceStatus']) : null,
-            estimatedCreditDate: $data['estimatedCreditDate'] ?? null,
-            pixQrCodeId: $data['pixQrCodeId'] ?? null,
-            anticipated: isset($data['anticipated']) ? (bool) $data['anticipated'] : null,
-            anticipable: isset($data['anticipable']) ? (bool) $data['anticipable'] : null,
-            dateCreatedge: $data['dateCreated[ge]'] ?? $data['dateCreatedge'] ?? null,
-            dateCreatedle: $data['dateCreated[le]'] ?? $data['dateCreatedle'] ?? null,
-            paymentDatege: $data['paymentDate[ge]'] ?? $data['paymentDatege'] ?? null,
-            paymentDatele: $data['paymentDate[le]'] ?? $data['paymentDatele'] ?? null,
-            estimatedCreditDatege: $data['estimatedCreditDate[ge]'] ?? $data['estimatedCreditDatege'] ?? null,
-            estimatedCreditDatele: $data['estimatedCreditDate[le]'] ?? $data['estimatedCreditDatele'] ?? null,
-            dueDatege: $data['dueDate[ge]'] ?? $data['dueDatege'] ?? null,
-            dueDatele: $data['dueDate[le]'] ?? $data['dueDatele'] ?? null,
-            user: $data['user'] ?? null,
-        );
-    }
 }

@@ -3,12 +3,13 @@
 namespace SistemAtc\Asaas\DTO\Response\Anticipation;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class SimulateAnticipationDTO implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
     
     public function __construct(
         public readonly ?string $installment,
@@ -22,21 +23,4 @@ class SimulateAnticipationDTO implements DTOInterface
         public readonly ?float $value,
         public readonly ?bool $isDocumentationRequired,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            installment: $data['installment'] ?? null,
-            payment: $data['payment'] ?? null,
-            anticipationDate: $data['anticipationDate'] ?? null,
-            dueDate: $data['dueDate'] ?? null,
-            fee: isset($data['fee']) ? (float) $data['fee'] : null,
-            anticipationDays: $data['anticipationDays'] ?? null,
-            netValue: isset($data['netValue']) ? (float) $data['netValue'] : null,
-            totalValue: isset($data['totalValue']) ? (float) $data['totalValue'] : null,
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            isDocumentationRequired: $data['isDocumentationRequired'] ?? null,
-        );
-    }
-
 }

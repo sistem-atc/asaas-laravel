@@ -4,33 +4,21 @@ namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\States;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class City implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $object,
-        public readonly ?string $id,
-        public readonly ?string $ibgeCode,
-        public readonly ?string $name,
-        public readonly ?string $districtCode,
-        public readonly ?string $district,
-        public readonly ?States $state,
+        public readonly ?string $object = null,
+        public readonly ?string $id = null,
+        public readonly ?string $ibgeCode = null,
+        public readonly ?string $name = null,
+        public readonly ?string $districtCode = null,
+        public readonly ?string $district = null,
+        public readonly ?States $state = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            object: $data['object'] ?? null,
-            id: isset($data['id']) ? (string) $data['id'] : null,
-            ibgeCode: $data['ibgeCode'] ?? null,
-            name: $data['name'] ?? null,
-            districtCode: $data['districtCode'] ?? null,
-            district: $data['district'] ?? null,
-            state: isset($data['state']) ? States::tryFrom($data['state']) : null,
-        );
-    }
 }

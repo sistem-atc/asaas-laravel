@@ -3,33 +3,21 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class ListCustomer implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly int $offset,
-        public readonly int $limit,
-        public readonly ?string $name,
-        public readonly ?string $email,
-        public readonly ?string $cpfCnpj,
-        public readonly ?string $groupName,
-        public readonly ?string $externalReference
+        public readonly int $offset = 0,
+        public readonly int $limit = 100,
+        public readonly ?string $name = null,
+        public readonly ?string $email = null,
+        public readonly ?string $cpfCnpj = null,
+        public readonly ?string $groupName = null,
+        public readonly ?string $externalReference = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            offset: (int) ($data['offset'] ?? 0),
-            limit: (int) ($data['limit'] ?? 100),
-            name: $data['name'] ?? null,
-            email: $data['email'] ?? null,
-            cpfCnpj: $data['cpfCnpj'] ?? null,
-            groupName: $data['groupName'] ?? null,
-            externalReference: $data['externalReference'] ?? null
-        );
-    }
 }

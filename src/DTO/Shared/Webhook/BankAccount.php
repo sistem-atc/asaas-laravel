@@ -2,38 +2,24 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class BankAccount implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?Bank $bank,
-        public readonly ?string $accountName,
-        public readonly ?string $ownerName,
-        public readonly ?string $cpfCnpj,
-        public readonly ?string $agency,
-        public readonly ?string $agencyDigit,
-        public readonly ?string $account,
-        public readonly ?string $accountDigit,
-        public readonly ?string $pixAddressKey,
+        public readonly ?Bank $bank = null,
+        public readonly ?string $accountName = null,
+        public readonly ?string $ownerName = null,
+        public readonly ?string $cpfCnpj = null,
+        public readonly ?string $agency = null,
+        public readonly ?string $agencyDigit = null,
+        public readonly ?string $account = null,
+        public readonly ?string $accountDigit = null,
+        public readonly ?string $pixAddressKey = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            bank: isset($data['bank']) ? Bank::fromArray($data['bank']) : null,
-            accountName: $data['accountName'] ?? null,
-            ownerName: $data['ownerName'] ?? null,
-            cpfCnpj: $data['cpfCnpj'] ?? null,
-            agency: $data['agency'] ?? null,
-            agencyDigit: $data['agencyDigit'] ?? null,
-            account: $data['account'] ?? null,
-            accountDigit: $data['accountDigit'] ?? null,
-            pixAddressKey: $data['pixAddressKey'] ?? null,
-        );
-    }
 }

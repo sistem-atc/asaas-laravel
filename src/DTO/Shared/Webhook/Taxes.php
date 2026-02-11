@@ -2,34 +2,22 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Taxes implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly bool $retainIss,
-        public readonly float $iss,
-        public readonly float $cofins,
-        public readonly float $csll,
-        public readonly float $inss,
-        public readonly float $ir,
-        public readonly float $pis,
+        public readonly ?bool $retainIss = null,
+        public readonly ?float $iss = null,
+        public readonly ?float $cofins = null,
+        public readonly ?float $csll = null,
+        public readonly ?float $inss = null,
+        public readonly ?float $ir = null,
+        public readonly ?float $pis = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            retainIss: (bool) ($data['retainIss'] ?? false),
-            iss: (float) ($data['iss'] ?? 0),
-            cofins: (float) ($data['cofins'] ?? 0),
-            csll: (float) ($data['csll'] ?? 0),
-            inss: (float) ($data['inss'] ?? 0),
-            ir: (float) ($data['ir'] ?? 0),
-            pis: (float) ($data['pis'] ?? 0),
-        );
-    }
 }

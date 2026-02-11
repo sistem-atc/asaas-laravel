@@ -3,23 +3,16 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class AnticipationFees implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?AnticipationCreditCardFees $creditCard,
-        public readonly ?AnticipationBankSlipFees $bankSlip,
+        public readonly ?AnticipationCreditCardFees $creditCard = null,
+        public readonly ?AnticipationBankSlipFees $bankSlip = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            creditCard: isset($data['creditCard']) ? ($data['creditCard'] instanceof AnticipationCreditCardFees ? $data['creditCard'] : AnticipationCreditCardFees::fromArray($data['creditCard'])) : null,
-            bankSlip: isset($data['bankSlip']) ? ($data['bankSlip'] instanceof AnticipationBankSlipFees ? $data['bankSlip'] : AnticipationBankSlipFees::fromArray($data['bankSlip'])) : null,
-        );
-    }
 }

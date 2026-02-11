@@ -2,59 +2,35 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Traits\AutoHydrate;
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\AccountTransfer;
-use SistemAtc\Asaas\Traits\CastToArray;
 
 class Transfer implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $object,
-        public readonly ?string $id,
-        public readonly ?string $dateCreated,
-        public readonly ?string $status,
-        public readonly ?string $effectiveDate,
-        public readonly ?string $endToEndIdentifier,
-        public readonly ?string $type,
-        public readonly ?float $value,
-        public readonly ?float $netValue,
-        public readonly ?float $transferFee,
-        public readonly ?string $scheduleDate,
-        public readonly bool $authorized,
-        public readonly ?string $walletId,
-        public readonly ?string $failReason,
-        public readonly ?string $transactionReceiptUrl,
-        public readonly ?AccountTransfer $account,
-        public readonly ?BankAccount $bankAccount,
-        public readonly ?string $operationType,
-        public readonly ?string $description,
+        public readonly ?string $object = null,
+        public readonly ?string $id = null,
+        public readonly ?string $dateCreated = null,
+        public readonly ?string $status = null,
+        public readonly ?string $effectiveDate = null,
+        public readonly ?string $endToEndIdentifier = null,
+        public readonly ?string $type = null,
+        public readonly ?float $value = null,
+        public readonly ?float $netValue = null,
+        public readonly ?float $transferFee = null,
+        public readonly ?string $scheduleDate = null,
+        public readonly ?bool $authorized = null,
+        public readonly ?string $walletId = null,
+        public readonly ?string $failReason = null,
+        public readonly ?string $transactionReceiptUrl = null,
+        public readonly ?AccountTransfer $account = null,
+        public readonly ?BankAccount $bankAccount = null,
+        public readonly ?string $operationType = null,
+        public readonly ?string $description = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            object: $data['object'] ?? null,
-            id: $data['id'] ?? null,
-            dateCreated: $data['dateCreated'] ?? null,
-            status: $data['status'] ?? null,
-            effectiveDate: $data['effectiveDate'] ?? null,
-            endToEndIdentifier: $data['endToEndIdentifier'] ?? null,
-            type: $data['type'] ?? null,
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            netValue: isset($data['netValue']) ? (float) $data['netValue'] : null,
-            transferFee: isset($data['transferFee']) ? (float) $data['transferFee'] : null,
-            scheduleDate: $data['scheduleDate'] ?? null,
-            authorized: (bool) ($data['authorized'] ?? false),
-            walletId: $data['walletId'] ?? null,
-            failReason: $data['failReason'] ?? null,
-            transactionReceiptUrl: $data['transactionReceiptUrl'] ?? null,
-            account: isset($data['account']) ? AccountTransfer::fromArray($data['account']) : null,
-            bankAccount: isset($data['bankAccount']) ? BankAccount::fromArray($data['bankAccount']) : null,
-            operationType: $data['operationType'] ?? null,
-            description: $data['description'] ?? null,
-        );
-    }
 }

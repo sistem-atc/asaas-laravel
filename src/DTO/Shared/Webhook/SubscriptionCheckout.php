@@ -2,26 +2,18 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 
 class SubscriptionCheckout implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $cycle,
-        public readonly ?string $nextDueDate,
-        public readonly ?string $endDate,
+        public readonly ?string $cycle = null,
+        public readonly ?string $nextDueDate = null,
+        public readonly ?string $endDate = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            cycle: $data['cycle'] ?? null,
-            nextDueDate: $data['nextDueDate'] ?? null,
-            endDate: $data['endDate'] ?? null,
-        );
-    }
 }

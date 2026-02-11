@@ -3,25 +3,17 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class CreditCard implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $creditCardNumber,
-        public readonly ?string $creditCardBrand,
-        public readonly ?string $creditCardToken,
+        public readonly ?string $creditCardNumber = null,
+        public readonly ?string $creditCardBrand = null,
+        public readonly ?string $creditCardToken = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            creditCardNumber: $data['creditCardNumber'] ?? null,
-            creditCardBrand: $data['creditCardBrand'] ?? null,
-            creditCardToken: $data['creditCardToken'] ?? null,
-        );
-    }
 }

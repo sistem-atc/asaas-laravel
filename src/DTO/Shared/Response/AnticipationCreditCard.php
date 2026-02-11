@@ -3,23 +3,16 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class AnticipationCreditCard implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $total,
-        public readonly ?float $avaliable,
+        public readonly ?float $total = null,
+        public readonly ?float $avaliable = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            total: isset($data['total']) ? (float) $data['total'] : null,
-            avaliable: isset($data['avaliable']) ? (float) $data['avaliable'] : null,
-        );
-    }
 }

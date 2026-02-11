@@ -3,27 +3,18 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class BankSlipFees implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $defaultValue,
-        public readonly ?float $discountValue,
-        public readonly ?string $expirationDate,
-        public readonly ?int $daysToReceive,
+        public readonly ?float $defaultValue = null,
+        public readonly ?float $discountValue = null,
+        public readonly ?string $expirationDate = null,
+        public readonly ?int $daysToReceive = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            defaultValue: isset($data['defaultValue']) ? (float) $data['defaultValue'] : null,
-            discountValue: isset($data['discountValue']) ? (float) $data['discountValue'] : null,
-            expirationDate: $data['expirationDate'] ?? null,
-            daysToReceive: $data['daysToReceive'] ?? null,
-        );
-    }
 }

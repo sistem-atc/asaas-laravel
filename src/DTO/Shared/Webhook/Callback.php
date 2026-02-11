@@ -2,25 +2,18 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Callback implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $cancelUrl,
-        public readonly ?string $successUrl,
-        public readonly ?string $expiredUrl,
+        public readonly ?string $cancelUrl = null,
+        public readonly ?string $successUrl = null,
+        public readonly ?string $expiredUrl = null,
     ) {}
-
-    public static function fromArray(array $data): self {
-        return new self(
-            cancelUrl: $data['cancelUrl'] ?? null,
-            successUrl: $data['successUrl'] ?? null,
-            expiredUrl: $data['expiredUrl'] ?? null,
-        );
-    }
 }

@@ -4,12 +4,13 @@ namespace SistemAtc\Asaas\DTO\Response\Customer;
 
 use SistemAtc\Asaas\Enum\TypePerson;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class CustomerCreateDTO implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
     
     public function __construct(
         public readonly ?string $id,
@@ -35,32 +36,4 @@ class CustomerCreateDTO implements DTOInterface
         public readonly ?string $observations,
         public readonly ?string $foreignCustomer,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            id: $data['id'] ?? null,
-            dateCreated: $data['dateCreated'] ?? null,
-            name: $data['name'] ?? null,
-            email: $data['email'] ?? null,
-            phone: $data['phone'] ?? null,
-            mobilePhone: $data['mobilePhone'] ?? null,
-            address: $data['address'] ?? null,
-            addressNumber: $data['addressNumber'] ?? null,
-            complement: $data['complement'] ?? null,
-            province: $data['province'] ?? null,
-            city: $data['city'] ?? null,
-            cityName: $data['cityName'] ?? null,
-            country: $data['country'] ?? null,
-            postalCode: $data['postalCode'] ?? null,
-            cpfCnpj: $data['cpfCnpj'] ?? null,
-            personType: isset($data['personType']) ? TypePerson::tryFrom($data['personType']) : null,
-            deleted: $data['deleted'] ?? null,
-            additionalEmails: $data['additionalEmails'] ?? null,
-            externalReference: $data['externalReference'] ?? null,
-            notificationDisabled: $data['notificationDisabled'] ?? null,
-            observations: $data['observations'] ?? null,
-            foreignCustomer: $data['foreignCustomer'] ?? null,
-        );
-    }
 }

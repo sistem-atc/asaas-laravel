@@ -3,23 +3,16 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class AnticipationBankSlip implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $total,
-        public readonly ?float $available,
+        public readonly ?float $total = null,
+        public readonly ?float $available = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            total: isset($data['total']) ? (float) $data['total'] : null,
-            available: isset($data['available']) ? (float) $data['available'] : null,
-        );
-    }
 }

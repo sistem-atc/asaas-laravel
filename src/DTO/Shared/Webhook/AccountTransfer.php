@@ -2,24 +2,17 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class AccountTransfer implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $name,
-        public readonly ?string $cpfCnpj,
+        public readonly ?string $name = null,
+        public readonly ?string $cpfCnpj = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            name: $data['name'] ?? null,
-            cpfCnpj: $data['cpfCnpj'] ?? null,
-        );
-    }
 }

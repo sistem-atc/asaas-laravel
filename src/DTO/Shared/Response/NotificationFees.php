@@ -3,25 +3,17 @@
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class NotificationFees implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $phoneCallFeeValue,
-        public readonly ?float $whatsAppFeeValue,
-        public readonly ?float $messagingFeeValue,
+        public readonly ?float $phoneCallFeeValue = null,
+        public readonly ?float $whatsAppFeeValue = null,
+        public readonly ?float $messagingFeeValue = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            phoneCallFeeValue: isset($data['phoneCallFeeValue']) ? (float) $data['phoneCallFeeValue'] : null,
-            whatsAppFeeValue: isset($data['whatsAppFeeValue']) ? (float) $data['whatsAppFeeValue'] : null,
-            messagingFeeValue: isset($data['messagingFeeValue']) ? (float) $data['messagingFeeValue'] : null,
-        );
-    }
 }

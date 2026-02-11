@@ -2,23 +2,16 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Anticipation;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class SimulateAnticipationDTO implements DTOInterface
 {
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $installment,
-        public readonly ?string $payment,
+        public readonly ?string $installment = null,
+        public readonly ?string $payment = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            installment: $data['installment'] ?? null,
-            payment: $data['payment'] ?? null,
-        );
-    }
 }

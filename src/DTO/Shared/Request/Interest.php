@@ -3,21 +3,15 @@
 namespace SistemAtc\Asaas\DTO\Shared\Request;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class Interest implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $value,
+        public readonly ?float $value = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            value: $data['value'] ?? null,
-        );
-    }
 }

@@ -2,8 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Payment;
 
-use Illuminate\Support\Carbon;
+use DateTime;
 use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\Traits\AutoHydrate;
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Request\Fine;
 use SistemAtc\Asaas\DTO\Shared\Request\Split;
@@ -13,60 +15,32 @@ use SistemAtc\Asaas\DTO\Shared\Request\Interest;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCard;
 use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCardHolderInfo;
-use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentDTO implements DTOInterface
 {
-    use CastToArray;
+    use CastToArray, AutoHydrate;
     
     public function __construct(
         public readonly AsaasCustomer $customer,
         public readonly BillingType $billingType,
-        public readonly ?float $value,
-        public readonly string $dueDate,
-        public readonly ?string $description,
-        public readonly ?int $daysAfterDueDateToRegistrationCancellation,
-        public readonly ?string $externalReference,
-        public readonly ?int $installmentCount,
-        public readonly ?float $totalValue,
-        public readonly ?float $installmentValue,
-        public readonly ?Discount $discount,
-        public readonly ?Interest $interest,
-        public readonly ?Fine $fine,
-        public readonly ?bool $postalService,
-        public readonly ?Split $split,
-        public readonly ?Callback $callback,
-        public readonly ?CreditCard $creditCard,
-        public readonly ?CreditCardHolderInfo $creditCardHolderInfo,
-        public readonly ?string $creditCardToken,
-        public readonly bool $authorizeOnly,
-        public readonly ?string $remoteIp,
+        public readonly ?float $value = null,
+        public readonly DateTime $dueDate,
+        public readonly ?string $description = null,
+        public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,
+        public readonly ?string $externalReference = null,
+        public readonly ?int $installmentCount = null,
+        public readonly ?float $totalValue = null,
+        public readonly ?float $installmentValue = null,
+        public readonly ?Discount $discount = null,
+        public readonly ?Interest $interest = null,
+        public readonly ?Fine $fine = null,
+        public readonly ?bool $postalService = null,
+        public readonly ?Split $split = null,
+        public readonly ?Callback $callback = null,
+        public readonly ?CreditCard $creditCard = null,
+        public readonly ?CreditCardHolderInfo $creditCardHolderInfo = null,
+        public readonly ?string $creditCardToken = null,
+        public readonly bool $authorizeOnly = false,
+        public readonly ?string $remoteIp = null,
     ) {}
-
-    public static function fromArray(array $data): static
-    {
-        return new static(
-            customer: $data['customer'] instanceof AsaasCustomer ? $data['customer'] : AsaasCustomer::fromArray($data['customer']),
-            billingType: $data['billing_type'] instanceof BillingType ? $data['billing_type'] : BillingType::from($data['billing_type']),
-            value: $data['value'] ?? null,
-            dueDate: Carbon::parse($data['dueDate'])->format('Y-m-d'),
-            description: $data['description'] ?? null,
-            daysAfterDueDateToRegistrationCancellation: $data['daysAfterDueDateToRegistrationCancellation'] ?? null,
-            externalReference: $data['externalReference'] ?? null,
-            installmentCount: $data['installmentCount'] ?? null,
-            totalValue: $data['totalValue'] ?? null,
-            installmentValue: $data['installmentValue'] ?? null,
-            discount: isset($data['discount']) ? Discount::fromArray($data['discount']) : null,
-            interest: isset($data['interest']) ? Interest::fromArray($data['interest']) : null,
-            fine: isset($data['fine']) ? Fine::fromArray($data['fine']) : null,
-            postalService: $data['postalService'] ?? false,
-            split: isset($data['split']) ? Split::fromArray($data['split']) : null,
-            callback: isset($data['callback']) ? Callback::fromArray($data['callback']) : null,
-            creditCard: isset($data['creditCard']) ? CreditCard::fromArray($data['creditCard']) : null,
-            creditCardHolderInfo: isset($data['creditCardHolderInfo']) ? CreditCardHolderInfo::fromArray($data['creditCardHolderInfo']) : null,
-            creditCardToken: $data['creditCardToken'] ?? null,
-            authorizeOnly: $data['authorizeOnly'] ?? false,
-            remoteIp: $data['remoteIp'] ?? null,
-        );
-    }
 }

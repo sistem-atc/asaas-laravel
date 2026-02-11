@@ -4,12 +4,13 @@ namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\StatusCheckoutCustomization;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
 class CheckoutCustomizationDTO implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
         public readonly ?string $object,
@@ -21,18 +22,4 @@ class CheckoutCustomizationDTO implements DTOInterface
         public readonly ?string $observations,
         public readonly ?StatusCheckoutCustomization $status,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            object: $data['object'] ?? null,
-            logoBackgroundColor: $data['logoBackgroundColor'] ?? null,
-            infoBackgroundColor: $data['infoBackgroundColor'] ?? null,
-            fontColor: $data['fontColor'] ?? null,
-            enabled: isset($data['enabled']) ? (bool) $data['enabled'] : null,
-            logoUrl: $data['logoUrl'] ?? null,
-            observations: $data['observations'] ?? null,
-            status: isset($data['status']) ? StatusCheckoutCustomization::tryFrom($data['status']) : null,
-        );
-    }
 }

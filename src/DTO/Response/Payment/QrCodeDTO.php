@@ -5,11 +5,12 @@ namespace SistemAtc\Asaas\DTO\Response\Payment;
 use Carbon\Carbon;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 
 class QrCodeDTO implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
     
     public function __construct(
         public readonly ?string $encodedImage,
@@ -17,14 +18,4 @@ class QrCodeDTO implements DTOInterface
         public readonly ?Carbon $expirationDate,
         public readonly ?string $description,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            encodedImage: $data['encodedImage'] ?? null,
-            payload: $data['payload'] ?? null,
-            expirationDate: isset($data['expirationDate']) ? Carbon::parse($data['expirationDate']) : null,
-            description: $data['description'] ?? null,
-        );
-    }
 }

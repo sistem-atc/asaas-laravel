@@ -2,28 +2,19 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Discount implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?float $value,
-        public readonly ?int $dueDateLimitDays,
-        public readonly ?string $limitedDate,
-        public readonly ?string $type,
+        public readonly ?float $value = null,
+        public readonly ?int $dueDateLimitDays = null,
+        public readonly ?string $limitedDate = null,
+        public readonly ?string $type = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            value: isset($data['value']) ? (float) $data['value'] : null,
-            dueDateLimitDays: isset($data['dueDateLimitDays']) ? (int) $data['dueDateLimitDays'] : null,
-            limitedDate: $data['limitedDate'] ?? null,
-            type: $data['type'] ?? null,
-        );
-    }
 }

@@ -2,38 +2,24 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 
 class Split implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $id,
-        public readonly ?string $walletId,
-        public readonly ?float $fixedValue,
-        public readonly ?float $percentualValue,
-        public readonly ?string $status,
-        public readonly ?string $refusalReason,
-        public readonly ?string $externalReference,
-        public readonly ?string $description,
-        public readonly ?string $totalFixedValue,
+        public readonly ?string $id = null,
+        public readonly ?string $walletId = null,
+        public readonly ?float $fixedValue = null,
+        public readonly ?float $percentualValue = null,
+        public readonly ?string $status = null,
+        public readonly ?string $refusalReason = null,
+        public readonly ?string $externalReference = null,
+        public readonly ?string $description = null,
+        public readonly ?string $totalFixedValue = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            id: $data['id'] ?? null,
-            walletId: $data['walletId'] ?? null,
-            fixedValue: isset($data['fixedValue']) ? (float) $data['fixedValue'] : null,
-            percentualValue: isset($data['percentualValue']) ? (float) $data['percentualValue'] : null,
-            status: $data['status'] ?? null,
-            refusalReason: $data['refusalReason'] ?? null,
-            externalReference: $data['externalReference'] ?? null,
-            description: $data['description'] ?? null,
-            totalFixedValue: $data['totalFixedValue'] ?? null,
-        );
-    }
 }

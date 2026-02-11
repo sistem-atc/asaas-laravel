@@ -2,26 +2,18 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class AccessToken implements DTOInterface
 {
 
-    use CastToArray;
+    use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $id,
-        public readonly ?string $name,
-        public readonly ?string $expirationDate,
+        public readonly ?string $id = null,
+        public readonly ?string $name = null,
+        public readonly ?string $expirationDate = null,
     ) {}
-
-    public static function fromArray(array $data): self
-    {
-        return new self(
-            id: $data['id'] ?? null,
-            name: $data['name'] ?? null,
-            expirationDate: $data['expirationDate'] ?? null,
-        );
-    }
 }
