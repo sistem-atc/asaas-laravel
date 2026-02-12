@@ -26,7 +26,13 @@ trait CastToArray
             $formatted = $this->formatValue($value, $property);
 
             if ($formatted !== null) {
-                $result[$key] = $formatted;
+                $cleanKey = str_replace(
+                    ['__le', '__ge', '__gt', '__lt'],
+                    ['[le]', '[ge]', '[gt]', '[lt]'],
+                    $key
+                );
+                
+                $result[$cleanKey] = $formatted;
             }
         }
 

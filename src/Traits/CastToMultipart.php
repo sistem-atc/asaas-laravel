@@ -9,16 +9,15 @@ trait CastToMultipart
 {
     public function toMultipart(): array
     {
-        $multipart = [];
+        $fields = [];
         $reflection = new ReflectionClass($this);
         $properties = $reflection->getProperties();
 
         foreach ($properties as $property) {
             $name = $property->getName();
             $value = $property->getValue($this);
-            if (is_null($value)) {
-                continue;
-            }
+            
+            if (is_null($value)) continue;
             
             $fileAttribute = $property->getAttributes(MultipartFile::class)[0] ?? null;
 
@@ -29,14 +28,14 @@ trait CastToMultipart
                     $fileName = basename($value);
                     $mimeType = mime_content_type($value);
                     $contents = "data:{$mimeType};name={$fileName};base64," . base64_encode($fileData);
-                    $multipart[] = [
+                    $fields[] = [
                         'name'     => $fieldName,
                         'filename' => $fileName,
                         'contents' => $contents
                     ];
                 } 
                 else {
-                    $multipart[] = [
+                    $fields[] = [
                         'name'     => $fieldName,
                         'contents' => fopen($value, 'r'),
                         'filename' => basename($value)
@@ -52,12 +51,14 @@ trait CastToMultipart
                 default => (string) $value,
             };
 
-            $multipart[] = [
+            $fields[] = [
                 'name'     => $name,
                 'contents' => $finalValue,
             ];
         }
 
-        return $multipart;
+        return [
+            'multipart' => $fields
+        ];
     }
 }

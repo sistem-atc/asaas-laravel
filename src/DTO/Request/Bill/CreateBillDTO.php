@@ -12,7 +12,7 @@ class CreateBillDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly string $identificationField,
+        public readonly ?string $identificationField = null,
         public readonly ?DateTime $scheduleDate = null,
         public readonly ?float $value = null,
         public readonly ?string $description = null,
