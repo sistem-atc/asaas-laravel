@@ -5,23 +5,16 @@ namespace SistemAtc\Asaas\Webhooks;
 use SistemAtc\Asaas\Bases\BaseAsaasHandler;
 use SistemAtc\Asaas\Events\AsaasInvoiceEvent;
 use SistemAtc\Asaas\DTO\Webhook\InvoiceWebhookDTO;
-use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 
 /**
  * @property InvoiceWebhookDTO $event
  */
 class InvoiceHandler extends BaseAsaasHandler
 {
+    protected ?string $eventClass = AsaasInvoiceEvent::class;
 
-    public function __invoke(WebhookEventDTOInterface $eventDTO, string $method): void
+    protected function expectedDTO(): string
     {
-
-        if (!$eventDTO instanceof InvoiceWebhookDTO) {
-            throw new \InvalidArgumentException("Handler esperado para InvoiceWebhookDTO, recebido: " . get_class($eventDTO));
-        }
-
-        $this->setEvent($eventDTO);
-        AsaasInvoiceEvent::dispatch($this->event->event->value, $this->event);
-        if (method_exists($this, $method)) $this->{$method}();
+        return InvoiceWebhookDTO::class;
     }
 }
