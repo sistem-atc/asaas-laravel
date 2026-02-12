@@ -9,7 +9,7 @@ use SistemAtc\Asaas\Services\AsaasServiceRegistry;
 
 /**
  * @method \SistemAtc\Asaas\Methods\AccountDocument accountDocument()
- * @method \SistemAtc\Asaas\Methods\Accountinfo accountinfo()
+ * @method \SistemAtc\Asaas\Methods\Accountinfo accountInfo()
  * @method \SistemAtc\Asaas\Methods\Anticipation anticipation()
  * @method \SistemAtc\Asaas\Methods\Bill bill()
  * @method \SistemAtc\Asaas\Methods\Chargeback chargeback()
@@ -35,7 +35,7 @@ use SistemAtc\Asaas\Services\AsaasServiceRegistry;
  * @method \SistemAtc\Asaas\Methods\Pix pix()
  * @method \SistemAtc\Asaas\Methods\AutomaticPix automaticPix()
  * @method \SistemAtc\Asaas\Methods\RecurringPix recurringPix()
- * @method \SistemAtc\Asaas\Methods\Subaccount subaccount()
+ * @method \SistemAtc\Asaas\Methods\Subaccount subAccount()
  * @method \SistemAtc\Asaas\Methods\Subscription subscription()
  * @method \SistemAtc\Asaas\Methods\Transfer transfer()
  * @method \SistemAtc\Asaas\Methods\Webhook webhook()
@@ -73,7 +73,6 @@ class Asaas
         $this->client = Http::asJson()
             ->baseUrl($this->baseUrl . '/' . $this->version)
             ->withHeaders([
-                'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'access_token' => $this->accessToken,
             ]);

@@ -1,0 +1,48 @@
+{
+  "object": "payment",
+  "id": "pay_080225913252",
+  "dateCreated": "2017-03-10",
+  "customerId": "cus_G7Dvo4iphUNk",
+  "subscriptionId": null,
+  "installmentId": null,
+  "paymentLinkId": null,
+  "value": 129.9,
+  "netValue": 124.9,
+  "originalValue": null,
+  "interestValue": null,
+  "description": "Pedido 056984",
+  "billingType": "BOLETO",
+  "canBePaidAfterDueDate": true,
+  "confirmedDate": "2017-03-10",
+  "pixTransactionId": null,
+  "status": "PENDING",
+  "dueDate": "2017-06-10",
+  "originalDueDate": "2017-06-10",
+  "paymentDate": null,
+  "customerPaymentDate": null,
+  "installmentNumber": null,
+  "externalReference": "056984",
+  "deleted": false,
+  "anticipated": false,
+  "anticipable": false,
+  "creditDate": "2017-03-10",
+  "transactionReceiptUrl": null,
+  "duplicatedPaymentId": null,
+  "discount": {
+    "value": 10,
+    "dueDateLimitDays": 0,
+    "type": "PERCENTAGE"
+  },
+  "fine": {
+    "value": 1
+  },
+  "interest": {
+    "value": 2
+  },
+  "postalService": false,
+  "creditCard": {
+    "creditCardNumber": "8829",
+    "creditCardBrand": "VISA",
+    "creditCardToken": null
+  }
+}

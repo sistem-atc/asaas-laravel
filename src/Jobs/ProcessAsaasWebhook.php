@@ -2,17 +2,17 @@
 
 namespace SistemAtc\Asaas\Jobs;
 
+use InvalidArgumentException;
 use Illuminate\Bus\Queueable;
+use SistemAtc\Asaas\Core\Mapping;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-use InvalidArgumentException;
-use SistemAtc\Asaas\Core\Mapping;
-use SistemAtc\Asaas\DTO\Factory\AsaasWebhookRegistry;
-use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\Traits\HandlesIdempotency;
+use SistemAtc\Asaas\Services\AsaasWebhookRegistry;
 
 class ProcessAsaasWebhook implements ShouldQueue
 {

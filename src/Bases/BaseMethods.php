@@ -33,7 +33,11 @@ abstract class BaseMethods
            $client = $client->asMultipart();
         }
 
-        $response = $client->{$method->value}($endpoint, $data);
+        if ($method === HttpMethod::GET) {
+            $response = $client->{$method->value}($endpoint);
+        } else {
+            $response = $client->{$method->value}($endpoint, $data);
+        }
 
         if ($response->failed()) {
             $this->handleError($response);
@@ -44,14 +48,18 @@ abstract class BaseMethods
 
     protected function handleError($response): void
     {
+        $e = new AsaasRequestException($response);
         Log::warning('Asaas HTTP Request Error', [
-            'token_id'   => 'token not logged for security reasons',
-            'status'     => $response->status(),
-            'url'        => $response->effectiveUri(),
-            'payload'    => $response->json(),
-            'ip_address' => request()->ip(),
+            'status'     => $e->status(),
+            'url'        => $e->url(),
+            'request_id' => $e->requestId(),
+            'errors'     => $e->errors(),
+            'payload'    => $e->responseJson(),
+            'raw'        => $e->responseBody(),
+            'ip_address' => app()->runningInConsole() ? null : request()->ip(),
         ]);
-
-        throw new AsaasRequestException($response);
+    
+        throw $e;
     }
+    
 }

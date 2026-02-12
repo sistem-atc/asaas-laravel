@@ -21,7 +21,7 @@ class AsaasServiceRegistry
             'financialTransaction' =>   \SistemAtc\Asaas\Methods\FinancialTransaction::class,
             'fiscalInfo' =>             \SistemAtc\Asaas\Methods\FiscalInfo::class,
             'invoice' =>                \SistemAtc\Asaas\Methods\Invoice::class,
-            'mobileRecharge' =>         \SistemAtc\Asaas\Methods\MobilePhoneRecharge::class,
+            'mobilePhoneRecharge' =>    \SistemAtc\Asaas\Methods\MobilePhoneRecharge::class,
             'notification' =>           \SistemAtc\Asaas\Methods\Notification::class,
             'payment' =>                \SistemAtc\Asaas\Methods\Payment::class,
             'paymentDocument' =>        \SistemAtc\Asaas\Methods\PaymentDocument::class,

@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Factory;
+namespace SistemAtc\Asaas\Services;
 
 use Illuminate\Support\Str;
 use SistemAtc\Asaas\DTO\Webhook\BillWebhookDTO;

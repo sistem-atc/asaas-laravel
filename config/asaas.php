@@ -2,7 +2,7 @@
 
 return [
 
-    'environment' => 'sandbox', // Defines the environment: production or sandbox.
+    'environment' => env('ASAAS_ENVIRONMENT', 'sandbox'), // Defines the environment: production or sandbox.
 
     /*
     |--------------------------------------------------------------------------

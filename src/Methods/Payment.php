@@ -12,20 +12,22 @@ use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
 class Payment extends BaseMethods
 {
 
-    public function create(PaymentDTO $data): ?PaymentoDTOResponse
+    public function createNewPayment(PaymentDTO $data): ?PaymentoDTOResponse
     {
         $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
         return PaymentoDTOResponse::fromArray($response);
     }
 
-    public function list(ListPayment $filter): ?array
+    public function listPayments(ListPayment $filter): ?array
     {
         $query = $filter ? '?' . http_build_query($filter->toArray()) : '';
         $endpoint = '/payments' . $query;
         return $this->makeRequest(HttpMethod::GET, $endpoint);
     }
 
-    public function capturePreAuthorization(string $id): ?PaymentoDTOResponse
+    public function createNewPaymentWithCreditCard() {}
+
+    public function CapturePaymentWithPreAuthorization(string $id): ?PaymentoDTOResponse
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/captureAuthorizedPayment");
         return PaymentoDTOResponse::fromArray($response);
@@ -33,25 +35,25 @@ class Payment extends BaseMethods
 
     public function payChargeWithCreditCard(){}
 
-    public function billingInfo(){}
+    public function retrievePaymentBillingInformation(){}
 
-    public function viewingInfo(){}
+    public function paymentViewingInformation(){}
 
-    public function retrySingle(){}
+    public function retrieveSinglePayment(){}
 
-    public function update(){}
+    public function updateExistingPayment(){}
 
-    public function delete(){}
+    public function deletePayment(){}
 
-    public function restore(){}
+    public function restoreRemovedPayment(){}
 
-    public function status(){}
+    public function retrieveStatusPayment(){}
 
-    public function refund(){}
+    public function refundPayment(){}
 
-    public function getDigitableBill(){}
+    public function getDigitableBillLine(){}
 
-    public function getQrCodePix(string $paymentId): QrCodeDTO
+    public function getQRCodeForPixPayments(string $paymentId): QrCodeDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$paymentId}/pixQrCode");
         return QrCodeDTO::fromArray($response);

@@ -1,0 +1,60 @@
+{
+  "customer": "cus_G7Dvo4iphUNk",
+  "billingType": "BOLETO",
+  "value": 129.9,
+  "dueDate": "2017-06-10",
+  "description": "Pedido 056984",
+  "daysAfterDueDateToRegistrationCancellation": 1,
+  "externalReference": "056984",
+  "installmentCount": null,
+  "totalValue": null,
+  "installmentValue": null,
+  "discount": {
+    "value": 10,
+    "dueDateLimitDays": 0,
+    "type": "PERCENTAGE"
+  },
+  "interest": {
+    "value": null
+  },
+  "fine": {
+    "value": null,
+    "type": "FIXED"
+  },
+  "postalService": false,
+  "split": [
+    {
+      "walletId": null,
+      "fixedValue": null,
+      "percentualValue": null,
+      "totalFixedValue": null,
+      "externalReference": null,
+      "description": null
+    }
+  ],
+  "callback": {
+    "successUrl": null,
+    "autoRedirect": null
+  },
+  "pixAutomaticAuthorizationId": "89060430-aceb-447c-a981-07ee15daf00c",
+  "creditCard": {
+    "holderName": "John Doe",
+    "number": "1234567890123456",
+    "expiryMonth": "2",
+    "expiryYear": "2026",
+    "ccv": "123"
+  },
+  "creditCardHolderInfo": {
+    "name": "John Doe",
+    "email": "john.doe@asaas.com",
+    "cpfCnpj": "12345678901",
+    "postalCode": "12345678",
+    "addressNumber": "123",
+    "addressComplement": null,
+    "phone": null,
+    "mobilePhone": null
+  },
+  "creditCardToken": null,
+  "authorizeOnly": null,
+  "remoteIp": null
+}

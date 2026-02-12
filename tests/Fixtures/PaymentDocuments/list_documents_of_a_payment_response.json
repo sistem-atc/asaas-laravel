@@ -1,0 +1,25 @@
+{
+  "object": "list",
+  "hasMore": false,
+  "totalCount": 2,
+  "limit": 10,
+  "offset": 0,
+  "data": [
+    {
+      "object": "paymentDocument",
+      "id": "609a3f98-8db7-4a89-b511-de4c3be6d462",
+      "name": "Nota Fiscal.pdf",
+      "type": "INVOICE",
+      "availableAfterPayment": true,
+      "file": {
+        "publicId": "TSrLvzPGF7HPQhYu9OZhZSBX3mm1sxpToEcFm30imOM3sKEjhzCc1zAIuqQ7n11",
+        "originalName": "Nota Fiscal.pdf",
+        "size": 14499,
+        "extension": "pdf",
+        "previewUrl": "https://www.asaas.com/file/preview/TSrLvzPGF7HPQhYu9OZhZSBX3mm1sxpToEcFm30imOM3sKEjhzCc1zAIuqQ7n11",
+        "downloadUrl": "https://www.asaas.com/file/public/download/TSrLvzPGF7HPQhYu9OZhZSBX3mm1sxpToEcFm30imOM3sKEjhzCc1zAIuqQ7n11"
+      },
+      "deleted": false
+    }
+  ]
+}
