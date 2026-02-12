@@ -1,0 +1,24 @@
+{
+  "object": "list",
+  "hasMore": false,
+  "totalCount": 2,
+  "limit": 10,
+  "offset": 0,
+  "data": [
+    {
+      "object": "notification",
+      "id": "not_wuGp97JeCr7G",
+      "customer": "cus_000005401844",
+      "enabled": true,
+      "emailEnabledForProvider": true,
+      "smsEnabledForProvider": true,
+      "emailEnabledForCustomer": true,
+      "smsEnabledForCustomer": true,
+      "phoneCallEnabledForCustomer": false,
+      "whatsappEnabledForCustomer": false,
+      "event": "PAYMENT_CREATED",
+      "scheduleOffset": 1,
+      "deleted": true
+    }
+  ]
+}

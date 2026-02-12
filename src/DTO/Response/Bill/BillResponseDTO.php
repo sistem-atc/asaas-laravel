@@ -3,9 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Response\Bill;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\BillStatus;
 use SistemAtc\Asaas\Traits\AutoHydrate;
+use SistemAtc\Asaas\Traits\CastToArray;
 
 class BillResponseDTO implements DTOInterface
 {

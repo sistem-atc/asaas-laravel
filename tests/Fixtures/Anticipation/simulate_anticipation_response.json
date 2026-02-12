@@ -1,0 +1,12 @@
+{
+  "installment": null,
+  "payment": "pay_626366773834",
+  "anticipationDate": "2019-05-20",
+  "dueDate": "2019-05-26",
+  "fee": 2.33,
+  "anticipationDays": 6,
+  "netValue": 73.68,
+  "totalValue": 80,
+  "value": 76.01,
+  "isDocumentationRequired": false
+}

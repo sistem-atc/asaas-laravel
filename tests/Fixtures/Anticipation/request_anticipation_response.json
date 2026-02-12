@@ -1,0 +1,16 @@
+{
+  "object": "receivableAnticipation",
+  "id": "9e7d8639-350f-45c0-8bc3-d4ddc5f4ebac",
+  "installment": null,
+  "payment": "pay_626366773834",
+  "status": "PENDING",
+  "anticipationDate": "2019-05-20",
+  "dueDate": "2019-05-26",
+  "requestDate": "2019-05-14",
+  "fee": 2.33,
+  "anticipationDays": 5,
+  "netValue": 73.68,
+  "totalValue": 80,
+  "value": 76.01,
+  "denialObservation": null
+}

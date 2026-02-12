@@ -1,0 +1,11 @@
+{
+  "deleted": true,
+  "id": "a2c890b-dd63-4b5a-9169-96c8d7828f4c",
+  "deletedPayments": [
+    {
+      "id": "pay_080225913252",
+      "installmentNumber": 1,
+      "deleted": true
+    }
+  ]
+}

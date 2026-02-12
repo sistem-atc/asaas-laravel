@@ -3,16 +3,16 @@
 namespace SistemAtc\Asaas\Jobs;
 
 use Illuminate\Bus\Queueable;
-use InvalidArgumentException;
-use SistemAtc\Asaas\Core\Mapping;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use InvalidArgumentException;
+use SistemAtc\Asaas\Core\Mapping;
+use SistemAtc\Asaas\DTO\Factory\AsaasWebhookRegistry;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\Traits\HandlesIdempotency;
-use SistemAtc\Asaas\DTO\Factory\WebhookDTOFactory;
 
 class ProcessAsaasWebhook implements ShouldQueue
 {
@@ -30,7 +30,7 @@ class ProcessAsaasWebhook implements ShouldQueue
     public function handle(): void
     {
         try {
-            $eventDTO = WebhookDTOFactory::create($this->payload);
+            $eventDTO = AsaasWebhookRegistry::map($this->payload);
             $eventId = (string) $eventDTO->getEventId();
 
             if ($eventId === '') {

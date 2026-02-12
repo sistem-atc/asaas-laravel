@@ -1,0 +1,16 @@
+{
+  "splits": [
+    {
+      "id": "fd41396a-7453-47d0-9411-c8543522591d",
+      "walletId": "7bafd95a-e783-4a62-9be1-23999af742c6",
+      "fixedValue": 20.32,
+      "percentualValue": null,
+      "totalValue": 20.32,
+      "cancellationReason": "PAYMENT_DELETED",
+      "status": "PENDING",
+      "externalReference": null,
+      "description": null,
+      "installmentNumber": null
+    }
+  ]
+}

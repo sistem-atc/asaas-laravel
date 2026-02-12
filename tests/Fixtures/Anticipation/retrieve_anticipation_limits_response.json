@@ -1,0 +1,10 @@
+{
+  "creditCard": {
+    "total": 50000,
+    "available": 35360.7
+  },
+  "bankSlip": {
+    "total": 50000,
+    "available": 35360.7
+  }
+}

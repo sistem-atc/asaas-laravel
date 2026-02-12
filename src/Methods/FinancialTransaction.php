@@ -6,5 +6,8 @@ use SistemAtc\Asaas\Bases\BaseMethods;
 
 class FinancialTransaction extends BaseMethods
 {
+    public function retrieveExtract()
+    {
 
+    }
 }

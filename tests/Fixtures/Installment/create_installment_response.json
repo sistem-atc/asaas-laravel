@@ -1,0 +1,59 @@
+{
+  "object": "installment",
+  "id": "2765d086-c7c5-5cca-898a-4262d212587c",
+  "value": 360,
+  "netValue": 312.12,
+  "paymentValue": 30,
+  "installmentCount": 12,
+  "billingType": "CREDIT_CARD",
+  "paymentDate": null,
+  "description": "Order 056984",
+  "expirationDay": 31,
+  "dateCreated": "2021-01-19",
+  "customer": "cus_000000001645",
+  "paymentLink": "997152082166122",
+  "checkoutSession": "5a3e564f-81cd-4f4e-9c8e-af43f9ac4287",
+  "transactionReceiptUrl": null,
+  "chargeback": {
+    "id": "8e784c3e-afe8-4844-bb93-6b445763",
+    "payment": "pay_pBtDdshgBD2Rt",
+    "installment": "b8dd74c-d078-40a0-9ae1-61a66c61a204",
+    "customerAccount": "cus_000000004085",
+    "status": "DONE",
+    "reason": "COMMERCIAL_DISAGREEMENT",
+    "disputeStartDate": "2024-11-10",
+    "value": 2323.45,
+    "paymentDate": "2024-03-10",
+    "creditCard": {
+      "number": "8829",
+      "brand": "VISA"
+    },
+    "disputeStatus": "ACCEPTED",
+    "deadlineToSendDisputeDocuments": "2024-12-10"
+  },
+  "creditCard": {
+    "creditCardNumber": "8829",
+    "creditCardBrand": "VISA",
+    "creditCardToken": null
+  },
+  "deleted": false,
+  "refunds": [
+    {
+      "dateCreated": "2024-10-18 10:19:06",
+      "status": "DONE",
+      "value": 40,
+      "endToEndIdentifier": null,
+      "description": null,
+      "effectiveDate": "2024-10-19 10:19:06",
+      "transactionReceiptUrl": null,
+      "refundedSplits": [
+        {
+          "id": "cff860dd-148e-48ca-ac8e-849684175158",
+          "value": 10,
+          "done": true
+        }
+      ],
+      "paymentId": "pay_080225913252"
+    }
+  ]
+}

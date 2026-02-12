@@ -1,0 +1,118 @@
+{
+  "object": "list",
+  "hasMore": false,
+  "totalCount": 2,
+  "limit": 10,
+  "offset": 0,
+  "data": [
+    {
+      "object": "payment",
+      "id": "pay_080225913252",
+      "dateCreated": "2017-03-10",
+      "customer": "cus_G7Dvo4iphUNk",
+      "subscription": null,
+      "installment": null,
+      "checkoutSession": "356eb0c4-9eb7-4b7f-b2be-d9479af1d29f",
+      "paymentLink": null,
+      "value": 129.9,
+      "netValue": 124.9,
+      "originalValue": null,
+      "interestValue": null,
+      "description": "Pedido 056984",
+      "billingType": "BOLETO",
+      "creditCard": {
+        "creditCardNumber": "8829",
+        "creditCardBrand": "VISA",
+        "creditCardToken": null
+      },
+      "canBePaidAfterDueDate": true,
+      "pixTransaction": null,
+      "pixQrCodeId": null,
+      "status": "PENDING",
+      "dueDate": "2017-06-10",
+      "originalDueDate": "2017-06-10",
+      "paymentDate": null,
+      "clientPaymentDate": null,
+      "installmentNumber": null,
+      "invoiceUrl": "https://www.asaas.com/i/080225913252",
+      "invoiceNumber": "00005101",
+      "externalReference": "056984",
+      "deleted": false,
+      "anticipated": false,
+      "anticipable": false,
+      "creditDate": "2017-06-10",
+      "estimatedCreditDate": "2017-06-10",
+      "transactionReceiptUrl": null,
+      "nossoNumero": "6453",
+      "bankSlipUrl": "https://www.asaas.com/b/pdf/080225913252",
+      "discount": {
+        "value": 10,
+        "dueDateLimitDays": 0,
+        "type": "PERCENTAGE"
+      },
+      "fine": {
+        "value": 1
+      },
+      "interest": {
+        "value": 2
+      },
+      "split": [
+        {
+          "id": "fd41396a-7453-47d0-9411-c8543522591d",
+          "walletId": "7bafd95a-e783-4a62-9be1-23999af742c6",
+          "fixedValue": 20.32,
+          "percentualValue": null,
+          "totalValue": 20.32,
+          "cancellationReason": "PAYMENT_DELETED",
+          "status": "PENDING",
+          "externalReference": null,
+          "description": null
+        }
+      ],
+      "postalService": false,
+      "daysAfterDueDateToRegistrationCancellation": null,
+      "chargeback": {
+        "id": "8e784c3e-afe8-4844-bb93-6b445763",
+        "payment": "pay_pBtDdshgBD2Rt",
+        "installment": "b8dd74c-d078-40a0-9ae1-61a66c61a204",
+        "customerAccount": "cus_000000004085",
+        "status": "DONE",
+        "reason": "COMMERCIAL_DISAGREEMENT",
+        "disputeStartDate": "2024-11-10",
+        "value": 2323.45,
+        "paymentDate": "2024-03-10",
+        "creditCard": {
+          "number": "8829",
+          "brand": "VISA"
+        },
+        "disputeStatus": "ACCEPTED",
+        "deadlineToSendDisputeDocuments": "2024-12-10"
+      },
+      "escrow": {
+        "id": "4f468235-cec3-482f-b3d0-348af4c7194",
+        "status": "ACTIVE",
+        "expirationDate": "2024-06-10",
+        "finishDate": "2024-06-10",
+        "finishReason": "EXPIRED"
+      },
+      "refunds": [
+        {
+          "dateCreated": "2024-10-18 10:19:06",
+          "status": "DONE",
+          "value": 40,
+          "endToEndIdentifier": null,
+          "description": null,
+          "effectiveDate": "2024-10-19 10:19:06",
+          "transactionReceiptUrl": null,
+          "refundedSplits": [
+            {
+              "id": "cff860dd-148e-48ca-ac8e-849684175158",
+              "value": 10,
+              "done": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

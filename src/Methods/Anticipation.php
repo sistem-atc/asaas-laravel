@@ -2,17 +2,17 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
-use SistemAtc\Asaas\DTO\Response\Anticipation\ListAnticipationDTO;
+use SistemAtc\Asaas\DTO\Request\Anticipation\ListAnticipationFilterDTO;
 use SistemAtc\Asaas\DTO\Request\Anticipation\RequestAnticipationDTO;
 use SistemAtc\Asaas\DTO\Request\Anticipation\SimulateAnticipationDTO;
-use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationDTO;
-use SistemAtc\Asaas\DTO\Request\Anticipation\ListAnticipationFilterDTO;
 use SistemAtc\Asaas\DTO\Request\Anticipation\UpdateAutomaticAnticipationDTO;
 use SistemAtc\Asaas\DTO\Response\Anticipation\AutomaticAnticipationConfigDTO;
+use SistemAtc\Asaas\DTO\Response\Anticipation\ListAnticipationDTO;
 use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAntecipationLimitsDTO;
+use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationDTO;
 use SistemAtc\Asaas\DTO\Response\Anticipation\SimulateAnticipationDTO as ResponseSimulateAnticipationDTO;
+use SistemAtc\Asaas\Enum\HttpMethod;
 
 class Anticipation extends BaseMethods
 {

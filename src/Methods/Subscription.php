@@ -17,6 +17,16 @@ class Subscription extends BaseMethods
         return [];
     }
 
+    public function createSubscriptionWithCreditCard()
+    {
+
+    }
+    
+    public function retrieveSingleSubscription()
+    {
+
+    }
+    
     public function update(): array
     {
         return [];
@@ -27,9 +37,44 @@ class Subscription extends BaseMethods
         return [];
     }
 
-    public function update_credit_card(): array
+    public function updateCreditCard(): array
     {
         return [];
     }
+    
+    public function listPaymentsSubscription()
+    {
 
+    }
+    
+    public function generateSubscriptionBooklet()
+    {
+
+    }
+    
+    public function createConfigurationForIssuingInvoices()
+    {
+
+    }
+    
+    public function retrieveConfigurationForIssuingInvoices()
+    {
+
+    }
+    
+    public function removeConfigurationForIssuingInvoices()
+    {
+
+    }
+    
+    public function updateConfigurationForIssuingInvoices()
+    {
+
+    }
+    
+    public function listInvoicesForSubscriptionCharges()
+    {
+
+    }
+    
 }

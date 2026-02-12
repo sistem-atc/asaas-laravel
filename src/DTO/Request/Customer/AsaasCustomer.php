@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Shared\Request;
+namespace SistemAtc\Asaas\DTO\Request\Customer;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Traits\AutoHydrate;

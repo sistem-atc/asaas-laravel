@@ -1,0 +1,35 @@
+{
+  "billingType": "BOLETO",
+  "value": 129.9,
+  "dueDate": "2017-06-10",
+  "description": "Pedido 056984",
+  "daysAfterDueDateToRegistrationCancellation": 1,
+  "externalReference": "056984",
+  "discount": {
+    "value": 10,
+    "dueDateLimitDays": 0,
+    "type": "PERCENTAGE"
+  },
+  "interest": {
+    "value": null
+  },
+  "fine": {
+    "value": null,
+    "type": "FIXED"
+  },
+  "postalService": false,
+  "split": [
+    {
+      "walletId": null,
+      "fixedValue": null,
+      "percentualValue": null,
+      "totalFixedValue": null,
+      "externalReference": null,
+      "description": null
+    }
+  ],
+  "callback": {
+    "successUrl": null,
+    "autoRedirect": null
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "value": 100,
+  "installmentCount": 2,
+  "billingTypes": [
+    "CREDIT_CARD",
+    "BOLETO",
+    "PIX"
+  ]
+}

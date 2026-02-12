@@ -17,9 +17,9 @@ use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 use SistemAtc\Asaas\DTO\Webhook\SubscriptionWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\AccountStatusWebhookDTO;
 
-class WebhookDTOFactory
+class AsaasWebhookRegistry
 {
-    public static function create(array $payload): WebhookEventDTOInterface
+    public static function map(array $payload): WebhookEventDTOInterface
     {
         $event = $payload['event'] ?? '';
         $prefix = Str::before($event, '_');

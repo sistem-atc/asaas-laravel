@@ -18,7 +18,6 @@ class AsaasEventsController extends Controller
     {
         $payload = $request->all();
         
-        // Validate payload size
         $payloadSize = strlen(json_encode($payload));
         if ($payloadSize > self::MAX_PAYLOAD_SIZE) {
             Log::warning('Asaas Webhook: Payload size exceeds maximum allowed', [
@@ -28,7 +27,6 @@ class AsaasEventsController extends Controller
             return response()->json(['message' => 'Payload too large'], 413);
         }
 
-        // Validate that payload is not empty
         if (empty($payload)) {
             Log::warning('Asaas Webhook: Empty payload received');
             return response()->json(['message' => 'Empty payload'], 400);

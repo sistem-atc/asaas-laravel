@@ -1,0 +1,35 @@
+{
+  "installmentCount": 3,
+  "customer": "cus_G7Dvo4iphUNk",
+  "value": 100,
+  "totalValue": 150,
+  "billingType": "BOLETO",
+  "dueDate": "2025-07-08",
+  "description": "Installment 08652",
+  "postalService": false,
+  "daysAfterDueDateToRegistrationCancellation": 1,
+  "paymentExternalReference": "056984",
+  "discount": {
+    "value": 10,
+    "dueDateLimitDays": 0,
+    "type": "PERCENTAGE"
+  },
+  "interest": {
+    "value": null
+  },
+  "fine": {
+    "value": null,
+    "type": "FIXED"
+  },
+  "splits": [
+    {
+      "walletId": null,
+      "fixedValue": null,
+      "percentualValue": null,
+      "totalFixedValue": null,
+      "externalReference": null,
+      "description": null,
+      "installmentNumber": null
+    }
+  ]
+}

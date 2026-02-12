@@ -2,12 +2,11 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
-use SistemAtc\Asaas\DTO\Factory\CustomerFactory;
-use SistemAtc\Asaas\DTO\Shared\Request\ListCustomer;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
+use SistemAtc\Asaas\DTO\Request\Customer\AsaasCustomer;
+use SistemAtc\Asaas\DTO\Request\Customer\ListCustomer;
 use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateDTO;
+use SistemAtc\Asaas\Enum\HttpMethod;
 
 class Customer extends BaseMethods
 {
@@ -15,15 +14,12 @@ class Customer extends BaseMethods
     public function create(AsaasCustomer $customer): ?CustomerCreateDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, '/customers', $customer->toArray());
-        if (!$response) return null;
-        return CustomerFactory::makeCreateResponse($response);
+        return CustomerCreateDTO::fromArray($response);
     }
 
-    public function list(ListCustomer $filter): ?array
+    public function list(ListCustomer $queryParams): ?array
     {
-        $query = $filter ? '?' . http_build_query($filter->toArray()) : '';
-        $endpoint = '/customers' . $query;
-        return $this->makeRequest(HttpMethod::GET, $endpoint);
+        return $this->makeRequest(HttpMethod::GET, "/customers?" . http_build_query($queryParams->toArray()));
     }
 
     public function single_customer(AsaasCustomer $customer): ?array
@@ -36,19 +32,19 @@ class Customer extends BaseMethods
         return $this->makeRequest(HttpMethod::PUT, "/customers/{$customer->asaas_id}", $customer->toArray());
     }
 
-    public function remove(AsaasCustomer $customer): ?array
+    public function remove(string $id): ?array
     {
-        return $this->makeRequest(HttpMethod::DELETE, "/customers/{$customer->asaas_id}");
+        return $this->makeRequest(HttpMethod::DELETE, "/customers/{$id}");
     }
 
-    public function restore(AsaasCustomer $customer): ?array
+    public function restore(string $id): ?array
     {
-        return $this->makeRequest(HttpMethod::POST, "/customers/{$customer->asaas_id}/restore");
+        return $this->makeRequest(HttpMethod::POST, "/customers/{$id}/restore");
     }
 
-    public function notifications(AsaasCustomer $customer): ?array
+    public function notifications(string $id): ?array
     {
-        return $this->makeRequest(HttpMethod::GET, "/customers/{$customer->asaas_id}/notifications");
+        return $this->makeRequest(HttpMethod::GET, "/customers/{$id}/notifications");
     }
 
 }
