@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
+use SistemAtc\Asaas\DTO\Request\Customer\AsaasCustomer;
 use SistemAtc\Asaas\Facades\Asaas;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 
 test('it returns null or handles error when asaas api fails', function () {
     Http::fake([
@@ -18,6 +18,6 @@ test('it returns null or handles error when asaas api fails', function () {
         'email' => 'email-errado'
     ]);
 
-    expect(fn() => Asaas::customer()->create($customerDTO))
+    expect(fn() => Asaas::customer()->createNewCustomer($customerDTO))
         ->toThrow(\Exception::class, 'O e-mail informado é inválido.');
 });

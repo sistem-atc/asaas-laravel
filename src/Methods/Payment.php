@@ -4,10 +4,12 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\Payment\ListPayment;
 use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
-use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
-use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
+use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\CreditCardPaymentDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\PayChargeWithCreditCardDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
 
 class Payment extends BaseMethods
@@ -27,7 +29,11 @@ class Payment extends BaseMethods
         return ListPaymentDTO::fromarray($response);
     }
 
-    public function createNewPaymentWithCreditCard() {}
+    public function createNewPaymentWithCreditCard(CreditCardPaymentDTO $data): PaymentoDTOResponse 
+    {
+        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
+        return PaymentoDTOResponse::fromArray($response);
+    }
 
     public function CapturePaymentWithPreAuthorization(string $id): ?PaymentoDTOResponse
     {
@@ -35,7 +41,11 @@ class Payment extends BaseMethods
         return PaymentoDTOResponse::fromArray($response);
     }
 
-    public function payChargeWithCreditCard(){}
+    public function payChargeWithCreditCard(string $id, PayChargeWithCreditCardDTO $data): PaymentoDTOResponse
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/payWithCreditCard", $data->toArray());
+        return PaymentoDTOResponse::fromArray($response);
+    }
 
     public function retrievePaymentBillingInformation(){}
 
@@ -57,7 +67,7 @@ class Payment extends BaseMethods
 
     public function getQRCodeForPixPayments(string $paymentId): QrCodeDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$paymentId}/pixQrCode");
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$paymentId}/pixQrCode",);
         return QrCodeDTO::fromArray($response);
     }
 

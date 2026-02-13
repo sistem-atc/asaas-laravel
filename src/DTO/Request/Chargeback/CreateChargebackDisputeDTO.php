@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\AccountDocument;
+namespace SistemAtc\Asaas\DTO\Request\Chargeback;
 
 use InvalidArgumentException;
 use SistemAtc\Asaas\Traits\CastToMultipart;

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use SistemAtc\Asaas\Http\Controllers\AsaasEventsController;
 use SistemAtc\Asaas\Http\Middleware\AsaasTokenValid;
 
-Route::middleware(['api', AsaasTokenValid::class])
+Route::prefix('api')->middleware(['api', AsaasTokenValid::class])
     ->group(function () {
         Route::post(
             config('asaas.route_events.path'),

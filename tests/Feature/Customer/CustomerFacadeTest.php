@@ -2,7 +2,7 @@
 
 use SistemAtc\Asaas\Facades\Asaas;
 use Illuminate\Support\Facades\Http;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
+use SistemAtc\Asaas\DTO\Request\Customer\AsaasCustomer;
 
 test('it sends correct headers when creating a customer', function () {
     Http::fake([
@@ -13,7 +13,7 @@ test('it sends correct headers when creating a customer', function () {
 
     $customerDTO = AsaasCustomer::fromArray(['name' => 'Kleber']);
     
-    Asaas::customer()->create($customerDTO);
+    Asaas::customer()->createNewCustomer($customerDTO);
 
     Http::assertSent(function ($request) {
         return $request->hasHeader('access_token', 'minha-chave-secreta') &&

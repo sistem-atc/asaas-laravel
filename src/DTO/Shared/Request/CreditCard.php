@@ -12,10 +12,10 @@ class CreditCard implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $holderName = null,
-        public readonly ?string $number = null,
-        public readonly ?string $expiryMonth = null,
-        public readonly ?string $expiryYear = null,
-        public readonly ?string $ccv = null,
+        public readonly string $holderName,
+        public readonly string $number,
+        public readonly string $expiryMonth,
+        public readonly string $expiryYear,
+        public readonly string $ccv,
     ) {}
 }

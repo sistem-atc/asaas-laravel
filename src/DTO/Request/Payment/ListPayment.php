@@ -1,8 +1,7 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Shared\Request;
+namespace SistemAtc\Asaas\DTO\Request\Payment;
 
-use DateTime;
 use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Enum\InvoiceStatus;
 use SistemAtc\Asaas\Enum\StatusPayment;
@@ -25,7 +24,7 @@ class ListPayment implements DTOInterface
         public readonly ?string $subscription = null,
         public readonly ?string $installment = null,
         public readonly ?string $externalReference = null,
-        public readonly ?DateTime $paymentDate = null,
+        public readonly ?string $paymentDate = null,
         public readonly ?InvoiceStatus $invoiceStatus = null,
         public readonly ?string $estimatedCreditDate = null,
         public readonly ?string $pixQrCodeId = null,

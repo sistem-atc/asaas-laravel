@@ -12,7 +12,7 @@ class Split implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $walletId = null,
+        public readonly string $walletId,
         public readonly ?float $fixedValue = null,
         public readonly ?float $percentualValue = null,
         public readonly ?float $totalFixedValue = null,

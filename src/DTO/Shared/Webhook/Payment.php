@@ -8,7 +8,6 @@ use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
 use SistemAtc\Asaas\DTO\Shared\Common\Penalty;
-use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
 use SistemAtc\Asaas\DTO\Shared\Common\CreditCard;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Chargeback;
 
@@ -55,7 +54,7 @@ class Payment implements DTOInterface
         public readonly ?string $lastBankSlipViewedDate = null,
         public readonly ?bool $postalService = null,
         public readonly ?CreditCard $creditCard = null,
-        public readonly ?Discount $discount = null,
+        public readonly ?Penalty $discount = null,
         public readonly ?Penalty $fine = null,
         public readonly ?Penalty $interest = null,
         #[ArrayOf(Split::class)] public readonly ?array $split = null,

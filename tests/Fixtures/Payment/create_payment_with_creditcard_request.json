@@ -51,7 +51,7 @@
     "postalCode": "12345678",
     "addressNumber": "123",
     "addressComplement": null,
-    "phone": null,
+    "phone": 1199999999,
     "mobilePhone": null
   },
   "creditCardToken": null,
