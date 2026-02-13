@@ -7,13 +7,13 @@ use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateDTO;
 use SistemAtc\Asaas\DTO\Shared\Request\Fine;
 use SistemAtc\Asaas\DTO\Shared\Request\Split;
 use SistemAtc\Asaas\DTO\Shared\Request\Callback;
 use SistemAtc\Asaas\DTO\Shared\Request\Discount;
 use SistemAtc\Asaas\DTO\Shared\Request\Interest;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCard;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
 use SistemAtc\Asaas\DTO\Shared\Request\CreditCardHolderInfo;
 
 class PaymentDTO implements DTOInterface
@@ -21,9 +21,9 @@ class PaymentDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly AsaasCustomer $customer,
+        public readonly CustomerCreateDTO $customer,
         public readonly BillingType $billingType,
-        public readonly ?float $value = null,
+        public readonly ?float $value,
         public readonly DateTime $dueDate,
         public readonly ?string $description = null,
         public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,

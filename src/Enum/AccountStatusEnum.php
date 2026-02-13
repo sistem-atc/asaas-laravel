@@ -2,14 +2,14 @@
 
 namespace SistemAtc\Asaas\Enum;
 
-enum BankAccountInfo: string
+enum AccountStatusEnum: string
 {
     case PENDING = 'PENDING';
     case APPROVED = 'APPROVED';
     case REJECTED = 'REJECTED';
     case AWAITING_APPROVAL = 'AWAITING_APPROVAL';
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return match ($this) {
             self::PENDING => 'Pendente',

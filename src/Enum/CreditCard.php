@@ -17,6 +17,7 @@ enum CreditCard: string
     case SOROCRED = 'SOROCRED';
     case CREDSYSTEM = 'CREDSYSTEM';
     case JCB = 'JCB';
+    case UNKNOWN = 'UNKNOWN';
 
     public function getLabel(): ?string
     {
@@ -33,6 +34,7 @@ enum CreditCard: string
             self::SOROCRED => 'Sorocred',
             self::CREDSYSTEM => 'Credsystem',
             self::JCB => 'Jcb',
+            self::UNKNOWN => 'Desconhecido',
         };
     }
 }

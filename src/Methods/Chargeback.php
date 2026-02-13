@@ -21,7 +21,9 @@ class Chargeback extends BaseMethods
 
     public function listChargebacks(ListChargebacksDTO $queryParams): ListChargebackResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/chargebacks?" . http_build_query($queryParams->toArray()));
+        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
+        $endpoint = '/chargebacks' . $query;
+        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
         return ListChargebackResponseDTO::fromArray($response);
     }
 

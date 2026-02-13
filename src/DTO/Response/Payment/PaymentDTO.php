@@ -3,10 +3,10 @@
 namespace SistemAtc\Asaas\DTO\Response\Payment;
 
 use SistemAtc\Asaas\Enum\BillingType;
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Response\CreditCard;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Common\CreditCard;
 
 class PaymentDTO implements DTOInterface
 {
@@ -38,9 +38,9 @@ class PaymentDTO implements DTOInterface
         public readonly ?string $invoiceUrl,
         public readonly ?string $invoiceNumber,
         public readonly ?string $externalReference,
-        public readonly bool $deleted,
-        public readonly bool $anticipated,
-        public readonly bool $anticipable,
+        public readonly ?bool $deleted,
+        public readonly ?bool $anticipated,
+        public readonly ?bool $anticipable,
         public readonly ?string $creditDate,
         public readonly ?string $estimatedCreditDate,
         public readonly ?string $transactionReceiptUrl,

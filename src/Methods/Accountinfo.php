@@ -4,12 +4,11 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Shared\Common\AccountStatusDTO;
 use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveWalletIdDTO;
 use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateBusinessDataDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\CheckAccountStatusDTO;
 use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAccountFeesDTO;
 use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveBusinessDataDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\CheckoutCustomizationDTO;
 use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateCheckoutCustomizationDTO;
 use SistemAtc\Asaas\DTO\Response\AccountInfo\DeleteWhiteLabelSubaccountDTO;
 use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAsaasAccountNumberDTO;
@@ -29,16 +28,16 @@ class Accountinfo extends BaseMethods
         return RetrieveBusinessDataDTO::fromArray($response);
     }
 
-    public function savePaymentCheckoutCustomization(UpdateCheckoutCustomizationDTO $data): CheckoutCustomizationDTO
+    public function savePaymentCheckoutCustomization(UpdateCheckoutCustomizationDTO $data): AccountStatusDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, '/myAccount/paymentCheckoutConfig/', $data->toMultipart());
-        return CheckoutCustomizationDTO::fromArray($response);
+        return AccountStatusDTO::fromArray($response);
     }
 
-    public function retrievePersonalizationSettings(): CheckoutCustomizationDTO
+    public function retrievePersonalizationSettings(): AccountStatusDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/paymentCheckoutConfig/');
-        return CheckoutCustomizationDTO::fromArray($response);
+        return AccountStatusDTO::fromArray($response);
     }
 
     public function retrieveAsaasAccountNumber(): RetrieveAsaasAccountNumberDTO
@@ -53,10 +52,10 @@ class Accountinfo extends BaseMethods
         return RetrieveAccountFeesDTO::fromArray($response);
     }
 
-    public function checkAccountStatus(): CheckAccountStatusDTO
+    public function checkAccountStatus(): AccountStatusDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/status/');
-        return CheckAccountStatusDTO::fromArray($response);
+        return AccountStatusDTO::fromArray($response);
     }
 
     public function retrieveWalletId(): RetrieveWalletIdDTO

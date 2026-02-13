@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Shared\Webhook;
+namespace SistemAtc\Asaas\DTO\Shared\Common;
 
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;

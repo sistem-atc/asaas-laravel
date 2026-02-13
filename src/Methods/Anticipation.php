@@ -31,7 +31,9 @@ class Anticipation extends BaseMethods
 
     public function listAntecipations(ListAnticipationFilterDTO $queryParams): ListAnticipationDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/anticipations?" . http_build_query($queryParams->toArray()));
+        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
+        $endpoint = '/anticipations' . $query;
+        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
         return ListAnticipationDTO::fromArray($response);
     }
 

@@ -19,7 +19,10 @@ class Customer extends BaseMethods
 
     public function listCustomers(ListCustomer $queryParams): ?array
     {
-        return $this->makeRequest(HttpMethod::GET, "/customers?" . http_build_query($queryParams->toArray()));
+        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
+        $endpoint = '/customers' . $query;
+        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        return $response;
     }
 
     public function retrieveSingleCustomer(string $id): ?array

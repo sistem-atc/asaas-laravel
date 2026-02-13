@@ -6,10 +6,9 @@ use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Webhook\Fine;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Split;
+use SistemAtc\Asaas\DTO\Shared\Common\Penalty;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Discount;
-use SistemAtc\Asaas\DTO\Shared\Webhook\Interest;
 
 class Subscription implements DTOInterface
 {
@@ -32,8 +31,8 @@ class Subscription implements DTOInterface
         public readonly ?string $externalReference = null,
         public readonly ?bool $sendPaymentByPostalService = null,
         public readonly ?Discount $discount = null,
-        public readonly ?Fine $fine = null,
-        public readonly ?Interest $interest = null,
+        public readonly ?Penalty $fine = null,
+        public readonly ?Penalty $interest = null,
         #[ArrayOf(Split::class)] public readonly ?array $split = null,
     ) {}
 }

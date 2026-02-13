@@ -3,7 +3,7 @@
 namespace SistemAtc\Asaas\DTO\Response\Bill;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Enum\BillStatus;
+use SistemAtc\Asaas\Enum\StatusBill;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
@@ -14,7 +14,7 @@ class BillResponseDTO implements DTOInterface
     public function __construct(
         public readonly ?string $object = null,
         public readonly ?string $id = null,
-        public readonly ?BillStatus $status = null,
+        public readonly ?StatusBill $status = null,
         public readonly ?float $value = null,
         public readonly ?float $discount = null,
         public readonly ?float $interest = null,

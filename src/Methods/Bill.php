@@ -22,7 +22,9 @@ class Bill extends BaseMethods
 
     public function listBill(ListBillPaymentsFilterDTO $queryParams): ListBillResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/bill?" . http_build_query($queryParams->toArray()));
+        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
+        $endpoint = '/bill' . $query;
+        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
         return ListBillResponseDTO::fromArray($response);
     }
 

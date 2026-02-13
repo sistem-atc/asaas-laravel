@@ -1,12 +1,12 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Shared\Response;
+namespace SistemAtc\Asaas\DTO\Shared\Common;
 
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
-class InvoiceFees implements DTOInterface
+class FeeValue implements DTOInterface
 {
 
     use CastToArray, AutoHydrate;

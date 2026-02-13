@@ -14,7 +14,7 @@ enum CommercialInfo: string
         return match ($this) {
             self::REJECTED => 'Rejeitado',
             self::APPROVED => 'Aprovado',
-            self::AWAITING_APPROVAL => 'Aguardando Aprovaçaõ',
+            self::AWAITING_APPROVAL => 'Aguardando Aprovação',
             self::PENDING => 'Pendente',
         };
     }

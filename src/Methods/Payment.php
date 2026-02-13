@@ -5,6 +5,7 @@ namespace SistemAtc\Asaas\Methods;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
 use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
@@ -18,11 +19,12 @@ class Payment extends BaseMethods
         return PaymentoDTOResponse::fromArray($response);
     }
 
-    public function listPayments(ListPayment $filter): ?array
+    public function listPayments(ListPayment $queryParams): ?ListPaymentDTO
     {
-        $query = $filter ? '?' . http_build_query($filter->toArray()) : '';
+        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
         $endpoint = '/payments' . $query;
-        return $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        return ListPaymentDTO::fromarray($response);
     }
 
     public function createNewPaymentWithCreditCard() {}
