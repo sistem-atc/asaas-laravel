@@ -9,6 +9,7 @@ use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreditCardPaymentDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\PaymentBilingInformation;
 use SistemAtc\Asaas\DTO\Request\Payment\PayChargeWithCreditCardDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO as PaymentoDTOResponse;
 
@@ -47,7 +48,11 @@ class Payment extends BaseMethods
         return PaymentoDTOResponse::fromArray($response);
     }
 
-    public function retrievePaymentBillingInformation(){}
+    public function retrievePaymentBillingInformation(string $id): PaymentBilingInformation
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/billingInfo");
+        return PaymentBilingInformation::fromarray($response);
+    }
 
     public function paymentViewingInformation(){}
 
@@ -65,9 +70,9 @@ class Payment extends BaseMethods
 
     public function getDigitableBillLine(){}
 
-    public function getQRCodeForPixPayments(string $paymentId): QrCodeDTO
+    public function getQRCodeForPixPayments(string $id): QrCodeDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$paymentId}/pixQrCode",);
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/pixQrCode",);
         return QrCodeDTO::fromArray($response);
     }
 

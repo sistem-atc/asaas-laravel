@@ -6,8 +6,9 @@ use SistemAtc\Asaas\Enum\CreditCard;
 use SistemAtc\Asaas\Enum\ChargebackStatus;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class ListChargebacksDTO
+class ListChargebacksDTO implements DTOInterface
 {
     use AutoHydrate, CastToArray;
 

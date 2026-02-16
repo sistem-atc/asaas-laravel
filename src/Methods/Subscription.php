@@ -4,12 +4,14 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\Bill\CreateSubscriptionDTO;
 
 class Subscription extends BaseMethods
 {
-    public function create(array $data): ?array
+    public function createNewSubscription(CreateSubscriptionDTO $data): ?array
     {
-        return $this->makeRequest(HttpMethod::POST, '/subscriptions', $data);
+        $response = $this->makeRequest(HttpMethod::POST, '/subscriptions', $data->toArray());
+        return $response;
     }
 
     public function list(): array

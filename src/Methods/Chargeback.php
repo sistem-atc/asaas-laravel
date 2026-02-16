@@ -6,9 +6,9 @@ use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\Chargeback\ListChargebacksDTO;
 use SistemAtc\Asaas\DTO\Response\Chargeback\ChargebackResponseDTO;
+use SistemAtc\Asaas\DTO\Request\Chargeback\CreateChargebackDisputeDTO;
 use SistemAtc\Asaas\DTO\Response\Chargeback\ListChargebackResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Chargeback\ChargebackDisputeResponseDTO;
-use SistemAtc\Asaas\DTO\Request\AccountDocument\CreateChargebackDisputeDTO;
 
 class Chargeback extends BaseMethods
 {

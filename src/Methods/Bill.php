@@ -28,19 +28,19 @@ class Bill extends BaseMethods
         return ListBillResponseDTO::fromArray($response);
     }
 
-    public function simulateBillPayment(SimulateBillPaymentDTO $data)
+    public function simulateBillPayment(SimulateBillPaymentDTO $data): SimulateBillPaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/bill/simulate", $data->toArray());
         return SimulateBillPaymentResponseDTO::fromArray($response);
     }
 
-    public function retrieveSingleBill(string $id)
+    public function retrieveSingleBill(string $id): BillResponseDTO
     {
         $response =  $this->makeRequest(HttpMethod::GET, "/bill/{$id}");
         return BillResponseDTO::fromArray($response);
     }
 
-    public function cancelBill(string $id)
+    public function cancelBill(string $id): BillResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/bill/{$id}/cancel");
         return BillResponseDTO::fromArray($response);

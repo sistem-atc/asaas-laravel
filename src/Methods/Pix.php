@@ -4,6 +4,8 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\Bill\CreateQRCodeStaticDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\QRCodeStaticDTO;
 
 class Pix extends BaseMethods
 {
@@ -27,9 +29,10 @@ class Pix extends BaseMethods
 
     }
     
-    public function createQrCodeStatic(array $data): ?array
+    public function createQrCodeStatic(CreateQRCodeStaticDTO $data): ?QRCodeStaticDTO
     {
-        return $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/static', $data);
+        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/static', $data->toArray());
+        return QRCodeStaticDTO::fromArray($response);
     }
 
     public function removeStaticQRCode()

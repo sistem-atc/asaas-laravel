@@ -12,10 +12,10 @@ class CreateChargebackDisputeDTO implements DTOInterfaceMultipart
     use CastToMultipart;
 
     public function __construct(
-        #[MultipartFile(as: 'file')] public readonly string $file,
+        #[MultipartFile(as: 'file')] public readonly string $files,
     ) {
-        if (!file_exists($this->file)) {
-            throw new InvalidArgumentException("O arquivo não foi encontrado em: {$this->file}");
+        if (!file_exists($this->files)) {
+            throw new InvalidArgumentException("O arquivo não foi encontrado em: {$this->files}");
         }
     }
 }
