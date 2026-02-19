@@ -9,12 +9,11 @@ trait HandlesIdempotency
 {
     /**
      * @param string $eventId O ID único do evento
-     * @param int $ttl Tempo em segundos para manter o registro (padrão 24h)
      */
     protected function wasAlreadyProcessed(string $eventId): bool
     {
         $cacheKey = "asaas:webhook:processed:{$eventId}";
-        $ttl = config('asaas.idempotency_ttl', 86400);
+        $ttl = $this->resolveIdempotencyTtl();
 
         $isNew = Cache::add($cacheKey, true, $ttl);
 
@@ -24,5 +23,12 @@ trait HandlesIdempotency
         }
         
         return false;
+    }
+
+    protected function resolveIdempotencyTtl(): int
+    {
+        $ttl = (int) config('asaas.idempotency_ttl', 86400);
+
+        return max(1, $ttl);
     }
 }
