@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Anticipation;
+namespace SistemAtc\Asaas\DTO\Response\AutomaticPix;
 
 use SistemAtc\Asaas\Enum\Frequency;
 use SistemAtc\Asaas\Enum\OriginType;
@@ -10,7 +10,7 @@ use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\StatusAutomaticPix;
 use SistemAtc\Asaas\DTO\Shared\Response\ImmediateQrCode;
 
-class CreateAuthorizationResponseDTO implements DTOInterface
+final class CreateAuthorizationResponseDTO implements DTOInterface
 {
     use CastToArray, AutoHydrate;
 

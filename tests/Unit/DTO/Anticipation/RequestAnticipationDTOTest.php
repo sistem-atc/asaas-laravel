@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Anticipation;
 
-use SistemAtc\Asaas\DTO\Request\Anticipation\RequestAnticipationDTO;
+use SistemAtc\Asaas\DTO\Request\Anticipation\RequestAnticipationRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RequestAnticipationDTOTest extends TestCase
@@ -13,13 +13,13 @@ class RequestAnticipationDTOTest extends TestCase
         file_put_contents($filePath, 'document content');
         
         try {
-            $dto = new RequestAnticipationDTO(
+            $dto = new RequestAnticipationRequestDTO(
                 installment: 'inst_123456',
                 payment: 'pay_789012',
                 documentFilePath: $filePath,
             );
 
-            expect($dto)->toBeInstanceOf(RequestAnticipationDTO::class)
+            expect($dto)->toBeInstanceOf(RequestAnticipationRequestDTO::class)
                 ->and($dto->installment)->toBe('inst_123456')
                 ->and($dto->payment)->toBe('pay_789012');
         } finally {
@@ -29,13 +29,13 @@ class RequestAnticipationDTOTest extends TestCase
 
     public function test_can_create_without_document(): void
     {
-        $dto = new RequestAnticipationDTO(
+        $dto = new RequestAnticipationRequestDTO(
             installment: null,
             payment: 'pay_789012',
             documentFilePath: null,
         );
 
-        expect($dto)->toBeInstanceOf(RequestAnticipationDTO::class)
+        expect($dto)->toBeInstanceOf(RequestAnticipationRequestDTO::class)
             ->and($dto->payment)->toBe('pay_789012')
             ->and($dto->documentFilePath)->toBeNull();
     }
@@ -43,7 +43,7 @@ class RequestAnticipationDTOTest extends TestCase
     public function test_throws_exception_for_missing_document(): void
     {
         expect(function () {
-            new RequestAnticipationDTO(
+            new RequestAnticipationRequestDTO(
                 installment: null,
                 payment: 'pay_123',
                 documentFilePath: '/nonexistent/document.pdf',
@@ -57,7 +57,7 @@ class RequestAnticipationDTOTest extends TestCase
         file_put_contents($filePath, 'document content');
         
         try {
-            $dto = new RequestAnticipationDTO(
+            $dto = new RequestAnticipationRequestDTO(
                 installment: null,
                 payment: 'pay_123',
                 documentFilePath: $filePath,

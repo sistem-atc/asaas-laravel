@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Bill;
 
-use SistemAtc\Asaas\DTO\Request\Bill\CreateBillDTO;
+use SistemAtc\Asaas\DTO\Request\Bill\CreateBillRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class CreateBillDTOTest extends TestCase
@@ -15,9 +15,9 @@ class CreateBillDTOTest extends TestCase
             'dueDate' => '2025-02-20',
         ];
 
-        $dto = CreateBillDTO::fromArray($data);
+        $dto = CreateBillRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(CreateBillDTO::class);
+        expect($dto)->toBeInstanceOf(CreateBillRequestDTO::class);
     }
 
     public function test_create_bill_dto_to_array(): void
@@ -28,7 +28,7 @@ class CreateBillDTOTest extends TestCase
             'dueDate' => '2025-02-20',
         ];
 
-        $dto = CreateBillDTO::fromArray($data);
+        $dto = CreateBillRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -42,8 +42,8 @@ class CreateBillDTOTest extends TestCase
             'dueDate' => '2025-02-20',
         ];
 
-        $dto = CreateBillDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(CreateBillDTO::class);
+        $dto = CreateBillRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(CreateBillRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

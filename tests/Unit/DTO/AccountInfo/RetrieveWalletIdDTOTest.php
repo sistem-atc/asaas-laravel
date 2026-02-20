@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveWalletIdDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveWalletIdResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RetrieveWalletIdDTOTest extends TestCase
@@ -13,9 +13,9 @@ class RetrieveWalletIdDTOTest extends TestCase
             'walletId' => 'wal_123456',
         ];
 
-        $dto = RetrieveWalletIdDTO::fromArray($data);
+        $dto = RetrieveWalletIdResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveWalletIdDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveWalletIdResponseDTO::class);
     }
 
     public function test_retrieve_wallet_id_dto_to_array(): void
@@ -24,7 +24,7 @@ class RetrieveWalletIdDTOTest extends TestCase
             'walletId' => 'wal_123456',
         ];
 
-        $dto = RetrieveWalletIdDTO::fromArray($data);
+        $dto = RetrieveWalletIdResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class RetrieveWalletIdDTOTest extends TestCase
             'walletId' => 'wal_123456',
         ];
 
-        $dto = RetrieveWalletIdDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(RetrieveWalletIdDTO::class);
+        $dto = RetrieveWalletIdResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(RetrieveWalletIdResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAccountFeesDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAccountFeesResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RetrieveAccountFeesDTOTest extends TestCase
@@ -13,9 +13,9 @@ class RetrieveAccountFeesDTOTest extends TestCase
             'fees' => [],
         ];
 
-        $dto = RetrieveAccountFeesDTO::fromArray($data);
+        $dto = RetrieveAccountFeesResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveAccountFeesDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveAccountFeesResponseDTO::class);
     }
 
     public function test_retrieve_account_fees_dto_to_array(): void
@@ -24,7 +24,7 @@ class RetrieveAccountFeesDTOTest extends TestCase
             'fees' => [],
         ];
 
-        $dto = RetrieveAccountFeesDTO::fromArray($data);
+        $dto = RetrieveAccountFeesResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class RetrieveAccountFeesDTOTest extends TestCase
             'fees' => [],
         ];
 
-        $dto = RetrieveAccountFeesDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(RetrieveAccountFeesDTO::class);
+        $dto = RetrieveAccountFeesResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(RetrieveAccountFeesResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

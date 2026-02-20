@@ -3,7 +3,7 @@
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Chargeback;
 
 use SistemAtc\Asaas\Tests\TestCase;
-use SistemAtc\Asaas\DTO\Request\Chargeback\CreateChargebackDisputeDTO;
+use SistemAtc\Asaas\DTO\Request\Chargeback\CreateChargebackDisputeRequestDTO;
 
 class CreateChargebackDisputeDTOTest extends TestCase
 {
@@ -12,8 +12,8 @@ class CreateChargebackDisputeDTOTest extends TestCase
         $filePath = tempnam(sys_get_temp_dir(), 'test');
         file_put_contents($filePath, 'test content');
         
-        $dto = new CreateChargebackDisputeDTO($filePath);
-        expect($dto)->toBeInstanceOf(CreateChargebackDisputeDTO::class);
+        $dto = new CreateChargebackDisputeRequestDTO($filePath);
+        expect($dto)->toBeInstanceOf(CreateChargebackDisputeRequestDTO::class);
     }
 
     public function test_create_chargeback_dispute_dto_to_multipart(): void
@@ -21,7 +21,7 @@ class CreateChargebackDisputeDTOTest extends TestCase
         $filePath = tempnam(sys_get_temp_dir(), 'test');
         file_put_contents($filePath, 'test content');
         
-        $dto = new CreateChargebackDisputeDTO($filePath);
+        $dto = new CreateChargebackDisputeRequestDTO($filePath);
         $result = $dto->toMultipart();
 
         expect($result)->toBeArray()->not->toBeEmpty();
@@ -32,8 +32,8 @@ class CreateChargebackDisputeDTOTest extends TestCase
         $filePath = tempnam(sys_get_temp_dir(), 'test');
         file_put_contents($filePath, 'test content');
         
-        $dto = new CreateChargebackDisputeDTO($filePath);
-        expect($dto)->toBeInstanceOf(CreateChargebackDisputeDTO::class);
+        $dto = new CreateChargebackDisputeRequestDTO($filePath);
+        expect($dto)->toBeInstanceOf(CreateChargebackDisputeRequestDTO::class);
         
         $result = $dto->toMultipart();
         expect($result)->toBeArray()->not->toBeEmpty();

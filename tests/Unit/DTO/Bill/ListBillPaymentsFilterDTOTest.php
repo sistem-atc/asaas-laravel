@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Bill;
 
-use SistemAtc\Asaas\DTO\Request\Bill\ListBillPaymentsFilterDTO;
+use SistemAtc\Asaas\DTO\Request\Bill\ListBillPaymentsFilterRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class ListBillPaymentsFilterDTOTest extends TestCase
@@ -14,9 +14,9 @@ class ListBillPaymentsFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListBillPaymentsFilterDTO::fromArray($data);
+        $dto = ListBillPaymentsFilterRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(ListBillPaymentsFilterDTO::class);
+        expect($dto)->toBeInstanceOf(ListBillPaymentsFilterRequestDTO::class);
     }
 
     public function test_list_bill_payments_filter_dto_to_array(): void
@@ -26,7 +26,7 @@ class ListBillPaymentsFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListBillPaymentsFilterDTO::fromArray($data);
+        $dto = ListBillPaymentsFilterRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class ListBillPaymentsFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListBillPaymentsFilterDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(ListBillPaymentsFilterDTO::class);
+        $dto = ListBillPaymentsFilterRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(ListBillPaymentsFilterRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveBusinessDataDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveBusinessDataResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RetrieveBusinessDataDTOTest extends TestCase
@@ -15,9 +15,9 @@ class RetrieveBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = RetrieveBusinessDataDTO::fromArray($data);
+        $dto = RetrieveBusinessDataResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveBusinessDataDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveBusinessDataResponseDTO::class);
     }
 
     public function test_retrieve_business_data_dto_to_array(): void
@@ -28,7 +28,7 @@ class RetrieveBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = RetrieveBusinessDataDTO::fromArray($data);
+        $dto = RetrieveBusinessDataResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -42,8 +42,8 @@ class RetrieveBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = RetrieveBusinessDataDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(RetrieveBusinessDataDTO::class);
+        $dto = RetrieveBusinessDataResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(RetrieveBusinessDataResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

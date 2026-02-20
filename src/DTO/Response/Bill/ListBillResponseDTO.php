@@ -8,7 +8,7 @@ use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Response\Bill\BillResponseDTO;
 
-class ListBillResponseDTO implements DTOInterface
+final class ListBillResponseDTO implements DTOInterface
 {
     use CastToArray, AutoHydrate;
 

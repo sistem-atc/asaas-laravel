@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateCheckoutCustomizationDTO;
+use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateCheckoutCustomizationRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class UpdateCheckoutCustomizationDTOTest extends TestCase
@@ -13,7 +13,7 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
         file_put_contents($filePath, 'logo content');
         
         try {
-            $dto = new UpdateCheckoutCustomizationDTO(
+            $dto = new UpdateCheckoutCustomizationRequestDTO(
                 logoBackgroundColor: '#FF0000',
                 infoBackgroundColor: '#00FF00',
                 fontColor: '#0000FF',
@@ -21,7 +21,7 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
                 logoFilePath: $filePath,
             );
 
-            expect($dto)->toBeInstanceOf(UpdateCheckoutCustomizationDTO::class)
+            expect($dto)->toBeInstanceOf(UpdateCheckoutCustomizationRequestDTO::class)
                 ->and($dto->logoBackgroundColor)->toBe('#FF0000')
                 ->and($dto->enabled)->toBeTrue();
         } finally {
@@ -31,7 +31,7 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
 
     public function test_can_create_without_logo(): void
     {
-        $dto = new UpdateCheckoutCustomizationDTO(
+        $dto = new UpdateCheckoutCustomizationRequestDTO(
             logoBackgroundColor: '#FF0000',
             infoBackgroundColor: null,
             fontColor: null,
@@ -39,7 +39,7 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
             logoFilePath: null,
         );
 
-        expect($dto)->toBeInstanceOf(UpdateCheckoutCustomizationDTO::class)
+        expect($dto)->toBeInstanceOf(UpdateCheckoutCustomizationRequestDTO::class)
             ->and($dto->enabled)->toBeFalse()
             ->and($dto->logoFilePath)->toBeNull();
     }
@@ -47,7 +47,7 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
     public function test_throws_exception_for_missing_logo_file(): void
     {
         expect(function () {
-            new UpdateCheckoutCustomizationDTO(
+            new UpdateCheckoutCustomizationRequestDTO(
                 logoBackgroundColor: '#FF0000',
                 infoBackgroundColor: null,
                 fontColor: null,

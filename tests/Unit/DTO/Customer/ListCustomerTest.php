@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Customer;
 
-use SistemAtc\Asaas\DTO\Request\Customer\ListCustomer;
+use SistemAtc\Asaas\DTO\Request\Customer\ListCustomerRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class ListCustomerTest extends TestCase
@@ -14,9 +14,9 @@ class ListCustomerTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListCustomer::fromArray($data);
+        $dto = ListCustomerRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(ListCustomer::class);
+        expect($dto)->toBeInstanceOf(ListCustomerRequestDTO::class);
     }
 
     public function test_list_customer_to_array(): void
@@ -26,7 +26,7 @@ class ListCustomerTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListCustomer::fromArray($data);
+        $dto = ListCustomerRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class ListCustomerTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListCustomer::fromArray($data);
-        expect($dto)->toBeInstanceOf(ListCustomer::class);
+        $dto = ListCustomerRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(ListCustomerRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountDocument;
 
-use SistemAtc\Asaas\DTO\Response\AccountDocument\CheckPendingDocumentsDTO;
+use SistemAtc\Asaas\DTO\Response\AccountDocument\CheckPendingDocumentsResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class CheckPendingDocumentsDTOTest extends TestCase
@@ -13,9 +13,9 @@ class CheckPendingDocumentsDTOTest extends TestCase
             'documents' => [],
         ];
 
-        $dto = CheckPendingDocumentsDTO::fromArray($data);
+        $dto = CheckPendingDocumentsResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(CheckPendingDocumentsDTO::class);
+        expect($dto)->toBeInstanceOf(CheckPendingDocumentsResponseDTO::class);
     }
 
     public function test_check_pending_documents_dto_to_array(): void
@@ -24,7 +24,7 @@ class CheckPendingDocumentsDTOTest extends TestCase
             'documents' => [],
         ];
 
-        $dto = CheckPendingDocumentsDTO::fromArray($data);
+        $dto = CheckPendingDocumentsResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class CheckPendingDocumentsDTOTest extends TestCase
             'documents' => [],
         ];
 
-        $dto = CheckPendingDocumentsDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(CheckPendingDocumentsDTO::class);
+        $dto = CheckPendingDocumentsResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(CheckPendingDocumentsResponseDTO::class);
 
         $result = $dto->toArray();
         expect($result)->toBeArray();

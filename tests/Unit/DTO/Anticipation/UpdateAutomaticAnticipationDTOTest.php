@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Anticipation;
 
-use SistemAtc\Asaas\DTO\Request\Anticipation\UpdateAutomaticAnticipationDTO;
+use SistemAtc\Asaas\DTO\Request\Anticipation\UpdateAutomaticAnticipationRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class UpdateAutomaticAnticipationDTOTest extends TestCase
@@ -13,9 +13,9 @@ class UpdateAutomaticAnticipationDTOTest extends TestCase
             'enabled' => true,
         ];
 
-        $dto = UpdateAutomaticAnticipationDTO::fromArray($data);
+        $dto = UpdateAutomaticAnticipationRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationDTO::class);
+        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationRequestDTO::class);
     }
 
     public function test_update_automatic_anticipation_dto_to_array(): void
@@ -24,7 +24,7 @@ class UpdateAutomaticAnticipationDTOTest extends TestCase
             'enabled' => true,
         ];
 
-        $dto = UpdateAutomaticAnticipationDTO::fromArray($data);
+        $dto = UpdateAutomaticAnticipationRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -34,9 +34,9 @@ class UpdateAutomaticAnticipationDTOTest extends TestCase
     {
         $data = $this->getFixture("Anticipation/update_status_of_automatic_anticipation_request");
 
-        $dto = UpdateAutomaticAnticipationDTO::fromArray($data);
+        $dto = UpdateAutomaticAnticipationRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationDTO::class);
+        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationRequestDTO::class);
     }    
     public function test_update_automatic_anticipation_dto_validation(): void
     {
@@ -44,8 +44,8 @@ class UpdateAutomaticAnticipationDTOTest extends TestCase
             'enabled' => true,
         ];
 
-        $dto = UpdateAutomaticAnticipationDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationDTO::class);
+        $dto = UpdateAutomaticAnticipationRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(UpdateAutomaticAnticipationRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

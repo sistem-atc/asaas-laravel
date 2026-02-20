@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Response\AccountInfo\DeleteWhiteLabelSubaccountDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\DeleteWhiteLabelSubaccountResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class DeleteWhiteLabelSubaccountDTOTest extends TestCase
@@ -13,9 +13,9 @@ class DeleteWhiteLabelSubaccountDTOTest extends TestCase
             'success' => true,
         ];
 
-        $dto = DeleteWhiteLabelSubaccountDTO::fromArray($data);
+        $dto = DeleteWhiteLabelSubaccountResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(DeleteWhiteLabelSubaccountDTO::class);
+        expect($dto)->toBeInstanceOf(DeleteWhiteLabelSubaccountResponseDTO::class);
     }
 
     public function test_delete_white_label_subaccount_dto_to_array(): void
@@ -24,7 +24,7 @@ class DeleteWhiteLabelSubaccountDTOTest extends TestCase
             'success' => true,
         ];
 
-        $dto = DeleteWhiteLabelSubaccountDTO::fromArray($data);
+        $dto = DeleteWhiteLabelSubaccountResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class DeleteWhiteLabelSubaccountDTOTest extends TestCase
             'success' => true,
         ];
 
-        $dto = DeleteWhiteLabelSubaccountDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(DeleteWhiteLabelSubaccountDTO::class);
+        $dto = DeleteWhiteLabelSubaccountResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(DeleteWhiteLabelSubaccountResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

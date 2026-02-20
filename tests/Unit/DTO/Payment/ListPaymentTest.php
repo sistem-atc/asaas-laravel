@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Payment;
 
-use SistemAtc\Asaas\DTO\Request\Payment\ListPayment;
+use SistemAtc\Asaas\DTO\Request\Payment\ListPaymentRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class ListPaymentTest extends TestCase
@@ -14,9 +14,9 @@ class ListPaymentTest extends TestCase
             'limit' => 50,
         ];
 
-        $dto = ListPayment::fromArray($data);
+        $dto = ListPaymentRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(ListPayment::class);
+        expect($dto)->toBeInstanceOf(ListPaymentRequestDTO::class);
     }
 
     public function test_list_payment_to_array(): void
@@ -26,7 +26,7 @@ class ListPaymentTest extends TestCase
             'limit' => 50,
         ];
 
-        $dto = ListPayment::fromArray($data);
+        $dto = ListPaymentRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class ListPaymentTest extends TestCase
             'limit' => 50,
         ];
 
-        $dto = ListPayment::fromArray($data);
-        expect($dto)->toBeInstanceOf(ListPayment::class);
+        $dto = ListPaymentRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(ListPaymentRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

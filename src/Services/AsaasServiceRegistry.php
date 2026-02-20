@@ -8,7 +8,7 @@ class AsaasServiceRegistry
     {
         return [
             'accountDocument' =>        \SistemAtc\Asaas\Methods\AccountDocument::class,
-            'accountInfo' =>            \SistemAtc\Asaas\Methods\Accountinfo::class,
+            'accountInfo' =>            \SistemAtc\Asaas\Methods\AccountInfo::class,
             'anticipation' =>           \SistemAtc\Asaas\Methods\Anticipation::class,
             'bill' =>                   \SistemAtc\Asaas\Methods\Bill::class,
             'chargeback' =>             \SistemAtc\Asaas\Methods\Chargeback::class,

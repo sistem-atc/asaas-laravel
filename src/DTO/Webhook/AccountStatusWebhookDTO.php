@@ -6,7 +6,7 @@ use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
-use SistemAtc\Asaas\DTO\Shared\Common\AccountStatusDTO;
+use SistemAtc\Asaas\DTO\Shared\Common\AccountStatus;
 
 class AccountStatusWebhookDTO extends BaseEventDTO
 {
@@ -18,7 +18,7 @@ class AccountStatusWebhookDTO extends BaseEventDTO
         ?WebhookEventAsaas $event,
         ?string $dateCreated,
         ?Account $account,
-        public readonly ?AccountStatusDTO $accountStatus,
+        public readonly ?AccountStatus $accountStatus,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }
@@ -29,7 +29,7 @@ class AccountStatusWebhookDTO extends BaseEventDTO
 
         return new static(
             ...$params,
-            accountStatus: isset($data['accountStatus']) ? AccountStatusDTO::fromArray($data['accountStatus']) : null,
+            accountStatus: isset($data['accountStatus']) ? AccountStatus::fromArray($data['accountStatus']) : null,
         );
     }
 }

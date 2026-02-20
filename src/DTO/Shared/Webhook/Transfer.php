@@ -5,6 +5,7 @@ namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Common\BankAccount;
 use SistemAtc\Asaas\DTO\Shared\Webhook\AccountTransfer;
 
 class Transfer implements DTOInterface

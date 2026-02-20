@@ -9,7 +9,7 @@ use SistemAtc\Asaas\Services\AsaasServiceRegistry;
 
 /**
  * @method \SistemAtc\Asaas\Methods\AccountDocument accountDocument()
- * @method \SistemAtc\Asaas\Methods\Accountinfo accountInfo()
+ * @method \SistemAtc\Asaas\Methods\AccountInfo accountInfo()
  * @method \SistemAtc\Asaas\Methods\Anticipation anticipation()
  * @method \SistemAtc\Asaas\Methods\Bill bill()
  * @method \SistemAtc\Asaas\Methods\Chargeback chargeback()

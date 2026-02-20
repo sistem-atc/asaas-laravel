@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
-use SistemAtc\Asaas\DTO\Request\Customer\AsaasCustomer;
+use SistemAtc\Asaas\DTO\Request\Customer\CustomerRequestDTO;
 use SistemAtc\Asaas\Facades\Asaas;
 
 test('it returns null or handles error when asaas api fails', function () {
@@ -13,7 +13,7 @@ test('it returns null or handles error when asaas api fails', function () {
         ], 400)
     ]);
 
-    $customerDTO = AsaasCustomer::fromArray([
+    $customerDTO = CustomerRequestDTO::fromArray([
         'name' => 'Kleber', 
         'email' => 'email-errado'
     ]);

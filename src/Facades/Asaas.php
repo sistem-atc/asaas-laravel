@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static \SistemAtc\Asaas\Methods\AccountDocument accountDocument()
- * @method static \SistemAtc\Asaas\Methods\Accountinfo accountinfo()
+ * @method static \SistemAtc\Asaas\Methods\AccountInfo accountInfo()
  * @method static \SistemAtc\Asaas\Methods\Anticipation anticipation()
  * @method static \SistemAtc\Asaas\Methods\Bill bill()
  * @method static \SistemAtc\Asaas\Methods\Chargeback chargeback()
@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static \SistemAtc\Asaas\Methods\Subscription subscription()
  * @method static \SistemAtc\Asaas\Methods\Transfer transfer()
  * @method static \SistemAtc\Asaas\Methods\Webhook webhook()
+ * @method \SistemAtc\Asaas\Methods\AutomaticPix automaticPix()
+ * @method \SistemAtc\Asaas\Methods\PaymentWithSummaryData paymentWithSummaryData()
  */
 class Asaas extends Facade
 {

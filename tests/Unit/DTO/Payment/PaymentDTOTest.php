@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Payment;
 
-use SistemAtc\Asaas\DTO\Response\Payment\PaymentDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\PaymentResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class PaymentDTOTest extends TestCase
@@ -11,14 +11,14 @@ class PaymentDTOTest extends TestCase
     {
         $data = $this->getFixture('Payment/create_payment_request');
 
-        $dto = PaymentDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(PaymentDTO::class);
+        $dto = PaymentResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(PaymentResponseDTO::class);
     }
 
     public function test_payment_dto_to_array(): void
     {
         $data = $this->getFixture('Payment/create_payment_request');
-        $dto = PaymentDTO::fromArray($data);
+        $dto = PaymentResponseDTO::fromArray($data);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();
@@ -28,16 +28,16 @@ class PaymentDTOTest extends TestCase
     {
         $data = $this->getFixture("Payment/create_payment_request");
 
-        $dto = PaymentDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(PaymentDTO::class);
+        $dto = PaymentResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(PaymentResponseDTO::class);
     }    
 
     public function test_payment_dto_validation(): void
     {
         $data = $this->getFixture("Payment/create_payment_request");
         
-        $dto = PaymentDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(PaymentDTO::class);
+        $dto = PaymentResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(PaymentResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

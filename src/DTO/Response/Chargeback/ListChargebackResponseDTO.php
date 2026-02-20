@@ -8,7 +8,7 @@ use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Response\Chargeback\ChargebackResponseDTO;
 
-class ListChargebackResponseDTO implements DTOInterface
+final class ListChargebackResponseDTO implements DTOInterface
 {
     use AutoHydrate, CastToArray;
 

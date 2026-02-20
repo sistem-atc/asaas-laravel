@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateBusinessDataDTO;
+use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateBusinessDataRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class UpdateBusinessDataDTOTest extends TestCase
@@ -14,9 +14,9 @@ class UpdateBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = UpdateBusinessDataDTO::fromArray($data);
+        $dto = UpdateBusinessDataRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(UpdateBusinessDataDTO::class);
+        expect($dto)->toBeInstanceOf(UpdateBusinessDataRequestDTO::class);
     }
 
     public function test_update_business_data_dto_to_array(): void
@@ -26,7 +26,7 @@ class UpdateBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = UpdateBusinessDataDTO::fromArray($data);
+        $dto = UpdateBusinessDataRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class UpdateBusinessDataDTOTest extends TestCase
             'companyType' => 'INDIVIDUAL',
         ];
 
-        $dto = UpdateBusinessDataDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(UpdateBusinessDataDTO::class);
+        $dto = UpdateBusinessDataRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(UpdateBusinessDataRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

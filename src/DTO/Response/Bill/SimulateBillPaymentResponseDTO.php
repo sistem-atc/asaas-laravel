@@ -8,7 +8,7 @@ use SistemAtc\Asaas\DTO\Shared\Response\BankSlipInfo;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
-class SimulateBillPaymentResponseDTO implements DTOInterface
+final class SimulateBillPaymentResponseDTO implements DTOInterface
 {
 
     use CastToArray, AutoHydrate;

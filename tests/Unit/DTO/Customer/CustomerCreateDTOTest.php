@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Customer;
 
-use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateDTO;
+use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class CustomerCreateDTOTest extends TestCase
@@ -16,9 +16,9 @@ class CustomerCreateDTOTest extends TestCase
             'cpfCnpj' => '24971563792',
         ];
 
-        $dto = CustomerCreateDTO::fromArray($data);
+        $dto = CustomerCreateResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(CustomerCreateDTO::class);
+        expect($dto)->toBeInstanceOf(CustomerCreateResponseDTO::class);
     }
 
     public function test_customer_create_dto_to_array(): void
@@ -30,7 +30,7 @@ class CustomerCreateDTOTest extends TestCase
             'cpfCnpj' => '24971563792',
         ];
 
-        $dto = CustomerCreateDTO::fromArray($data);
+        $dto = CustomerCreateResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -40,9 +40,9 @@ class CustomerCreateDTOTest extends TestCase
     {
         $data = $this->getFixture("Customer/create_customer_response");
 
-        $dto = CustomerCreateDTO::fromArray($data);
+        $dto = CustomerCreateResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(CustomerCreateDTO::class);
+        expect($dto)->toBeInstanceOf(CustomerCreateResponseDTO::class);
     }    
     public function test_customer_create_dto_validation(): void
     {
@@ -53,8 +53,8 @@ class CustomerCreateDTOTest extends TestCase
             'cpfCnpj' => '24971563792',
         ];
 
-        $dto = CustomerCreateDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(CustomerCreateDTO::class);
+        $dto = CustomerCreateResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(CustomerCreateResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

@@ -7,7 +7,7 @@ use SistemAtc\Asaas\Enum\StatusBill;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 
-class BillResponseDTO implements DTOInterface
+final class BillResponseDTO implements DTOInterface
 {
     use CastToArray, AutoHydrate;
 

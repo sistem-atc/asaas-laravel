@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Chargeback;
 
-use SistemAtc\Asaas\DTO\Request\Chargeback\ListChargebacksDTO;
+use SistemAtc\Asaas\DTO\Request\Chargeback\ListChargebacksRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class ListChargebacksDTOTest extends TestCase
@@ -14,9 +14,9 @@ class ListChargebacksDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListChargebacksDTO::fromArray($data);
+        $dto = ListChargebacksRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(ListChargebacksDTO::class);
+        expect($dto)->toBeInstanceOf(ListChargebacksRequestDTO::class);
     }
 
     public function test_list_chargebacks_dto_to_array(): void
@@ -26,7 +26,7 @@ class ListChargebacksDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListChargebacksDTO::fromArray($data);
+        $dto = ListChargebacksRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class ListChargebacksDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListChargebacksDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(ListChargebacksDTO::class);
+        $dto = ListChargebacksRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(ListChargebacksRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

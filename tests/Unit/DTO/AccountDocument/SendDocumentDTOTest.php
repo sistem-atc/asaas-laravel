@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountDocument;
 
-use SistemAtc\Asaas\DTO\Request\AccountDocument\SendDocumentDTO;
+use SistemAtc\Asaas\DTO\Request\AccountDocument\SendDocumentRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class SendDocumentDTOTest extends TestCase
@@ -13,12 +13,12 @@ class SendDocumentDTOTest extends TestCase
         file_put_contents($filePath, 'test content');
         
         try {
-            $dto = new SendDocumentDTO(
+            $dto = new SendDocumentRequestDTO(
                 filePath: $filePath,
                 type: null,
             );
 
-            expect($dto)->toBeInstanceOf(SendDocumentDTO::class)
+            expect($dto)->toBeInstanceOf(SendDocumentRequestDTO::class)
                 ->and($dto->filePath)->toBe($filePath);
         } finally {
             unlink($filePath);
@@ -28,7 +28,7 @@ class SendDocumentDTOTest extends TestCase
     public function test_throws_exception_for_missing_file(): void
     {
         expect(function () {
-            new SendDocumentDTO(
+            new SendDocumentRequestDTO(
                 filePath: '/nonexistent/file.pdf',
                 type: null,
             );
@@ -41,7 +41,7 @@ class SendDocumentDTOTest extends TestCase
         file_put_contents($filePath, 'test content');
         
         try {
-            $dto = new SendDocumentDTO(
+            $dto = new SendDocumentRequestDTO(
                 filePath: $filePath,
                 type: null,
             );

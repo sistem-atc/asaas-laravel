@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Anticipation;
 
-use SistemAtc\Asaas\DTO\Response\Anticipation\SimulateAnticipationDTO;
+use SistemAtc\Asaas\DTO\Response\Anticipation\SimulateAnticipationResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class SimulateAnticipationDTOTest extends TestCase
@@ -13,9 +13,9 @@ class SimulateAnticipationDTOTest extends TestCase
             'anticipatedValue' => 900,
         ];
 
-        $dto = SimulateAnticipationDTO::fromArray($data);
+        $dto = SimulateAnticipationResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(SimulateAnticipationDTO::class);
+        expect($dto)->toBeInstanceOf(SimulateAnticipationResponseDTO::class);
     }
 
     public function test_simulate_anticipation_dto_to_array(): void
@@ -24,7 +24,7 @@ class SimulateAnticipationDTOTest extends TestCase
             'anticipatedValue' => 900,
         ];
 
-        $dto = SimulateAnticipationDTO::fromArray($data);
+        $dto = SimulateAnticipationResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -34,9 +34,9 @@ class SimulateAnticipationDTOTest extends TestCase
     {
         $data = $this->getFixture("Anticipation/simulate_anticipation_response");
 
-        $dto = SimulateAnticipationDTO::fromArray($data);
+        $dto = SimulateAnticipationResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(SimulateAnticipationDTO::class);
+        expect($dto)->toBeInstanceOf(SimulateAnticipationResponseDTO::class);
     }    
     public function test_simulate_anticipation_dto_validation(): void
     {
@@ -44,8 +44,8 @@ class SimulateAnticipationDTOTest extends TestCase
             'anticipatedValue' => 900,
         ];
 
-        $dto = SimulateAnticipationDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(SimulateAnticipationDTO::class);
+        $dto = SimulateAnticipationResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(SimulateAnticipationResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

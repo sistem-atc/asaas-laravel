@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\AccountInfo;
 
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAsaasAccountNumberDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAsaasAccountNumberResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RetrieveAsaasAccountNumberDTOTest extends TestCase
@@ -13,9 +13,9 @@ class RetrieveAsaasAccountNumberDTOTest extends TestCase
             'accountNumber' => '123456789',
         ];
 
-        $dto = RetrieveAsaasAccountNumberDTO::fromArray($data);
+        $dto = RetrieveAsaasAccountNumberResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveAsaasAccountNumberDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveAsaasAccountNumberResponseDTO::class);
     }
 
     public function test_retrieve_asaas_account_number_dto_to_array(): void
@@ -24,7 +24,7 @@ class RetrieveAsaasAccountNumberDTOTest extends TestCase
             'accountNumber' => '123456789',
         ];
 
-        $dto = RetrieveAsaasAccountNumberDTO::fromArray($data);
+        $dto = RetrieveAsaasAccountNumberResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class RetrieveAsaasAccountNumberDTOTest extends TestCase
             'accountNumber' => '123456789',
         ];
 
-        $dto = RetrieveAsaasAccountNumberDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(RetrieveAsaasAccountNumberDTO::class);
+        $dto = RetrieveAsaasAccountNumberResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(RetrieveAsaasAccountNumberResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

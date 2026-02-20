@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Anticipation;
 
-use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAntecipationLimitsDTO;
+use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationLimitsResponseDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class RetrieveAntecipationLimitsDTOTest extends TestCase
@@ -13,9 +13,9 @@ class RetrieveAntecipationLimitsDTOTest extends TestCase
             'availableAnticipationAmount' => 5000,
         ];
 
-        $dto = RetrieveAntecipationLimitsDTO::fromArray($data);
+        $dto = RetrieveAnticipationLimitsResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveAntecipationLimitsDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveAnticipationLimitsResponseDTO::class);
     }
 
     public function test_retrieve_antecipation_limits_dto_to_array(): void
@@ -24,7 +24,7 @@ class RetrieveAntecipationLimitsDTOTest extends TestCase
             'availableAnticipationAmount' => 5000,
         ];
 
-        $dto = RetrieveAntecipationLimitsDTO::fromArray($data);
+        $dto = RetrieveAnticipationLimitsResponseDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -34,9 +34,9 @@ class RetrieveAntecipationLimitsDTOTest extends TestCase
     {
         $data = $this->getFixture("Anticipation/retrieve_anticipation_limits_response");
 
-        $dto = RetrieveAntecipationLimitsDTO::fromArray($data);
+        $dto = RetrieveAnticipationLimitsResponseDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(RetrieveAntecipationLimitsDTO::class);
+        expect($dto)->toBeInstanceOf(RetrieveAnticipationLimitsResponseDTO::class);
     }    
     public function test_retrieve_antecipation_limits_dto_validation(): void
     {
@@ -44,8 +44,8 @@ class RetrieveAntecipationLimitsDTOTest extends TestCase
             'availableAnticipationAmount' => 5000,
         ];
 
-        $dto = RetrieveAntecipationLimitsDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(RetrieveAntecipationLimitsDTO::class);
+        $dto = RetrieveAnticipationLimitsResponseDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(RetrieveAnticipationLimitsResponseDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

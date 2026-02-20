@@ -4,50 +4,58 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
-use SistemAtc\Asaas\DTO\Request\Customer\ListCustomer;
-use SistemAtc\Asaas\DTO\Request\Customer\AsaasCustomer;
-use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateDTO;
+use SistemAtc\Asaas\DTO\Request\Customer\CustomerRequestDTO;
+use SistemAtc\Asaas\DTO\Request\Customer\ListCustomerRequestDTO;
+use SistemAtc\Asaas\DTO\Response\Customer\ListCustomerResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Customer\CustomerCreateResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Customer\RemoveCustomerResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Customer\RetrieveNotificationCustomerResponseDTO;
 
 class Customer extends BaseMethods
 {
 
-    public function createNewCustomer(AsaasCustomer $customer): ?CustomerCreateDTO
+    public function createNewCustomer(CustomerRequestDTO $customer): ?CustomerCreateResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, '/customers', $customer->toArray());
-        return CustomerCreateDTO::fromArray($response);
+        return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function listCustomers(ListCustomer $queryParams): ?array
+    public function listCustomers(ListCustomerRequestDTO $queryParams): ?ListCustomerResponseDTO
     {
         $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
         $endpoint = '/customers' . $query;
         $response = $this->makeRequest(HttpMethod::GET, $endpoint);
-        return $response;
+        return ListCustomerResponseDTO::fromArray( $response);
     }
 
-    public function retrieveSingleCustomer(string $id): ?array
+    public function retrieveSingleCustomer(string $id): ?CustomerCreateResponseDTO
     {
-        return $this->makeRequest(HttpMethod::GET, "/customers/{$id}");
+        $response = $this->makeRequest(HttpMethod::GET, "/customers/{$id}");
+        return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function updateExistingCustomer(AsaasCustomer $customer): ?array
+    public function updateExistingCustomer(CustomerRequestDTO $customer): ?CustomerCreateResponseDTO
     {
-        return $this->makeRequest(HttpMethod::PUT, "/customers/{$customer->asaas_id}", $customer->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/customers/{$customer->asaas_id}", $customer->toArray());
+        return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function removeCustomer(string $id): ?array
+    public function removeCustomer(string $id): ?RemoveCustomerResponseDTO
     {
-        return $this->makeRequest(HttpMethod::DELETE, "/customers/{$id}");
+        $response = $this->makeRequest(HttpMethod::DELETE, "/customers/{$id}");
+        return RemoveCustomerResponseDTO::fromArray($response);
     }
 
-    public function restoreRemovedCustomer(string $id): ?array
+    public function restoreRemovedCustomer(string $id): ?CustomerCreateResponseDTO
     {
-        return $this->makeRequest(HttpMethod::POST, "/customers/{$id}/restore");
+        $response = $this->makeRequest(HttpMethod::POST, "/customers/{$id}/restore");
+        return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function retrieveNotificationsFromCustomer(string $id): ?array
+    public function retrieveNotificationsFromCustomer(string $id): ?RetrieveNotificationCustomerResponseDTO
     {
-        return $this->makeRequest(HttpMethod::GET, "/customers/{$id}/notifications");
+        $response = $this->makeRequest(HttpMethod::GET, "/customers/{$id}/notifications");
+        return RetrieveNotificationCustomerResponseDTO::fromArray($response);
     }
 
 }

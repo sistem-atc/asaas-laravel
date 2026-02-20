@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Anticipation;
 
-use SistemAtc\Asaas\DTO\Request\Anticipation\ListAnticipationFilterDTO;
+use SistemAtc\Asaas\DTO\Request\Anticipation\ListAnticipationFilterRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class ListAnticipationFilterDTOTest extends TestCase
@@ -14,9 +14,9 @@ class ListAnticipationFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListAnticipationFilterDTO::fromArray($data);
+        $dto = ListAnticipationFilterRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(ListAnticipationFilterDTO::class);
+        expect($dto)->toBeInstanceOf(ListAnticipationFilterRequestDTO::class);
     }
 
     public function test_list_anticipation_filter_dto_to_array(): void
@@ -26,7 +26,7 @@ class ListAnticipationFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListAnticipationFilterDTO::fromArray($data);
+        $dto = ListAnticipationFilterRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -39,8 +39,8 @@ class ListAnticipationFilterDTOTest extends TestCase
             'limit' => 100,
         ];
 
-        $dto = ListAnticipationFilterDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(ListAnticipationFilterDTO::class);
+        $dto = ListAnticipationFilterRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(ListAnticipationFilterRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();

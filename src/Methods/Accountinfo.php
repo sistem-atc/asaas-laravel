@@ -4,69 +4,69 @@ namespace SistemAtc\Asaas\Methods;
 
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
-use SistemAtc\Asaas\DTO\Shared\Common\AccountStatusDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveWalletIdDTO;
-use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateBusinessDataDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAccountFeesDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveBusinessDataDTO;
-use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateCheckoutCustomizationDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\DeleteWhiteLabelSubaccountDTO;
-use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAsaasAccountNumberDTO;
+use SistemAtc\Asaas\DTO\Shared\Common\AccountStatus;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveWalletIdResponseDTO;
+use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateBusinessDataRequestDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAccountFeesResponseDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveBusinessDataResponseDTO;
+use SistemAtc\Asaas\DTO\Request\AccountInfo\UpdateCheckoutCustomizationRequestDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\DeleteWhiteLabelSubaccountResponseDTO;
+use SistemAtc\Asaas\DTO\Response\AccountInfo\RetrieveAsaasAccountNumberResponseDTO;
 
-class Accountinfo extends BaseMethods
+class AccountInfo extends BaseMethods
 {
 
-    public function retrieveBusinessData(): RetrieveBusinessDataDTO
+    public function retrieveBusinessData(): ?RetrieveBusinessDataResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/commercialInfo/');
-        return RetrieveBusinessDataDTO::fromArray($response);
+        return RetrieveBusinessDataResponseDTO::fromArray($response);
     }
 
-    public function updateBusinessData(UpdateBusinessDataDTO $data): RetrieveBusinessDataDTO
+    public function updateBusinessData(UpdateBusinessDataRequestDTO $data): ?RetrieveBusinessDataResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, '/myAccount/commercialInfo/', $data->toArray());
-        return RetrieveBusinessDataDTO::fromArray($response);
+        return RetrieveBusinessDataResponseDTO::fromArray($response);
     }
 
-    public function savePaymentCheckoutCustomization(UpdateCheckoutCustomizationDTO $data): AccountStatusDTO
+    public function savePaymentCheckoutCustomization(UpdateCheckoutCustomizationRequestDTO $data): ?AccountStatus
     {
         $response = $this->makeRequest(HttpMethod::POST, '/myAccount/paymentCheckoutConfig/', $data->toMultipart());
-        return AccountStatusDTO::fromArray($response);
+        return AccountStatus::fromArray($response);
     }
 
-    public function retrievePersonalizationSettings(): AccountStatusDTO
+    public function retrievePersonalizationSettings(): ?AccountStatus
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/paymentCheckoutConfig/');
-        return AccountStatusDTO::fromArray($response);
+        return AccountStatus::fromArray($response);
     }
 
-    public function retrieveAsaasAccountNumber(): RetrieveAsaasAccountNumberDTO
+    public function retrieveAsaasAccountNumber(): ?RetrieveAsaasAccountNumberResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/accountNumber');
-        return RetrieveAsaasAccountNumberDTO::fromArray($response);
+        return RetrieveAsaasAccountNumberResponseDTO::fromArray($response);
     }
 
-    public function retrieveAccountFees(): RetrieveAccountFeesDTO
+    public function retrieveAccountFees(): ?RetrieveAccountFeesResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/fees/');
-        return RetrieveAccountFeesDTO::fromArray($response);
+        return RetrieveAccountFeesResponseDTO::fromArray($response);
     }
 
-    public function checkAccountStatus(): AccountStatusDTO
+    public function checkAccountStatus(): ?AccountStatus
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/status/');
-        return AccountStatusDTO::fromArray($response);
+        return AccountStatus::fromArray($response);
     }
 
-    public function retrieveWalletId(): RetrieveWalletIdDTO
+    public function retrieveWalletId(): ?RetrieveWalletIdResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, '/myAccount/walletId/');
-        return RetrieveWalletIdDTO::fromArray($response);
+        return RetrieveWalletIdResponseDTO::fromArray($response);
     }
 
-    public function deleteWhiteLabelSubaccount(string $removeReason): DeleteWhiteLabelSubaccountDTO
+    public function deleteWhiteLabelSubaccount(string $removeReason): ?DeleteWhiteLabelSubaccountResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::DELETE, '/myAccount/?' . http_build_query(['removeReason' => $removeReason]));
-        return DeleteWhiteLabelSubaccountDTO::fromArray($response);
+        return DeleteWhiteLabelSubaccountResponseDTO::fromArray($response);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SistemAtc\Asaas\Tests\Unit\DTO\Bill;
 
-use SistemAtc\Asaas\DTO\Request\Bill\SimulateBillPaymentDTO;
+use SistemAtc\Asaas\DTO\Request\Bill\SimulateBillPaymentRequestDTO;
 use SistemAtc\Asaas\Tests\TestCase;
 
 class SimulateBillPaymentDTOTest extends TestCase
@@ -13,9 +13,9 @@ class SimulateBillPaymentDTOTest extends TestCase
             'barCode' => '12345.67890 12345.678901 12345.678901 1 12345678901234',
         ];
 
-        $dto = SimulateBillPaymentDTO::fromArray($data);
+        $dto = SimulateBillPaymentRequestDTO::fromArray($data);
 
-        expect($dto)->toBeInstanceOf(SimulateBillPaymentDTO::class);
+        expect($dto)->toBeInstanceOf(SimulateBillPaymentRequestDTO::class);
     }
 
     public function test_simulate_bill_payment_dto_to_array(): void
@@ -24,7 +24,7 @@ class SimulateBillPaymentDTOTest extends TestCase
             'barCode' => '12345.67890 12345.678901 12345.678901 1 12345678901234',
         ];
 
-        $dto = SimulateBillPaymentDTO::fromArray($data);
+        $dto = SimulateBillPaymentRequestDTO::fromArray($data);
         $result = $dto->toArray();
 
         expect($result)->toBeArray();
@@ -36,8 +36,8 @@ class SimulateBillPaymentDTOTest extends TestCase
             'barCode' => '12345.67890 12345.678901 12345.678901 1 12345678901234',
         ];
 
-        $dto = SimulateBillPaymentDTO::fromArray($data);
-        expect($dto)->toBeInstanceOf(SimulateBillPaymentDTO::class);
+        $dto = SimulateBillPaymentRequestDTO::fromArray($data);
+        expect($dto)->toBeInstanceOf(SimulateBillPaymentRequestDTO::class);
         
         $result = $dto->toArray();
         expect($result)->toBeArray();
