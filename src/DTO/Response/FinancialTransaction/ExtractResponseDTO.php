@@ -2,11 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Response\FinancialTransaction;
 
-use SistemAtc\Asaas\Attributes\ArrayOf;
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Enum\TransactionType;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\TransactionType;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 final class ExtractResponseDTO implements DTOInterface
 {

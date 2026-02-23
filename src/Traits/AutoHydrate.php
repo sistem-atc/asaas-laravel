@@ -63,7 +63,11 @@ trait AutoHydrate
                 }
                 else {
                     if (is_subclass_of($typeName, BackedEnum::class)) {
-                        $value = $typeName::tryFrom($value);
+                            $enum = $typeName::tryFrom($value);
+                            if ($enum === null) {
+                                throw new \InvalidArgumentException("Invalid value '{$value}' for {$typeName} in '{$name}'");
+                            }
+                            $value = $enum;
                     }
                     elseif ($typeName === DateTimeInterface::class || $typeName === DateTime::class) {
                         $value = is_string($value) ? new DateTime($value) : $value;
