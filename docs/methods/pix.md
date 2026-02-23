@@ -1,76 +1,97 @@
-# 💳 Métodos de PIX
+# Metodos de Pix
 
-Documentação completa dos métodos disponíveis para PIX.
+Assinaturas implementadas em `src/Methods/Pix.php`.
 
-## 📋 Índice
+## Indice
 
-- [Criar QR Code Estático](#criar-qr-code-estático)
+- [createKey](#createkey)
+- [listKeys](#listkeys)
+- [retrieveSingleKey](#retrievesinglekey)
+- [removeKey](#removekey)
+- [createQrCodeStatic](#createqrcodestatic)
+- [removeStaticQRCode](#removestaticqrcode)
+- [availableTokenBucketCheck](#availabletokenbucketcheck)
 
-## Criar QR Code Estático
-
-Cria um QR Code PIX estático para recebimento.
-
-### Método
+## createKey
 
 ```php
-Asaas::pix()->createQrCodeStatic(array $data): ?array
+Asaas::pix()->createKey(CreatePixAddressKeyRequestDTO $data): PixAddressKeyResponseDTO
 ```
 
-### Parâmetros
-
-O método recebe um array com os dados do QR Code:
+## listKeys
 
 ```php
-$data = [
-    'addressKey' => 'sua-chave-pix@example.com',
-    'description' => 'Pagamento de serviço',
+Asaas::pix()->listKeys(ListKeysRequestDTO $queryParams): ListKeysResponseDTO
+```
+
+## retrieveSingleKey
+
+```php
+Asaas::pix()->retrieveSingleKey(string $id): PixAddressKeyResponseDTO
+```
+
+## removeKey
+
+```php
+Asaas::pix()->removeKey(string $id): PixAddressKeyResponseDTO
+```
+
+## createQrCodeStatic
+
+```php
+Asaas::pix()->createQrCodeStatic(
+    CreateQRCodeStaticRequestDTO $data
+): QRCodeStaticResponseDTO
+```
+
+## removeStaticQRCode
+
+```php
+Asaas::pix()->removeStaticQRCode(string $id): DeleteQrCodeStaticResponseDTO
+```
+
+## availableTokenBucketCheck
+
+```php
+Asaas::pix()->availableTokenBucketCheck(): AvailableTokenBucketCheckResponseDTO
+```
+
+## Referencia
+
+- [Documentacao Oficial - Pix](https://docs.asaas.com/docs/pix)
+
+## Como montar os DTOs
+
+### CreatePixAddressKeyRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Pix\CreatePixAddressKeyRequestDTO;
+
+$dto = CreatePixAddressKeyRequestDTO::fromArray([
+    // Ex.: 'type' => 'EMAIL',
+    // Ex.: 'value' => 'financeiro@empresa.com',
+]);
+```
+
+### ListKeysRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Pix\ListKeysRequestDTO;
+
+$dto = ListKeysRequestDTO::fromArray([
+    'offset' => 0,
+    'limit' => 50,
+]);
+```
+
+### CreateQRCodeStaticRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Pix\CreateQRCodeStaticRequestDTO;
+
+$dto = CreateQRCodeStaticRequestDTO::fromArray([
+    'addressKey' => 'financeiro@empresa.com',
     'value' => 100.00,
-];
+    'description' => 'Pagamento',
+]);
 ```
-
-### Campos Disponíveis
-
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|-------------|-----------|
-| `addressKey` | string | Sim | Chave PIX (email, CPF, CNPJ, telefone ou chave aleatória) |
-| `description` | string | Não | Descrição do pagamento |
-| `value` | float | Não | Valor do pagamento |
-| `expirationDate` | string | Não | Data de expiração (Y-m-d) |
-
-### Exemplo
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-
-$data = [
-    'addressKey' => 'sua-chave-pix@example.com',
-    'description' => 'Pagamento de serviço',
-    'value' => 100.00,
-];
-
-$qrCode = Asaas::pix()->createQrCodeStatic($data);
-
-if ($qrCode) {
-    echo "QR Code: " . $qrCode['encodedImage'];
-    echo "Código Copia e Cola: " . $qrCode['payload'];
-}
-```
-
-### Exemplo com Valor Dinâmico
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-
-$data = [
-    'addressKey' => '11999999999', // Telefone
-    'description' => 'Pagamento de pedido #123',
-    'value' => 250.50,
-    'expirationDate' => '2024-12-31',
-];
-
-$qrCode = Asaas::pix()->createQrCodeStatic($data);
-```
-
-## 📚 Referências
-
-- [Documentação Oficial - PIX](https://docs.asaas.com/docs/pix)

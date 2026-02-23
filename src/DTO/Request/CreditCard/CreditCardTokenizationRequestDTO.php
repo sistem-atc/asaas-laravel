@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Chargeback;
+namespace SistemAtc\Asaas\DTO\Request\CreditCard;
 
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;

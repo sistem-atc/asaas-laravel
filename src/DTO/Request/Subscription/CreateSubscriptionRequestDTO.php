@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Bill;
+namespace SistemAtc\Asaas\DTO\Request\Subscription;
 
 use SistemAtc\Asaas\Enum\BillingType;
 use SistemAtc\Asaas\Attributes\ArrayOf;

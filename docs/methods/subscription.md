@@ -1,110 +1,238 @@
-# 🔄 Métodos de Assinatura (Subscription)
+# Metodos de Subscription (Assinaturas)
 
-Documentação completa dos métodos disponíveis para gerenciamento de assinaturas.
+Assinaturas implementadas em `src/Methods/Subscription.php`.
 
-## 📋 Índice
+## Indice
 
-- [Criar Assinatura](#criar-assinatura)
+- [createNewSubscription](#createnewsubscription)
+- [list](#list)
+- [createSubscriptionWithCreditCard](#createsubscriptionwithcreditcard)
+- [retrieveSingleSubscription](#retrievesinglesubscription)
+- [update](#update)
+- [remove](#remove)
+- [updateCreditCard](#updatecreditcard)
+- [listPaymentsSubscription](#listpaymentssubscription)
+- [generateSubscriptionBooklet](#generatesubscriptionbooklet)
+- [createConfigurationForIssuingInvoices](#createconfigurationforissuinginvoices)
+- [retrieveConfigurationForIssuingInvoices](#retrieveconfigurationforissuinginvoices)
+- [removeConfigurationForIssuingInvoices](#removeconfigurationforissuinginvoices)
+- [updateConfigurationForIssuingInvoices](#updateconfigurationforissuinginvoices)
+- [listInvoicesForSubscriptionCharges](#listinvoicesforsubscriptioncharges)
 
-## Criar Assinatura
-
-Cria uma nova assinatura (cobrança recorrente).
-
-### Método
+## createNewSubscription
 
 ```php
-Asaas::subscription()->create(array $data): ?array
+Asaas::subscription()->createNewSubscription(
+    CreateSubscriptionRequestDTO $data
+): SubscriptionResponseDTO
 ```
 
-### Parâmetros
-
-O método recebe um array com os dados da assinatura:
+## list
 
 ```php
-$data = [
-    'customer' => 'cus_000000000000',
+Asaas::subscription()->list(
+    ListSubscriptionRequestDTO $data
+): ListSubscriptionResponseDTO
+```
+
+## createSubscriptionWithCreditCard
+
+```php
+Asaas::subscription()->createSubscriptionWithCreditCard(
+    CreateSubscriptionCreditCardRequestDTO $data
+): SubscriptionCreditCardResponseDTO
+```
+
+## retrieveSingleSubscription
+
+```php
+Asaas::subscription()->retrieveSingleSubscription(
+    string $id
+): SubscriptionResponseDTO
+```
+
+## update
+
+```php
+Asaas::subscription()->update(
+    string $id,
+    UpdateSubscriptionRequestDTO $data
+): SubscriptionResponseDTO
+```
+
+## remove
+
+```php
+Asaas::subscription()->remove(string $id): DeleteSubscriptionResponseDTO
+```
+
+## updateCreditCard
+
+```php
+Asaas::subscription()->updateCreditCard(
+    string $id,
+    UpdateSubscriptionCreditCardRequestDTO $data
+): SubscriptionResponseDTO
+```
+
+## listPaymentsSubscription
+
+```php
+Asaas::subscription()->listPaymentsSubscription(
+    string $id,
+    ListPaymentSubscriptionRequestDTO $queryParams
+): ListPaymentSubscriptionResponseDTO
+```
+
+## generateSubscriptionBooklet
+
+```php
+Asaas::subscription()->generateSubscriptionBooklet(
+    string $id,
+    BookletPaymentSubscriptionRequestDTO $queryParams
+): FileResponseDTO
+```
+
+## createConfigurationForIssuingInvoices
+
+```php
+Asaas::subscription()->createConfigurationForIssuingInvoices(
+    string $id,
+    ConfigurationInvoicesRequestDTO $data
+): ConfigurationInvoicesResponseDTO
+```
+
+## retrieveConfigurationForIssuingInvoices
+
+```php
+Asaas::subscription()->retrieveConfigurationForIssuingInvoices(
+    string $id
+): ConfigurationInvoicesResponseDTO
+```
+
+## removeConfigurationForIssuingInvoices
+
+```php
+Asaas::subscription()->removeConfigurationForIssuingInvoices(
+    string $id
+): DeleteConfigurationResponseDTO
+```
+
+## updateConfigurationForIssuingInvoices
+
+```php
+Asaas::subscription()->updateConfigurationForIssuingInvoices(
+    string $id,
+    UpdateConfigurationInvoicesRequestDTO $data
+): ConfigurationInvoicesResponseDTO
+```
+
+## listInvoicesForSubscriptionCharges
+
+```php
+Asaas::subscription()->listInvoicesForSubscriptionCharges(
+    string $id,
+    $queryParams
+): ListInvoicesForSubscriptionResponseDTO
+```
+
+## Referencia
+
+- [Documentacao Oficial - Assinaturas](https://docs.asaas.com/docs/assinaturas)
+
+## Como montar os DTOs
+
+### CreateSubscriptionRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\CreateSubscriptionRequestDTO;
+
+$dto = CreateSubscriptionRequestDTO::fromArray([
+    'customer' => 'cus_xxx',
     'billingType' => 'BOLETO',
     'value' => 99.90,
-    'nextDueDate' => '2024-12-01',
-    'cycle' => 'MONTHLY',
-    'description' => 'Assinatura mensal',
-];
+    'nextDueDate' => '2026-03-01',
+]);
 ```
 
-### Campos Disponíveis
-
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|-------------|-----------|
-| `customer` | string | Sim | ID do cliente |
-| `billingType` | string | Sim | Tipo de cobrança (BOLETO, CREDIT_CARD, PIX) |
-| `value` | float | Sim | Valor da assinatura |
-| `nextDueDate` | string | Sim | Próxima data de vencimento (Y-m-d) |
-| `cycle` | string | Sim | Ciclo (WEEKLY, MONTHLY, QUARTERLY, YEARLY) |
-| `description` | string | Não | Descrição da assinatura |
-| `externalReference` | string | Não | Referência externa |
-
-### Ciclos Disponíveis
-
-- `WEEKLY` - Semanal
-- `MONTHLY` - Mensal
-- `QUARTERLY` - Trimestral
-- `YEARLY` - Anual
-
-### Exemplo
+### ListSubscriptionRequestDTO
 
 ```php
-use SistemAtc\Asaas\Facades\Asaas;
+use SistemAtc\Asaas\DTO\Request\Subscription\ListSubscriptionRequestDTO;
 
-$data = [
-    'customer' => 'cus_000000000000',
-    'billingType' => 'BOLETO',
-    'value' => 99.90,
-    'nextDueDate' => '2024-12-01',
-    'cycle' => 'MONTHLY',
-    'description' => 'Assinatura Premium Mensal',
-    'externalReference' => 'SUB-001',
-];
-
-$assinatura = Asaas::subscription()->create($data);
-
-if ($assinatura) {
-    echo "Assinatura criada: " . $assinatura['id'];
-    echo "Próximo vencimento: " . $assinatura['nextDueDate'];
-}
+$dto = ListSubscriptionRequestDTO::fromArray([
+    'offset' => 0,
+    'limit' => 50,
+]);
 ```
 
-### Exemplo com Cartão de Crédito
+### CreateSubscriptionCreditCardRequestDTO
 
 ```php
-use SistemAtc\Asaas\Facades\Asaas;
+use SistemAtc\Asaas\DTO\Request\Subscription\CreateSubscriptionCreditCardRequestDTO;
 
-$data = [
-    'customer' => 'cus_000000000000',
-    'billingType' => 'CREDIT_CARD',
-    'value' => 99.90,
-    'nextDueDate' => '2024-12-01',
-    'cycle' => 'MONTHLY',
-    'description' => 'Assinatura Premium Mensal',
-    'creditCard' => [
-        'holderName' => 'João da Silva',
-        'number' => '4111111111111111',
-        'expiryMonth' => '12',
-        'expiryYear' => '2025',
-        'ccv' => '123',
-    ],
-    'creditCardHolderInfo' => [
-        'name' => 'João da Silva',
-        'email' => 'joao@example.com',
-        'cpfCnpj' => '12345678900',
-        'postalCode' => '01234567',
-        'addressNumber' => '123',
-        'phone' => '11999999999',
-    ],
-];
-
-$assinatura = Asaas::subscription()->create($data);
+$dto = CreateSubscriptionCreditCardRequestDTO::fromArray([
+    // Campos da assinatura com cartao
+]);
 ```
 
-## 📚 Referências
+### UpdateSubscriptionRequestDTO
 
-- [Documentação Oficial - Assinaturas](https://docs.asaas.com/docs/assinaturas)
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\UpdateSubscriptionRequestDTO;
+
+$dto = UpdateSubscriptionRequestDTO::fromArray([
+    // Campos permitidos para atualizacao
+]);
+```
+
+### UpdateSubscriptionCreditCardRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\UpdateSubscriptionCreditCardRequestDTO;
+
+$dto = UpdateSubscriptionCreditCardRequestDTO::fromArray([
+    // Campos do novo cartao
+]);
+```
+
+### ListPaymentSubscriptionRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\ListPaymentSubscriptionRequestDTO;
+
+$dto = ListPaymentSubscriptionRequestDTO::fromArray([
+    'offset' => 0,
+    'limit' => 50,
+]);
+```
+
+### BookletPaymentSubscriptionRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\BookletPaymentSubscriptionRequestDTO;
+
+$dto = BookletPaymentSubscriptionRequestDTO::fromArray([
+    // Ex.: filtros para gerar carn� da assinatura
+]);
+```
+
+### ConfigurationInvoicesRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\ConfigurationInvoicesRequestDTO;
+
+$dto = ConfigurationInvoicesRequestDTO::fromArray([
+    // Campos de configuracao de emissao de nota
+]);
+```
+
+### UpdateConfigurationInvoicesRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Subscription\UpdateConfigurationInvoicesRequestDTO;
+
+$dto = UpdateConfigurationInvoicesRequestDTO::fromArray([
+    // Campos para atualizar configuracao de notas
+]);
+```

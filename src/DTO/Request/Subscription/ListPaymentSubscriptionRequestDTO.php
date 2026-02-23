@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Bill;
+namespace SistemAtc\Asaas\DTO\Request\Subscription;
 
 use SistemAtc\Asaas\Enum\StatusPayment;
 use SistemAtc\Asaas\Traits\AutoHydrate;

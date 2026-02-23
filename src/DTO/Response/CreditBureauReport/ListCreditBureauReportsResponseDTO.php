@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\CreditBureauReport;
+namespace SistemAtc\Asaas\DTO\Response\CreditBureauReport;
 
 use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Traits\AutoHydrate;

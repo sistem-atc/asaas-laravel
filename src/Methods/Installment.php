@@ -2,6 +2,7 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\DTO\Request\Installment\UpdateSplitInstallmentRequestDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Response\Installment\FileResponseDTO;
@@ -68,7 +69,7 @@ class Installment extends BaseMethods
         return InstallmentResponseDTO::fromArray(($response));
     }
 
-    public function updateInstallmentSplits(string $id, RefundInstallmentRequestDTO $data): UpdateInstallmentSplitsResponseDTO
+    public function updateInstallmentSplits(string $id, UpdateSplitInstallmentRequestDTO $data): UpdateInstallmentSplitsResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::PUT, "/installments/{$id}/splits", $data->toArray());
         return UpdateInstallmentSplitsResponseDTO::fromArray(($response));

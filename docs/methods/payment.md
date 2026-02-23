@@ -1,282 +1,128 @@
-# 💰 Métodos de Cobrança (Payment)
+# Metodos de Payment (Cobrancas)
 
-Documentação completa dos métodos disponíveis para gerenciamento de cobranças.
+Assinaturas implementadas em `src/Methods/Payment.php`.
 
-## 📋 Índice
+## Indice
 
-- [Criar Cobrança](#criar-cobrança)
-- [Listar Cobranças](#listar-cobranças)
-- [Capturar Pré-autorização](#capturar-pré-autorização)
-- [Gerar QR Code PIX](#gerar-qr-code-pix)
+- [createNewPayment](#createnewpayment)
+- [listPayments](#listpayments)
+- [createNewPaymentWithCreditCard](#createnewpaymentwithcreditcard)
+- [CapturePaymentWithPreAuthorization](#capturepaymentwithpreauthorization)
+- [payChargeWithCreditCard](#paychargewithcreditcard)
+- [retrievePaymentBillingInformation](#retrievepaymentbillinginformation)
+- [getQRCodeForPixPayments](#getqrcodeforpixpayments)
 
-## Criar Cobrança
-
-Cria uma nova cobrança no Asaas.
-
-### Método
+## createNewPayment
 
 ```php
-Asaas::payment()->create(PaymentDTO $data): ?PaymentoDTOResponse
+Asaas::payment()->createNewPayment(
+    CreatePaymentRequestDTO $data
+): PaymentResponseDTO
 ```
 
-### Parâmetros
-
-O método recebe um objeto `PaymentDTO`:
+## listPayments
 
 ```php
-use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
-use SistemAtc\Asaas\Enum\BillingType;
+Asaas::payment()->listPayments(
+    ListPaymentRequestDTO $queryParams
+): ListPaymentResponseDTO
+```
 
-$payment = PaymentDTO::fromArray([
-    'customer' => AsaasCustomer::fromArray([
-        'asaas_id' => 'cus_000000000000',
-    ]),
-    'billing_type' => BillingType::BOLETO,
+## createNewPaymentWithCreditCard
+
+```php
+Asaas::payment()->createNewPaymentWithCreditCard(
+    CreditCardPaymentRequestDTO $data
+): PaymentResponseDTO
+```
+
+## CapturePaymentWithPreAuthorization
+
+```php
+Asaas::payment()->CapturePaymentWithPreAuthorization(
+    string $id
+): PaymentResponseDTO
+```
+
+## payChargeWithCreditCard
+
+```php
+Asaas::payment()->payChargeWithCreditCard(
+    string $id,
+    PayChargeWithCreditCardRequestDTO $data
+): PaymentResponseDTO
+```
+
+## retrievePaymentBillingInformation
+
+```php
+Asaas::payment()->retrievePaymentBillingInformation(
+    string $id
+): PaymentBilingInformationResponseDTO
+```
+
+## getQRCodeForPixPayments
+
+```php
+Asaas::payment()->getQRCodeForPixPayments(
+    string $id
+): QrCodeResponseDTO
+```
+
+## Observacao
+
+Os seguintes metodos existem na classe, mas ainda estao sem implementacao no codigo:
+`paymentViewingInformation`, `retrieveSinglePayment`, `updateExistingPayment`,
+`deletePayment`, `restoreRemovedPayment`, `retrieveStatusPayment`, `refundPayment`,
+`getDigitableBillLine`, `confirmCashReceipt`, `undoCashReceipt`, `salesSimulator`,
+`recoveryPaymentLimit`.
+
+## Referencia
+
+- [Documentacao Oficial - Cobrancas](https://docs.asaas.com/docs/cobrancas)
+
+## Como montar os DTOs
+
+### CreatePaymentRequestDTO
+
+```php
+use SistemAtc\Asaas\DTO\Request\Payment\CreatePaymentRequestDTO;
+
+$dto = CreatePaymentRequestDTO::fromArray([
+    'customer' => 'cus_xxx',
+    'billingType' => 'PIX',
     'value' => 100.00,
-    'dueDate' => '2024-12-31',
-    'description' => 'Pagamento de serviço',
+    'dueDate' => '2026-02-23',
 ]);
 ```
 
-### Campos Disponíveis
-
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|-------------|-----------|
-| `customer` | AsaasCustomer | Sim | Cliente da cobrança |
-| `billingType` | BillingType | Sim | Tipo de cobrança (BOLETO, CREDIT_CARD, PIX, etc.) |
-| `value` | float | Sim | Valor da cobrança |
-| `dueDate` | string | Sim | Data de vencimento (Y-m-d) |
-| `description` | string | Não | Descrição da cobrança |
-| `externalReference` | string | Não | Referência externa |
-| `installmentCount` | int | Não | Número de parcelas |
-| `discount` | Discount | Não | Desconto |
-| `interest` | Interest | Não | Juros |
-| `fine` | Fine | Não | Multa |
-| `creditCard` | CreditCard | Não | Dados do cartão de crédito |
-| `creditCardHolderInfo` | CreditCardHolderInfo | Não | Dados do portador do cartão |
-| `authorizeOnly` | bool | Não | Apenas autorizar (não capturar) |
-
-### Tipos de Cobrança
-
-- `BOLETO` - Boleto bancário
-- `CREDIT_CARD` - Cartão de crédito
-- `PIX` - PIX
-- `DEBIT_CARD` - Cartão de débito
-
-### Exemplo: Cobrança com Boleto
+### ListPaymentRequestDTO
 
 ```php
-use SistemAtc\Asaas\Facades\Asaas;
-use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
-use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\DTO\Request\Payment\ListPaymentRequestDTO;
 
-$payment = PaymentDTO::fromArray([
-    'customer' => AsaasCustomer::fromArray([
-        'asaas_id' => 'cus_000000000000',
-    ]),
-    'billing_type' => BillingType::BOLETO,
-    'value' => 100.00,
-    'dueDate' => '2024-12-31',
-    'description' => 'Pagamento de serviço',
-    'externalReference' => 'PED-001',
-]);
-
-$cobranca = Asaas::payment()->create($payment);
-
-if ($cobranca) {
-    echo "Cobrança criada: " . $cobranca->id;
-    echo "Link do boleto: " . $cobranca->bankSlipUrl;
-}
-```
-
-### Exemplo: Cobrança com Cartão de Crédito
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
-use SistemAtc\Asaas\DTO\Shared\Request\CreditCard;
-use SistemAtc\Asaas\DTO\Shared\Request\CreditCardHolderInfo;
-use SistemAtc\Asaas\Enum\BillingType;
-
-$payment = PaymentDTO::fromArray([
-    'customer' => AsaasCustomer::fromArray([
-        'asaas_id' => 'cus_000000000000',
-    ]),
-    'billing_type' => BillingType::CREDIT_CARD,
-    'value' => 100.00,
-    'dueDate' => '2024-12-31',
-    'description' => 'Pagamento de serviço',
-    'creditCard' => CreditCard::fromArray([
-        'holderName' => 'João da Silva',
-        'number' => '4111111111111111',
-        'expiryMonth' => '12',
-        'expiryYear' => '2025',
-        'ccv' => '123',
-    ]),
-    'creditCardHolderInfo' => CreditCardHolderInfo::fromArray([
-        'name' => 'João da Silva',
-        'email' => 'joao@example.com',
-        'cpfCnpj' => '12345678900',
-        'postalCode' => '01234567',
-        'addressNumber' => '123',
-        'phone' => '11999999999',
-    ]),
-]);
-
-$cobranca = Asaas::payment()->create($payment);
-```
-
-### Exemplo: Cobrança PIX
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-use SistemAtc\Asaas\DTO\Request\Payment\PaymentDTO;
-use SistemAtc\Asaas\DTO\Shared\Request\AsaasCustomer;
-use SistemAtc\Asaas\Enum\BillingType;
-
-$payment = PaymentDTO::fromArray([
-    'customer' => AsaasCustomer::fromArray([
-        'asaas_id' => 'cus_000000000000',
-    ]),
-    'billing_type' => BillingType::PIX,
-    'value' => 50.00,
-    'dueDate' => '2024-12-31',
-    'description' => 'Pagamento via PIX',
-]);
-
-$cobranca = Asaas::payment()->create($payment);
-
-if ($cobranca) {
-    // Para obter o QR Code PIX, use o método getQrCodePix
-    $pixQrCode = Asaas::payment()->getQrCodePix($cobranca->id);
-    echo "QR Code: " . $pixQrCode->encodedImage;
-    echo "Código Copia e Cola: " . $pixQrCode->payload;
-}
-```
-
-## Listar Cobranças
-
-Lista cobranças com filtros opcionais.
-
-### Método
-
-```php
-Asaas::payment()->list(ListPayment $filter): ?array
-```
-
-### Parâmetros
-
-O método recebe um objeto `ListPayment` para filtrar os resultados:
-
-```php
-use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
-use SistemAtc\Asaas\Enum\BillingType;
-use SistemAtc\Asaas\Enum\StatusPayment;
-
-$filter = ListPayment::fromArray([
+$dto = ListPaymentRequestDTO::fromArray([
     'offset' => 0,
-    'limit' => 100,
-    'customer' => 'cus_000000000000',
-    'billingType' => BillingType::BOLETO,
-    'status' => StatusPayment::PENDING,
-]);
-```
-
-### Campos de Filtro
-
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `offset` | int | Offset para paginação (padrão: 0) |
-| `limit` | int | Limite de resultados (padrão: 100) |
-| `customer` | string | ID do cliente |
-| `billingType` | BillingType | Tipo de cobrança |
-| `status` | StatusPayment | Status da cobrança |
-| `externalReference` | string | Referência externa |
-| `dueDate[ge]` | string | Data de vencimento maior ou igual |
-| `dueDate[le]` | string | Data de vencimento menor ou igual |
-
-### Exemplo
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-use SistemAtc\Asaas\DTO\Shared\Request\ListPayment;
-use SistemAtc\Asaas\Enum\StatusPayment;
-
-// Listar cobranças pendentes
-$filter = ListPayment::fromArray([
-    'status' => StatusPayment::PENDING,
     'limit' => 50,
 ]);
+```
 
-$cobrancas = Asaas::payment()->list($filter);
+### CreditCardPaymentRequestDTO
 
-// Filtrar por cliente
-$filter = ListPayment::fromArray([
-    'customer' => 'cus_000000000000',
+```php
+use SistemAtc\Asaas\DTO\Request\Payment\CreditCardPaymentRequestDTO;
+
+$dto = CreditCardPaymentRequestDTO::fromArray([
+    // Campos da cobranca com cartao
 ]);
-
-$cobrancas = Asaas::payment()->list($filter);
 ```
 
-## Capturar Pré-autorização
-
-Captura um pagamento que foi apenas autorizado (não capturado).
-
-### Método
+### PayChargeWithCreditCardRequestDTO
 
 ```php
-Asaas::payment()->capturePreAuthorization(string $id): ?PaymentoDTOResponse
+use SistemAtc\Asaas\DTO\Request\Payment\PayChargeWithCreditCardRequestDTO;
+
+$dto = PayChargeWithCreditCardRequestDTO::fromArray([
+    // Campos para pagamento de cobranca existente com cartao
+]);
 ```
-
-### Parâmetros
-
-- `$id`: ID da cobrança no Asaas
-
-### Exemplo
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-
-$cobrancaId = 'pay_000000000000';
-$cobranca = Asaas::payment()->capturePreAuthorization($cobrancaId);
-```
-
-## Gerar QR Code PIX
-
-Gera o QR Code PIX para uma cobrança existente.
-
-### Método
-
-```php
-Asaas::payment()->getQrCodePix(string $paymentId): QrCodeDTO
-```
-
-### Parâmetros
-
-- `$paymentId`: ID da cobrança no Asaas
-
-### Exemplo
-
-```php
-use SistemAtc\Asaas\Facades\Asaas;
-
-$paymentId = 'pay_000000000000';
-$pixQrCode = Asaas::payment()->getQrCodePix($paymentId);
-
-// QR Code em base64
-$qrCodeImage = $pixQrCode->encodedImage;
-
-// Código copia e cola
-$copyPaste = $pixQrCode->payload;
-
-// Exibir QR Code em HTML
-echo "<img src='data:image/png;base64,{$qrCodeImage}' alt='QR Code PIX' />";
-echo "<p>Código: {$copyPaste}</p>";
-```
-
-## 📚 Referências
-
-- [Documentação Oficial - Cobranças](https://docs.asaas.com/docs/cobrancas)

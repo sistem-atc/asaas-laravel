@@ -8,7 +8,7 @@ use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Request\Split;
 
-final class RefundInstallmentRequestDTO implements DTOInterface
+final class UpdateSplitInstallmentRequestDTO implements DTOInterface
 {
     use CastToArray, AutoHydrate;
 

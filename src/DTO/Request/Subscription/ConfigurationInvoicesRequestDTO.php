@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Bill;
+namespace SistemAtc\Asaas\DTO\Request\Subscription;
 
 use SistemAtc\Asaas\DTO\Shared\Common\Taxes;
 use SistemAtc\Asaas\Enum\InvoiceIssuancePeriod;
