@@ -10,21 +10,19 @@ use SistemAtc\Asaas\DTO\Response\Finance\CollectionStatisticsResponseDTO;
 
 class Finance extends BaseMethods
 {
-    public function RetrieveAccountBalance(): ?BalanceResponseDTO
+    public function RetrieveAccountBalance(): BalanceResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/finance/balance");
         return BalanceResponseDTO::fromArray($response);
     }
 
-    public function collectionsStatistics(CollectionStatisticsRequestDTO $queryParams): ?CollectionStatisticsResponseDTO
+    public function collectionsStatistics(CollectionStatisticsRequestDTO $queryParams): CollectionStatisticsResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/finance/payment/statistics' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/finance/payment/statistics', $queryParams->toArray());
         return CollectionStatisticsResponseDTO::fromArray($response);
     }
 
-    public function retrieveSplitValues(): ?CollectionStatisticsResponseDTO
+    public function retrieveSplitValues(): CollectionStatisticsResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/finance/split/statistics");
         return CollectionStatisticsResponseDTO::fromArray($response);

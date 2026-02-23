@@ -22,6 +22,9 @@ trait CastToMultipart
             $fileAttribute = $property->getAttributes(MultipartFile::class)[0] ?? null;
 
             if ($fileAttribute) {
+                if (!file_exists($value)) {
+                    throw new \InvalidArgumentException("Arquivo não encontrado em: {$value}");
+                }
                 $fieldName = $fileAttribute->newInstance()->as;
                 if (str_contains($name, 'logo')) {
                     $fileData = file_get_contents($value);

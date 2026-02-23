@@ -16,7 +16,7 @@ abstract class BaseMethods
         $this->httpClient = $httpClient;
     }
 
-    protected function makeRequest(HttpMethod $method, string $endpoint, array $data = []): array
+    protected function makeRequest(HttpMethod $method, string $endpoint, array $data = [], bool $returnRaw = false): array|string
     {
         if (str_contains($endpoint, '..') || str_contains($endpoint, '//')) {
             throw new \InvalidArgumentException("Invalid endpoint: {$endpoint}");
@@ -33,14 +33,14 @@ abstract class BaseMethods
            $client = $client->asMultipart();
         }
 
-        if ($method === HttpMethod::GET) {
-            $response = $client->{$method->value}($endpoint);
-        } else {
-            $response = $client->{$method->value}($endpoint, $data);
-        }
+        $response = $client->{$method->value}($endpoint, $data);
 
         if ($response->failed()) {
             $this->handleError($response);
+        }
+
+        if ($returnRaw || $response->header('Content-Type') === 'application/pdf') {
+           return $response->body();
         }
 
         return $response->json() ?? [];

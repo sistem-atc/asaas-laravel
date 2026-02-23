@@ -9,7 +9,7 @@ use SistemAtc\Asaas\DTO\Request\Chargeback\CreditCardTokenizationRequestDTO;
 
 class CreditCard extends BaseMethods
 {
-    public function tokenization(CreditCardTokenizationRequestDTO $data): ?CommonCreditCard
+    public function tokenization(CreditCardTokenizationRequestDTO $data): CommonCreditCard
     {
         $response = $this->makeRequest(HttpMethod::POST, '/creditCard/tokenization', $data->toArray());
         return CommonCreditCard::fromArray($response);

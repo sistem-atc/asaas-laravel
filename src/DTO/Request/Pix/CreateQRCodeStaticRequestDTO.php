@@ -1,6 +1,6 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Request\Bill;
+namespace SistemAtc\Asaas\DTO\Request\Pix;
 
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;

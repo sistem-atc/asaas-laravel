@@ -14,33 +14,31 @@ use SistemAtc\Asaas\DTO\Response\Bill\SimulateBillPaymentResponseDTO;
 class Bill extends BaseMethods
 {
 
-    public function createBill(CreateBillRequestDTO $data): ?BillResponseDTO
+    public function createBill(CreateBillRequestDTO $data): BillResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, '/bill', $data->toArray());
         return BillResponseDTO::fromArray($response);
     }
 
-    public function listBill(ListBillPaymentsFilterRequestDTO $queryParams): ?ListBillResponseDTO
+    public function listBill(ListBillPaymentsFilterRequestDTO $queryParams): ListBillResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/bill' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/bill', $queryParams->toArray());
         return ListBillResponseDTO::fromArray($response);
     }
 
-    public function simulateBillPayment(SimulateBillPaymentRequestDTO $data): ?SimulateBillPaymentResponseDTO
+    public function simulateBillPayment(SimulateBillPaymentRequestDTO $data): SimulateBillPaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/bill/simulate", $data->toArray());
         return SimulateBillPaymentResponseDTO::fromArray($response);
     }
 
-    public function retrieveSingleBill(string $id): ?BillResponseDTO
+    public function retrieveSingleBill(string $id): BillResponseDTO
     {
         $response =  $this->makeRequest(HttpMethod::GET, "/bill/{$id}");
         return BillResponseDTO::fromArray($response);
     }
 
-    public function cancelBill(string $id): ?BillResponseDTO
+    public function cancelBill(string $id): BillResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/bill/{$id}/cancel");
         return BillResponseDTO::fromArray($response);

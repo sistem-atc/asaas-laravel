@@ -9,11 +9,9 @@ use SistemAtc\Asaas\DTO\Response\FinancialTransaction\RetrieveExtractResponseDTO
 
 class FinancialTransaction extends BaseMethods
 {
-    public function retrieveExtract(RetrieveExtractRequestDTO $queryParams): ?RetrieveExtractResponseDTO
+    public function retrieveExtract(RetrieveExtractRequestDTO $queryParams): RetrieveExtractResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/financialTransactions' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/financialTransactions', $queryParams->toArray());
         return RetrieveExtractResponseDTO::fromArray($response);
     }
 }

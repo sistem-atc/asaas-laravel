@@ -12,7 +12,7 @@ class Callback implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?string $successUrl = null,
+        public readonly string $successUrl = null,
         public readonly ?bool $autoRedirect = null,
     ) {}
 }

@@ -13,21 +13,19 @@ use SistemAtc\Asaas\DTO\Request\Chargeback\CreateChargebackDisputeRequestDTO;
 class Chargeback extends BaseMethods
 {
 
-    public function createChargebackDispute(string $id, CreateChargebackDisputeRequestDTO $data): ?ChargebackDisputeResponseDTO
+    public function createChargebackDispute(string $id, CreateChargebackDisputeRequestDTO $data): ChargebackDisputeResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/chargebacks/{$id}/dispute", $data->toMultipart());
         return ChargebackDisputeResponseDTO::fromArray($response);
     }
 
-    public function listChargebacks(ListChargebacksRequestDTO $queryParams): ?ListChargebackResponseDTO
+    public function listChargebacks(ListChargebacksRequestDTO $queryParams): ListChargebackResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/chargebacks' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/chargebacks', $queryParams->toArray());
         return ListChargebackResponseDTO::fromArray($response);
     }
 
-    public function retrieveSingleChargeback(?string $id): ?ChargebackResponseDTO
+    public function retrieveSingleChargeback(?string $id): ChargebackResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/chargeback");
         return ChargebackResponseDTO::fromArray($response);

@@ -22,5 +22,6 @@ class PaymentRefunds implements DTOInterface
         public readonly ?string $effectiveDate = null,
         public readonly ?string $transactionReceiptUrl = null,
         #[ArrayOf(RefundedSplits::class)] public readonly ?array $refundedSplits = null,
+        public readonly ?string $paymentId = null,
     ) {}
 }

@@ -15,43 +15,39 @@ use SistemAtc\Asaas\DTO\Response\AutomaticPix\ListAuthorizationPaymentResponseDT
 class AutomaticPix extends BaseMethods
 {
 
-    public function createAuthorization(CreateAuthorizationRequestDTO $data): ?CreateAuthorizationResponseDTO
+    public function createAuthorization(CreateAuthorizationRequestDTO $data): CreateAuthorizationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/pix/automatic/authorizations", $data->toArray());
         return CreateAuthorizationResponseDTO::fromArray($response);
     }
 
-    public function listAuthorization(ListAuthorizationRequestDTO $queryParams): ?ListAuthorizationResponseDTO
+    public function listAuthorization(ListAuthorizationRequestDTO $queryParams): ListAuthorizationResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/pix/automatic/authorizations' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/authorizations', $queryParams->toArray());
         return ListAuthorizationResponseDTO::fromArray($response);
     }
 
-    public function retrieveSingleAuthorization(string $id): ?CreateAuthorizationResponseDTO
+    public function retrieveSingleAuthorization(string $id): CreateAuthorizationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/pix/automatic/authorizations/{$id}");
         return CreateAuthorizationResponseDTO::fromArray($response);
     }
 
-    public function cancelAuthorization(string $id): ?CreateAuthorizationResponseDTO
+    public function cancelAuthorization(string $id): CreateAuthorizationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::DELETE, "/pix/automatic/authorizations/{$id}");
         return CreateAuthorizationResponseDTO::fromArray($response);
     }
 
-    public function retrieveSinglePaymentInstruction(string $id): ?SinglePaymentResponseDTO
+    public function retrieveSinglePaymentInstruction(string $id): SinglePaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/pix/automatic/paymentInstructions/{$id}");
         return SinglePaymentResponseDTO::fromArray($response);
     }
 
-    public function listPaymentInstruction(ListAuthorizationPaymentsRequestDTO $queryParams): ?ListAuthorizationPaymentResponseDTO
+    public function listPaymentInstruction(ListAuthorizationPaymentsRequestDTO $queryParams): ListAuthorizationPaymentResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/pix/automatic/paymentInstructions' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/paymentInstructions', $queryParams->toArray());
         return ListAuthorizationPaymentResponseDTO::fromArray($response);
     }
 }

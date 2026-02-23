@@ -12,37 +12,37 @@ use SistemAtc\Asaas\DTO\Response\EscrowAccount\FinishPaymentEscrowResponseDTO;
 class EscrowAccount extends BaseMethods
 {
 
-    public function SaveOrUpdateEscrowAccount(string $id, EscrowAccountRequestDTO $data): ?EscrowAccountResponseDTO
+    public function SaveOrUpdateEscrowAccount(string $id, EscrowAccountRequestDTO $data): EscrowAccountResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/accounts/{$id}/escrow", $data->toArray());
         return EscrowAccountResponseDTO::fromArray($response);
     }
 
-    public function CreateDefaultEscrowAccount(EscrowAccountRequestDTO $data): ?EscrowAccountResponseDTO
+    public function CreateDefaultEscrowAccount(EscrowAccountRequestDTO $data): EscrowAccountResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/accounts/escrow", $data->toArray());
         return EscrowAccountResponseDTO::fromArray($response);
     }
 
-    public function FinishPaymentEscrow(string $id): ?FinishPaymentEscrowResponseDTO
+    public function FinishPaymentEscrow(string $id): FinishPaymentEscrowResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/escrow/{$id}/finish");
         return FinishPaymentEscrowResponseDTO::fromArray($response);
     }
 
-    public function retrieveEscrowAccount(string $id): ?EscrowAccountResponseDTO
+    public function retrieveEscrowAccount(string $id): EscrowAccountResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/accounts/{$id}/escrow");
         return EscrowAccountResponseDTO::fromArray($response);
     }
 
-    public function retrieveDefaultEscrowAccount(): ?EscrowAccountResponseDTO
+    public function retrieveDefaultEscrowAccount(): EscrowAccountResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/accounts/escrow");
         return EscrowAccountResponseDTO::fromArray($response);
     }
 
-    public function retrievePaymentEscrow(string $id): ?EscrowResponseDTO
+    public function retrievePaymentEscrow(string $id): EscrowResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/escrow");
         return EscrowResponseDTO::fromArray($response);

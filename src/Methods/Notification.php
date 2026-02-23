@@ -11,13 +11,13 @@ use SistemAtc\Asaas\DTO\Response\Notification\UpdateNotificationBatchResponseDTO
 
 class Notification extends BaseMethods
 {
-    public function updateExistingNotification(string $id, UpdateNotificationRequestDTO $data): ?NotificationResponse
+    public function updateExistingNotification(string $id, UpdateNotificationRequestDTO $data): NotificationResponse
     {
         $response = $this->makeRequest(HttpMethod::PUT,"/notifications/{$id}",$data->toArray());
         return NotificationResponse::fromArray($response);
     }
     
-    public function updateExistingNotificationsinBatch(UpdateNotificationBatchRequestDTO $data): ?UpdateNotificationBatchResponseDTO
+    public function updateExistingNotificationsinBatch(UpdateNotificationBatchRequestDTO $data): UpdateNotificationBatchResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::PUT,"/notifications/batch",$data->toArray());
         return UpdateNotificationBatchResponseDTO::fromArray($response);

@@ -69,6 +69,5 @@ return [
         'path' => env('ASAAS_ROUTE_EVENTS', '/asaas-events'),
         'route_name' => env('ASAAS_ROUTE_EVENTS_NAME', 'asaas.webhook'),
     ], 
-        
 
 ];

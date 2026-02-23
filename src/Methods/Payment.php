@@ -16,39 +16,37 @@ use SistemAtc\Asaas\DTO\Response\Payment\PaymentBilingInformationResponseDTO;
 class Payment extends BaseMethods
 {
 
-    public function createNewPayment(CreatePaymentRequestDTO $data): ?PaymentResponseDTO
+    public function createNewPayment(CreatePaymentRequestDTO $data): PaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
         return PaymentResponseDTO::fromArray($response);
     }
 
-    public function listPayments(ListPaymentRequestDTO $queryParams): ?ListPaymentResponseDTO
+    public function listPayments(ListPaymentRequestDTO $queryParams): ListPaymentResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/payments' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/payments', $queryParams->toArray());
         return ListPaymentResponseDTO::fromarray($response);
     }
 
-    public function createNewPaymentWithCreditCard(CreditCardPaymentRequestDTO $data): ?PaymentResponseDTO 
+    public function createNewPaymentWithCreditCard(CreditCardPaymentRequestDTO $data): PaymentResponseDTO 
     {
         $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
         return PaymentResponseDTO::fromArray($response);
     }
 
-    public function CapturePaymentWithPreAuthorization(string $id): ?PaymentResponseDTO
+    public function CapturePaymentWithPreAuthorization(string $id): PaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/captureAuthorizedPayment");
         return PaymentResponseDTO::fromArray($response);
     }
 
-    public function payChargeWithCreditCard(string $id, PayChargeWithCreditCardRequestDTO $data): ?PaymentResponseDTO
+    public function payChargeWithCreditCard(string $id, PayChargeWithCreditCardRequestDTO $data): PaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/payWithCreditCard", $data->toArray());
         return PaymentResponseDTO::fromArray($response);
     }
 
-    public function retrievePaymentBillingInformation(string $id): ?PaymentBilingInformationResponseDTO
+    public function retrievePaymentBillingInformation(string $id): PaymentBilingInformationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/billingInfo");
         return PaymentBilingInformationResponseDTO::fromarray($response);
@@ -70,7 +68,7 @@ class Payment extends BaseMethods
 
     public function getDigitableBillLine(){}
 
-    public function getQRCodeForPixPayments(string $id): ?QrCodeResponseDTO
+    public function getQRCodeForPixPayments(string $id): QrCodeResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/pixQrCode",);
         return QrCodeResponseDTO::fromArray($response);

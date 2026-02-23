@@ -12,21 +12,19 @@ use SistemAtc\Asaas\DTO\Request\CreditBureauReport\ListCreditBureauReportsRespon
 class CreditBureauReport extends BaseMethods
 {
 
-    public function makeConsultation(MakeConsultationRequestDTO $data): ?MakeConsultationResponseDTO
+    public function makeConsultation(MakeConsultationRequestDTO $data): MakeConsultationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/creditBureauReport", $data->toArray());
         return MakeConsultationResponseDTO::fromArray($response);
     }
 
-    public function listCreditBureauReports(ListCreditBureauReportsRequestDTO $queryParams): ?ListCreditBureauReportsResponseDTO
+    public function listCreditBureauReports(ListCreditBureauReportsRequestDTO $queryParams): ListCreditBureauReportsResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/creditBureauReport' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/creditBureauReport', $queryParams->toArray());
         return ListCreditBureauReportsResponseDTO::fromArray($response);
     }
 
-    public function retrieveCreditBureauReport(string $id): ?MakeConsultationResponseDTO
+    public function retrieveCreditBureauReport(string $id): MakeConsultationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/creditBureauReport/{$id}");
         return MakeConsultationResponseDTO::fromArray($response);

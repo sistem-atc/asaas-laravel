@@ -17,51 +17,49 @@ use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationLimitsResponse
 class Anticipation extends BaseMethods
 {
 
-    public function retrieveSingleAnticipation(string $anticipationId): ?RetrieveAnticipationResponseDTO
+    public function retrieveSingleAnticipation(string $anticipationId): RetrieveAnticipationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/anticipations/{$anticipationId}");
         return RetrieveAnticipationResponseDTO::fromArray($response);
     }
 
-    public function requestAnticipation(RequestAnticipationRequestDTO $data): ?RetrieveAnticipationResponseDTO
+    public function requestAnticipation(RequestAnticipationRequestDTO $data): RetrieveAnticipationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/anticipations", $data->toMultipart());
         return RetrieveAnticipationResponseDTO::fromArray($response);
     }
 
-    public function listAnticipations(ListAnticipationFilterRequestDTO $queryParams): ?ListAnticipationResponseDTO
+    public function listAnticipations(ListAnticipationFilterRequestDTO $queryParams): ListAnticipationResponseDTO
     {
-        $query = $queryParams ? '?' . http_build_query($queryParams->toArray()) : '';
-        $endpoint = '/anticipations' . $query;
-        $response = $this->makeRequest(HttpMethod::GET, $endpoint);
+        $response = $this->makeRequest(HttpMethod::GET, '/anticipations', $queryParams->toArray());
         return ListAnticipationResponseDTO::fromArray($response);
     }
 
-    public function simulateAnticipation(SimulateAnticipationRequestDTO $data): ?SimulateAnticipationResponseDTO
+    public function simulateAnticipation(SimulateAnticipationRequestDTO $data): SimulateAnticipationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/anticipations/simulate", $data->toArray());
         return SimulateAnticipationResponseDTO::fromArray($response);
     }
 
-    public function updateStatusAutomaticAnticipation(UpdateAutomaticAnticipationRequestDTO $data): ?AutomaticAnticipationConfigResponseDTO
+    public function updateStatusAutomaticAnticipation(UpdateAutomaticAnticipationRequestDTO $data): AutomaticAnticipationConfigResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::PUT, "/anticipations/configurations", $data->toArray());
         return AutomaticAnticipationConfigResponseDTO::fromArray($response);
     }
 
-    public function retrieveStatusAutomaticAnticipation(): ?AutomaticAnticipationConfigResponseDTO
+    public function retrieveStatusAutomaticAnticipation(): AutomaticAnticipationConfigResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/anticipations/configurations");
         return AutomaticAnticipationConfigResponseDTO::fromArray($response);
     }
 
-    public function retrieveAnticipationLimits(): ?RetrieveAnticipationLimitsResponseDTO
+    public function retrieveAnticipationLimits(): RetrieveAnticipationLimitsResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/anticipations/limits");
         return RetrieveAnticipationLimitsResponseDTO::fromArray($response);
     }
 
-    public function cancelAnticipation(string $anticipationId): ?RetrieveAnticipationResponseDTO
+    public function cancelAnticipation(string $anticipationId): RetrieveAnticipationResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/anticipations/{$anticipationId}/cancel");
         return RetrieveAnticipationResponseDTO::fromArray($response);

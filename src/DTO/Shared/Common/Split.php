@@ -23,5 +23,6 @@ class Split implements DTOInterface
         public readonly ?StatusSplit $status = null,
         public readonly ?string $externalReference = null,
         public readonly ?string $description = null,
+        public readonly ?int $installmentNumber = null,
         ) {}
 }

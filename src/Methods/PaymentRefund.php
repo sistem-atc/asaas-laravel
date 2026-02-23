@@ -9,13 +9,13 @@ use SistemAtc\Asaas\DTO\Response\PaymentRefund\RetrieveSinglePaymentResponseDTO;
 
 class PaymentRefund extends BaseMethods
 {
-    public function retrieveRefundsSinglePayment(string $id): ?RetrieveSinglePaymentResponseDTO
+    public function retrieveRefundsSinglePayment(string $id): RetrieveSinglePaymentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/refunds");
         return RetrieveSinglePaymentResponseDTO::fromArray($response);
     }
     
-    public function refundBankSlip(string $id): ?RefundBankSlipResponseDTO
+    public function refundBankSlip(string $id): RefundBankSlipResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/bankSlip/refund");
         return RefundBankSlipResponseDTO::fromArray($response);

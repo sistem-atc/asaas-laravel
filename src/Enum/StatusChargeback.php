@@ -5,11 +5,11 @@ namespace SistemAtc\Asaas\Enum;
 enum StatusChargeback: string
 {
 
-    case REQUESTED = 'Requested';
-    case IN_DISPUTE = 'In Dispute';
-    case DISPUTE_LOST = 'Dispute Lost';
-    case REVERSED = 'Reversed';
-    case DONE = 'Done';
+    case REQUESTED = 'REQUESTED';
+    case IN_DISPUTE = 'IN_DISPUTE';
+    case DISPUTE_LOST = 'DISPUTE_LOST';
+    case REVERSED = 'REVERSED';
+    case DONE = 'DONE';
 
     public function getLabel(): ?string
     {
