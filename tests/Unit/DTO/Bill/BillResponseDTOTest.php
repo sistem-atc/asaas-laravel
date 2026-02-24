@@ -12,7 +12,7 @@ class BillResponseDTOTest extends TestCase
         $data = [
             'id' => 'bill_123456',
             'value' => 100,
-            'status' => 'OPEN',
+            'status' => 'PENDING',
         ];
 
         $dto = BillResponseDTO::fromArray($data);
@@ -25,7 +25,7 @@ class BillResponseDTOTest extends TestCase
         $data = [
             'id' => 'bill_123456',
             'value' => 100,
-            'status' => 'OPEN',
+            'status' => 'PENDING',
         ];
 
         $dto = BillResponseDTO::fromArray($data);
@@ -39,7 +39,7 @@ class BillResponseDTOTest extends TestCase
         $data = [
             'id' => 'bill_123456',
             'value' => 100,
-            'status' => 'OPEN',
+            'status' => 'PENDING',
         ];
 
         $dto = BillResponseDTO::fromArray($data);

@@ -32,6 +32,7 @@ class AsaasServiceRegistry
             'installment' =>            \SistemAtc\Asaas\Methods\Installment::class,
             'paymentSplit' =>           \SistemAtc\Asaas\Methods\PaymentSplit::class,
             'pix' =>                    \SistemAtc\Asaas\Methods\Pix::class,
+            'pixTransaction' =>         \SistemAtc\Asaas\Methods\PixTransaction::class,
             'automaticPix' =>           \SistemAtc\Asaas\Methods\AutomaticPix::class,
             'recurringPix' =>           \SistemAtc\Asaas\Methods\RecurringPix::class,
             'subAccount' =>             \SistemAtc\Asaas\Methods\Subaccount::class,

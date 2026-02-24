@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \SistemAtc\Asaas\Methods\PaymentRefund paymentRefund()
  * @method static \SistemAtc\Asaas\Methods\PaymentSplit paymentSplit()
  * @method static \SistemAtc\Asaas\Methods\Pix pix()
+ * @method static \SistemAtc\Asaas\Methods\PixTransaction pixTransaction()
  * @method static \SistemAtc\Asaas\Methods\RecurringPix recurringPix()
  * @method static \SistemAtc\Asaas\Methods\Subaccount subaccount()
  * @method static \SistemAtc\Asaas\Methods\Subscription subscription()

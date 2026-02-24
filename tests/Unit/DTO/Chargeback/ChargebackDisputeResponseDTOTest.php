@@ -11,7 +11,7 @@ class ChargebackDisputeResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'cbd_123456',
-            'status' => 'SUBMITTED',
+            'status' => 'REQUESTED',
         ];
 
         $dto = ChargebackDisputeResponseDTO::fromArray($data);
@@ -23,7 +23,7 @@ class ChargebackDisputeResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'cbd_123456',
-            'status' => 'SUBMITTED',
+            'status' => 'REQUESTED',
         ];
 
         $dto = ChargebackDisputeResponseDTO::fromArray($data);
@@ -36,7 +36,7 @@ class ChargebackDisputeResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'cbd_123456',
-            'status' => 'SUBMITTED',
+            'status' => 'REQUESTED',
         ];
 
         $dto = ChargebackDisputeResponseDTO::fromArray($data);

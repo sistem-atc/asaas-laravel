@@ -14,11 +14,11 @@ class BalanceWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Balance $balance,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Balance $balance = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

@@ -11,8 +11,8 @@ class ChargebackResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'chb_123456',
-            'status' => 'OPEN',
-            'reason' => 'FORNECIMENTO_NAO_CUMPRIDO',
+            'status' => 'REQUESTED',
+            'reason' => 'CARD_FRAUD',
         ];
 
         $dto = ChargebackResponseDTO::fromArray($data);
@@ -24,8 +24,8 @@ class ChargebackResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'chb_123456',
-            'status' => 'OPEN',
-            'reason' => 'FORNECIMENTO_NAO_CUMPRIDO',
+            'status' => 'REQUESTED',
+            'reason' => 'CARD_FRAUD',
         ];
 
         $dto = ChargebackResponseDTO::fromArray($data);
@@ -38,8 +38,8 @@ class ChargebackResponseDTOTest extends TestCase
     {
         $data = [
             'id' => 'chb_123456',
-            'status' => 'OPEN',
-            'reason' => 'FORNECIMENTO_NAO_CUMPRIDO',
+            'status' => 'REQUESTED',
+            'reason' => 'CARD_FRAUD',
         ];
 
         $dto = ChargebackResponseDTO::fromArray($data);

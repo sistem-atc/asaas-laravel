@@ -2,13 +2,14 @@
 
 namespace SistemAtc\Asaas\DTO\Webhook;
 
+use SistemAtc\Asaas\DTO\Shared\Webhook\PaymentInstruction;
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
-use SistemAtc\Asaas\DTO\Shared\Webhook\InternalTransferData;
-use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\DTO\Shared\Webhook\Authorization;
 
-class InternalWebhookDTO extends BaseEventDTO
+class PixWebhookDTO extends BaseEventDTO
 {
 
     use CastToArray;
@@ -18,7 +19,8 @@ class InternalWebhookDTO extends BaseEventDTO
         ?WebhookEventAsaas $event = null,
         ?string $dateCreated = null,
         ?Account $account = null,
-        public readonly ?InternalTransferData $internalTransferData = null,
+        public readonly ?Authorization $authorization = null,
+        public readonly ?PaymentInstruction $paymentInstruction = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }
@@ -29,7 +31,8 @@ class InternalWebhookDTO extends BaseEventDTO
 
         return new static(
             ...$params,
-            internalTransferData: isset($data['internalTransferData']) ? InternalTransferData::fromArray($data['internalTransferData']) : null,
+            authorization: isset($data['authorization']) ? Authorization::fromArray($data['authorization']) : null,
+            paymentInstruction: isset($data['paymentInstruction']) ? PaymentInstruction::fromArray($data['paymentInstruction']) : null,
         );
     }
 }

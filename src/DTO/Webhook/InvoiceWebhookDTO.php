@@ -14,11 +14,11 @@ class InvoiceWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Invoice $invoice,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Invoice $invoice = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

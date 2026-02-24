@@ -14,11 +14,11 @@ class TransferWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Transfer $transfer,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Transfer $transfer = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

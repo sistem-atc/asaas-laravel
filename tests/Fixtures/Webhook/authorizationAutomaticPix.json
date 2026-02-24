@@ -1,0 +1,12 @@
+{
+  "event": "PIX_AUTOMATIC_RECURRING_PAYMENT_INSTRUCTION_SCHEDULED",
+  "paymentInstruction": {
+    "id": "f6559451-cb41-4ec6-8487-2cda59a5f184",
+    "status": "SCHEDULED",
+    "dueDate": "2024-10-04",
+    "payment": "pay_080225913252",
+    "authorization": {
+      "id": "c6b180f0-2196-454c-ac7e-72d662286bd1"
+    }
+  }
+}

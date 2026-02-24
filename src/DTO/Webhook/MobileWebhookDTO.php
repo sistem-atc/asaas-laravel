@@ -14,11 +14,11 @@ class MobileWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Mobile $mobilePhoneRecharge,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Mobile $mobilePhoneRecharge = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

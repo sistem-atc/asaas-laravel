@@ -10,6 +10,7 @@ use SistemAtc\Asaas\DTO\Webhook\InvoiceWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\PaymentWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\CheckoutWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\InternalWebhookDTO;
+use SistemAtc\Asaas\DTO\Webhook\PixWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\TransferWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\ReceivableWebhookDTO;
 use SistemAtc\Asaas\DTO\Webhook\AccessTokenWebhookDTO;
@@ -37,6 +38,7 @@ class AsaasWebhookRegistry
             'BALANCE'       => BalanceWebhookDTO::fromArray($payload),
             'INTERNAL'      => InternalWebhookDTO::fromArray($payload),
             'ACCESS'        => AccessTokenWebhookDTO::fromArray($payload),
+            'PIX'           => PixWebhookDTO::fromArray($payload),
             default         => self::handleUnknownEvent($event),
         };
     }

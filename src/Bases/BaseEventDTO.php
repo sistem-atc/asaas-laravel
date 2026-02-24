@@ -12,7 +12,11 @@ abstract class BaseEventDTO extends BaseWebhookEventDTO
 
     use CastToArray;
 
-    protected function __construct(?string $id, ?WebhookEventAsaas $event, ?string $dateCreated, ?Account $account)
+    protected function __construct(
+        ?string $id = null, 
+        ?WebhookEventAsaas $event = null, 
+        ?string $dateCreated = null, 
+        ?Account $account = null)
     {
         parent::__construct($id, $event, $dateCreated, $account);
     }

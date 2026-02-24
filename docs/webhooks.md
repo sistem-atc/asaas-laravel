@@ -1,6 +1,6 @@
 # 🪝 Sistema de Webhooks
 
-O sistema de webhooks deste pacote é completo e robusto, suportando **mais de 100 eventos** diferentes do Asaas com processamento assíncrono, idempotência e validação de segurança.
+O sistema de webhooks deste pacote é completo e robusto, suportando **112 eventos** diferentes do Asaas com processamento assíncrono, idempotência e validação de segurança.
 
 ## 📋 Índice
 
@@ -19,26 +19,24 @@ O sistema de webhooks deste pacote é completo e robusto, suportando **mais de 1
 1. **Recebimento**: O Asaas envia um webhook para a URL configurada
 2. **Validação**: O middleware `AsaasTokenValid` valida o token de segurança
 3. **Validação de Payload**: O controller valida tamanho e conteúdo do payload
-4. **Dispatch de Job**: O payload é enviado para processamento assíncrono via `ProcessAsaasWebhook`
+4. **Dispatch de Job**: O payload é enviado para processamento assíncrono pela fila via `ProcessAsaasWebhook`
 5. **Idempotência**: Verifica se o evento já foi processado
-6. **Mapeamento**: O sistema mapeia o evento para o handler correspondente
+6. **Mapeamento**: Mapeamento de evento interno
 7. **Dispatch de Event**: Dispara o evento Laravel correspondente
-8. **Execução do Handler**: Executa o método específico do handler
+8. **Seus Listeners são executados**: Caso tenha configurado um listener ele é executado
 
 ### Arquitetura
 
 ```
 Asaas → Webhook Endpoint → Middleware (Validação) → Controller → Job (Assíncrono)
                                                                     ↓
-                                                              Idempotência Check
+                                                                Idempotência Check
                                                                     ↓
-                                                              Mapeamento de Evento
+                                                                Mapeamento de Evento
                                                                     ↓
-                                                              Handler Específico
+                                                                Evento Laravel
                                                                     ↓
-                                                              Event Laravel
-                                                                    ↓
-                                                              Seus Listeners
+                                                                Seus Listeners
 ```
 
 ## ⚙️ Configuração
@@ -81,163 +79,178 @@ Se precisar desabilitar a validação de token (apenas para testes locais):
 
 ## 📊 Eventos Disponíveis
 
-O sistema suporta **102 eventos** diferentes, organizados por categoria:
+O sistema suporta **112 eventos** diferentes, organizados por categoria:
 
 ### 💰 Eventos de Pagamento (Payment)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `PAYMENT_CREATED` | Cobrança criada | `PaymentHandler::created()` |
-| `PAYMENT_AWAITING_RISK_ANALYSIS` | Aguardando análise de risco | `PaymentHandler::awaitingRiskAnalysis()` |
-| `PAYMENT_APPROVED_BY_RISK_ANALYSIS` | Aprovado por análise de risco | `PaymentHandler::approvedByRiskAnalysis()` |
-| `PAYMENT_REPROVED_BY_RISK_ANALYSIS` | Reprovado por análise de risco | `PaymentHandler::reprovedByRiskAnalysis()` |
-| `PAYMENT_AUTHORIZED` | Pagamento autorizado | `PaymentHandler::authorized()` |
-| `PAYMENT_UPDATED` | Cobrança atualizada | `PaymentHandler::updated()` |
-| `PAYMENT_CONFIRMED` | Pagamento confirmado (saldo pendente) | `PaymentHandler::confirmed()` |
-| `PAYMENT_RECEIVED` | Cobrança recebida | `PaymentHandler::received()` |
-| `PAYMENT_CREDIT_CARD_CAPTURE_REFUSED` | Falha na captura do cartão | `PaymentHandler::creditCardCaptureRefused()` |
-| `PAYMENT_ANTICIPATED` | Cobrança antecipada | `PaymentHandler::anticipated()` |
-| `PAYMENT_OVERDUE` | Cobrança vencida | `PaymentHandler::overdue()` |
-| `PAYMENT_DELETED` | Cobrança removida | `PaymentHandler::deleted()` |
-| `PAYMENT_RESTORED` | Cobrança restaurada | `PaymentHandler::restored()` |
-| `PAYMENT_REFUNDED` | Cobrança estornada | `PaymentHandler::refunded()` |
-| `PAYMENT_PARTIALLY_REFUNDED` | Cobrança estornada parcialmente | `PaymentHandler::partiallyRefunded()` |
-| `PAYMENT_REFUND_IN_PROGRESS` | Estorno em processamento | `PaymentHandler::refundInProgress()` |
-| `PAYMENT_RECEIVED_IN_CASH_UNDONE` | Recebimento em dinheiro desfeito | `PaymentHandler::receivedInCashUndone()` |
-| `PAYMENT_CHARGEBACK_REQUESTED` | Chargeback recebido | `PaymentHandler::chargebackRequested()` |
-| `PAYMENT_CHARGEBACK_DISPUTE` | Em disputa de chargeback | `PaymentHandler::chargebackDispute()` |
-| `PAYMENT_AWAITING_CHARGEBACK_REVERSAL` | Aguardando repasse de chargeback | `PaymentHandler::awaitingChargebackReversal()` |
-| `PAYMENT_DUNNING_RECEIVED` | Recebimento de negativação | `PaymentHandler::dunningReceived()` |
-| `PAYMENT_DUNNING_REQUESTED` | Requisição de negativação | `PaymentHandler::dunningRequested()` |
-| `PAYMENT_BANK_SLIP_VIEWED` | Boleto visualizado | `PaymentHandler::bankSlipViewed()` |
-| `PAYMENT_CHECKOUT_VIEWED` | Fatura visualizada | `PaymentHandler::checkoutViewed()` |
-| `PAYMENT_SPLIT_CANCELLED` | Split de pagamento cancelado | `PaymentHandler::splitCancelled()` |
-| `PAYMENT_SPLIT_DIVERGENCE_BLOCK` | Bloqueio por divergência de split | `PaymentHandler::splitDivergenceBlock()` |
-| `PAYMENT_SPLIT_DIVERGENCE_BLOCK_FINISHED` | Bloqueio de split finalizado | `PaymentHandler::splitDivergenceBlockFinished()` |
+| Evento                                    | Descrição                             | Evento Laravel      |
+| ----------------------------------------- | ------------------------------------- | ------------------- |
+| `PAYMENT_CREATED`                         | Cobrança criada                       | `AsaasPaymentEvent` |
+| `PAYMENT_AWAITING_RISK_ANALYSIS`          | Aguardando análise de risco           | `AsaasPaymentEvent` |
+| `PAYMENT_APPROVED_BY_RISK_ANALYSIS`       | Aprovado por análise de risco         | `AsaasPaymentEvent` |
+| `PAYMENT_REPROVED_BY_RISK_ANALYSIS`       | Reprovado por análise de risco        | `AsaasPaymentEvent` |
+| `PAYMENT_AUTHORIZED`                      | Pagamento autorizado                  | `AsaasPaymentEvent` |
+| `PAYMENT_UPDATED`                         | Cobrança atualizada                   | `AsaasPaymentEvent` |
+| `PAYMENT_CONFIRMED`                       | Pagamento confirmado (saldo pendente) | `AsaasPaymentEvent` |
+| `PAYMENT_RECEIVED`                        | Cobrança recebida                     | `AsaasPaymentEvent` |
+| `PAYMENT_CREDIT_CARD_CAPTURE_REFUSED`     | Falha na captura do cartão            | `AsaasPaymentEvent` |
+| `PAYMENT_ANTICIPATED`                     | Cobrança antecipada                   | `AsaasPaymentEvent` |
+| `PAYMENT_OVERDUE`                         | Cobrança vencida                      | `AsaasPaymentEvent` |
+| `PAYMENT_DELETED`                         | Cobrança removida                     | `AsaasPaymentEvent` |
+| `PAYMENT_RESTORED`                        | Cobrança restaurada                   | `AsaasPaymentEvent` |
+| `PAYMENT_REFUNDED`                        | Cobrança estornada                    | `AsaasPaymentEvent` |
+| `PAYMENT_PARTIALLY_REFUNDED`              | Cobrança estornada parcialmente       | `AsaasPaymentEvent` |
+| `PAYMENT_REFUND_IN_PROGRESS`              | Estorno em processamento              | `AsaasPaymentEvent` |
+| `PAYMENT_RECEIVED_IN_CASH_UNDONE`         | Recebimento em dinheiro desfeito      | `AsaasPaymentEvent` |
+| `PAYMENT_CHARGEBACK_REQUESTED`            | Chargeback recebido                   | `AsaasPaymentEvent` |
+| `PAYMENT_CHARGEBACK_DISPUTE`              | Em disputa de chargeback              | `AsaasPaymentEvent` |
+| `PAYMENT_AWAITING_CHARGEBACK_REVERSAL`    | Aguardando repasse de chargeback      | `AsaasPaymentEvent` |
+| `PAYMENT_DUNNING_RECEIVED`                | Recebimento de negativação            | `AsaasPaymentEvent` |
+| `PAYMENT_DUNNING_REQUESTED`               | Requisição de negativação             | `AsaasPaymentEvent` |
+| `PAYMENT_BANK_SLIP_VIEWED`                | Boleto visualizado                    | `AsaasPaymentEvent` |
+| `PAYMENT_CHECKOUT_VIEWED`                 | Fatura visualizada                    | `AsaasPaymentEvent` |
+| `PAYMENT_SPLIT_CANCELLED`                 | Split de pagamento cancelado          | `AsaasPaymentEvent` |
+| `PAYMENT_SPLIT_DIVERGENCE_BLOCK`          | Bloqueio por divergência de split     | `AsaasPaymentEvent` |
+| `PAYMENT_SPLIT_DIVERGENCE_BLOCK_FINISHED` | Bloqueio de split finalizado          | `AsaasPaymentEvent` |
 
 ### 🔄 Eventos de Assinatura (Subscription)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `SUBSCRIPTION_CREATED` | Assinatura criada | `SubscriptionHandler::created()` |
-| `SUBSCRIPTION_UPDATED` | Assinatura atualizada | `SubscriptionHandler::updated()` |
-| `SUBSCRIPTION_INACTIVATED` | Assinatura inativada | `SubscriptionHandler::inactivated()` |
-| `SUBSCRIPTION_DELETED` | Assinatura removida | `SubscriptionHandler::deleted()` |
-| `SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK` | Assinatura bloqueada por split | `SubscriptionHandler::splitDivergenceBlock()` |
-| `SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK_FINISHED` | Bloqueio de split finalizado | `SubscriptionHandler::splitDivergenceBlockFinished()` |
+| Evento                                         | Descrição                      | Evento Laravel           |
+| ---------------------------------------------- | ------------------------------ | ------------------------ |
+| `SUBSCRIPTION_CREATED`                         | Assinatura criada              | `AsaasSubscriptionEvent` |
+| `SUBSCRIPTION_UPDATED`                         | Assinatura atualizada          | `AsaasSubscriptionEvent` |
+| `SUBSCRIPTION_INACTIVATED`                     | Assinatura inativada           | `AsaasSubscriptionEvent` |
+| `SUBSCRIPTION_DELETED`                         | Assinatura removida            | `AsaasSubscriptionEvent` |
+| `SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK`          | Assinatura bloqueada por split | `AsaasSubscriptionEvent` |
+| `SUBSCRIPTION_SPLIT_DIVERGENCE_BLOCK_FINISHED` | Bloqueio de split finalizado   | `AsaasSubscriptionEvent` |
 
 ### 📄 Eventos de Nota Fiscal (Invoice)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `INVOICE_CREATED` | Nota fiscal criada | `InvoiceHandler::created()` |
-| `INVOICE_UPDATED` | Nota fiscal atualizada | `InvoiceHandler::updated()` |
-| `INVOICE_SYNCHRONIZED` | Nota fiscal enviada | `InvoiceHandler::synchronized()` |
-| `INVOICE_AUTHORIZED` | Nota fiscal emitida | `InvoiceHandler::authorized()` |
-| `INVOICE_PROCESSING_CANCELLATION` | Cancelamento de NF em processamento | `InvoiceHandler::processingCancellation()` |
-| `INVOICE_CANCELED` | Nota fiscal cancelada | `InvoiceHandler::canceled()` |
-| `INVOICE_CANCELLATION_DENIED` | Cancelamento de NF recusado | `InvoiceHandler::cancellationDenied()` |
-| `INVOICE_ERROR` | Nota fiscal com erro | `InvoiceHandler::error()` |
+| Evento                            | Descrição                           | Evento Laravel      |
+| --------------------------------- | ----------------------------------- | ------------------- |
+| `INVOICE_CREATED`                 | Nota fiscal criada                  | `AsaasInvoiceEvent` |
+| `INVOICE_UPDATED`                 | Nota fiscal atualizada              | `AsaasInvoiceEvent` |
+| `INVOICE_SYNCHRONIZED`            | Nota fiscal enviada                 | `AsaasInvoiceEvent` |
+| `INVOICE_AUTHORIZED`              | Nota fiscal emitida                 | `AsaasInvoiceEvent` |
+| `INVOICE_PROCESSING_CANCELLATION` | Cancelamento de NF em processamento | `AsaasInvoiceEvent` |
+| `INVOICE_CANCELED`                | Nota fiscal cancelada               | `AsaasInvoiceEvent` |
+| `INVOICE_CANCELLATION_DENIED`     | Cancelamento de NF recusado         | `AsaasInvoiceEvent` |
+| `INVOICE_ERROR`                   | Nota fiscal com erro                | `AsaasInvoiceEvent` |
 
 ### 💸 Eventos de Transferência (Transfer)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `TRANSFER_CREATED` | Transferência criada | `TransferHandler::created()` |
-| `TRANSFER_PENDING` | Transferência pendente | `TransferHandler::pending()` |
-| `TRANSFER_IN_BANK_PROCESSING` | Transferência em processamento bancário | `TransferHandler::inBankProcessing()` |
-| `TRANSFER_BLOCKED` | Transferência bloqueada | `TransferHandler::blocked()` |
-| `TRANSFER_DONE` | Transferência realizada | `TransferHandler::done()` |
-| `TRANSFER_FAILED` | Transferência falhou | `TransferHandler::failed()` |
-| `TRANSFER_CANCELLED` | Transferência cancelada | `TransferHandler::cancelled()` |
+| Evento                        | Descrição                               | Evento Laravel       |
+| ----------------------------- | --------------------------------------- | -------------------- |
+| `TRANSFER_CREATED`            | Transferência criada                    | `AsaasTransferEvent` |
+| `TRANSFER_PENDING`            | Transferência pendente                  | `AsaasTransferEvent` |
+| `TRANSFER_IN_BANK_PROCESSING` | Transferência em processamento bancário | `AsaasTransferEvent` |
+| `TRANSFER_BLOCKED`            | Transferência bloqueada                 | `AsaasTransferEvent` |
+| `TRANSFER_DONE`               | Transferência realizada                 | `AsaasTransferEvent` |
+| `TRANSFER_FAILED`             | Transferência falhou                    | `AsaasTransferEvent` |
+| `TRANSFER_CANCELLED`          | Transferência cancelada                 | `AsaasTransferEvent` |
 
 ### 🧾 Eventos de Conta (Bill)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `BILL_CREATED` | Pague Contas criado | `BillHandler::created()` |
-| `BILL_PENDING` | Pague Contas pendente | `BillHandler::pending()` |
-| `BILL_BANK_PROCESSING` | Pague Contas em processamento bancário | `BillHandler::bankProcessing()` |
-| `BILL_PAID` | Pague Contas pago | `BillHandler::paid()` |
-| `BILL_CANCELLED` | Pague Contas cancelado | `BillHandler::cancelled()` |
-| `BILL_FAILED` | Pague Contas falhou | `BillHandler::failed()` |
-| `BILL_REFUNDED` | Pague Contas estornado | `BillHandler::refunded()` |
+| Evento                 | Descrição                              | Evento Laravel   |
+| ---------------------- | -------------------------------------- | ---------------- |
+| `BILL_CREATED`         | Pague Contas criado                    | `AsaasBillEvent` |
+| `BILL_PENDING`         | Pague Contas pendente                  | `AsaasBillEvent` |
+| `BILL_BANK_PROCESSING` | Pague Contas em processamento bancário | `AsaasBillEvent` |
+| `BILL_PAID`            | Pague Contas pago                      | `AsaasBillEvent` |
+| `BILL_CANCELLED`       | Pague Contas cancelado                 | `AsaasBillEvent` |
+| `BILL_FAILED`          | Pague Contas falhou                    | `AsaasBillEvent` |
+| `BILL_REFUNDED`        | Pague Contas estornado                 | `AsaasBillEvent` |
 
 ### 📈 Eventos de Antecipação (Receivable)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `RECEIVABLE_ANTICIPATION_CANCELLED` | Antecipação cancelada | `ReceivableHandler::anticipationCancelled()` |
-| `RECEIVABLE_ANTICIPATION_SCHEDULED` | Antecipação agendada | `ReceivableHandler::anticipationScheduled()` |
-| `RECEIVABLE_ANTICIPATION_PENDING` | Antecipação em análise | `ReceivableHandler::anticipationPending()` |
-| `RECEIVABLE_ANTICIPATION_CREDITED` | Antecipação creditada | `ReceivableHandler::anticipationCredited()` |
-| `RECEIVABLE_ANTICIPATION_DEBITED` | Antecipação debitada | `ReceivableHandler::anticipationDebited()` |
-| `RECEIVABLE_ANTICIPATION_DENIED` | Solicitação de antecipação negada | `ReceivableHandler::anticipationDenied()` |
-| `RECEIVABLE_ANTICIPATION_OVERDUE` | Antecipação vencida | `ReceivableHandler::anticipationOverdue()` |
+| Evento                              | Descrição                         | Evento Laravel         |
+| ----------------------------------- | --------------------------------- | ---------------------- |
+| `RECEIVABLE_ANTICIPATION_CANCELLED` | Antecipação cancelada             | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_SCHEDULED` | Antecipação agendada              | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_PENDING`   | Antecipação em análise            | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_CREDITED`  | Antecipação creditada             | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_DEBITED`   | Antecipação debitada              | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_DENIED`    | Solicitação de antecipação negada | `AsaasReceivableEvent` |
+| `RECEIVABLE_ANTICIPATION_OVERDUE`   | Antecipação vencida               | `AsaasReceivableEvent` |
 
 ### 📱 Eventos de Recarga (Mobile)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `MOBILE_PHONE_RECHARGE_PENDING` | Recarga de celular pendente | `MobileHandler::phoneRechargePending()` |
-| `MOBILE_PHONE_RECHARGE_CANCELLED` | Recarga de celular cancelada | `MobileHandler::phoneRechargeCancelled()` |
-| `MOBILE_PHONE_RECHARGE_CONFIRMED` | Recarga de celular confirmada | `MobileHandler::phoneRechargeConfirmed()` |
-| `MOBILE_PHONE_RECHARGE_REFUNDED` | Recarga de celular estornada | `MobileHandler::phoneRechargeRefunded()` |
+| Evento                            | Descrição                     | Evento Laravel     |
+| --------------------------------- | ----------------------------- | ------------------ |
+| `MOBILE_PHONE_RECHARGE_PENDING`   | Recarga de celular pendente   | `AsaasMobileEvent` |
+| `MOBILE_PHONE_RECHARGE_CANCELLED` | Recarga de celular cancelada  | `AsaasMobileEvent` |
+| `MOBILE_PHONE_RECHARGE_CONFIRMED` | Recarga de celular confirmada | `AsaasMobileEvent` |
+| `MOBILE_PHONE_RECHARGE_REFUNDED`  | Recarga de celular estornada  | `AsaasMobileEvent` |
 
 ### 🏦 Eventos de Conta (Account)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED` | Conta bancária aprovada | `AccountHandler::statusBankAccountInfoApproved()` |
-| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL` | Conta bancária em análise | `AccountHandler::statusBankAccountInfoAwaitingApproval()` |
-| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING` | Conta bancária pendente | `AccountHandler::statusBankAccountInfoPending()` |
-| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED` | Conta bancária reprovada | `AccountHandler::statusBankAccountInfoRejected()` |
-| `ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED` | Info. comerciais aprovadas | `AccountHandler::statusCommercialInfoApproved()` |
-| `ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL` | Info. comerciais em análise | `AccountHandler::statusCommercialInfoAwaitingApproval()` |
-| `ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING` | Info. comerciais pendentes | `AccountHandler::statusCommercialInfoPending()` |
-| `ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED` | Info. comerciais reprovadas | `AccountHandler::statusCommercialInfoRejected()` |
-| `ACCOUNT_STATUS_DOCUMENT_APPROVED` | Documentos aprovados | `AccountHandler::statusDocumentApproved()` |
-| `ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL` | Documentos em análise | `AccountHandler::statusDocumentAwaitingApproval()` |
-| `ACCOUNT_STATUS_DOCUMENT_PENDING` | Documentos pendentes | `AccountHandler::statusDocumentPending()` |
-| `ACCOUNT_STATUS_DOCUMENT_REJECTED` | Documentos reprovados | `AccountHandler::statusDocumentRejected()` |
-| `ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED` | Conta aprovada | `AccountHandler::statusGeneralApprovalApproved()` |
-| `ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL` | Conta em análise geral | `AccountHandler::statusGeneralApprovalAwaitingApproval()` |
-| `ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING` | Conta pendente geral | `AccountHandler::statusGeneralApprovalPending()` |
-| `ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED` | Conta reprovada geral | `AccountHandler::statusGeneralApprovalRejected()` |
+| Evento                                               | Descrição                   | Evento Laravel      |
+| ---------------------------------------------------- | --------------------------- | ------------------- |
+| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_APPROVED`          | Conta bancária aprovada     | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_AWAITING_APPROVAL` | Conta bancária em análise   | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_PENDING`           | Conta bancária pendente     | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_BANK_ACCOUNT_INFO_REJECTED`          | Conta bancária reprovada    | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_COMMERCIAL_INFO_APPROVED`            | Info. comerciais aprovadas  | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_COMMERCIAL_INFO_AWAITING_APPROVAL`   | Info. comerciais em análise | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_COMMERCIAL_INFO_PENDING`             | Info. comerciais pendentes  | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_COMMERCIAL_INFO_REJECTED`            | Info. comerciais reprovadas | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_DOCUMENT_APPROVED`                   | Documentos aprovados        | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_DOCUMENT_AWAITING_APPROVAL`          | Documentos em análise       | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_DOCUMENT_PENDING`                    | Documentos pendentes        | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_DOCUMENT_REJECTED`                   | Documentos reprovados       | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_GENERAL_APPROVAL_APPROVED`           | Conta aprovada              | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_GENERAL_APPROVAL_AWAITING_APPROVAL`  | Conta em análise geral      | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_GENERAL_APPROVAL_PENDING`            | Conta pendente geral        | `AsaasAccountEvent` |
+| `ACCOUNT_STATUS_GENERAL_APPROVAL_REJECTED`           | Conta reprovada geral       | `AsaasAccountEvent` |
 
 ### 🛒 Eventos de Checkout
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `CHECKOUT_CREATED` | Checkout criado | `CheckoutHandler::created()` |
-| `CHECKOUT_CANCELED` | Checkout cancelado | `CheckoutHandler::canceled()` |
-| `CHECKOUT_EXPIRED` | Checkout expirado | `CheckoutHandler::expired()` |
-| `CHECKOUT_PAID` | Checkout pago | `CheckoutHandler::paid()` |
+| Evento              | Descrição          | Evento Laravel       |
+| ------------------- | ------------------ | -------------------- |
+| `CHECKOUT_CREATED`  | Checkout criado    | `AsaasCheckoutEvent` |
+| `CHECKOUT_CANCELED` | Checkout cancelado | `AsaasCheckoutEvent` |
+| `CHECKOUT_EXPIRED`  | Checkout expirado  | `AsaasCheckoutEvent` |
+| `CHECKOUT_PAID`     | Checkout pago      | `AsaasCheckoutEvent` |
 
 ### 💰 Eventos de Saldo (Balance)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `BALANCE_VALUE_BLOCKED` | Valor bloqueado no saldo | `BalanceHandler::valueBlocked()` |
-| `BALANCE_VALUE_UNBLOCKED` | Valor desbloqueado no saldo | `BalanceHandler::valueUnblocked()` |
+| Evento                    | Descrição                   | Evento Laravel      |
+| ------------------------- | --------------------------- | ------------------- |
+| `BALANCE_VALUE_BLOCKED`   | Valor bloqueado no saldo    | `AsaasBalanceEvent` |
+| `BALANCE_VALUE_UNBLOCKED` | Valor desbloqueado no saldo | `AsaasBalanceEvent` |
 
 ### 🔄 Eventos de Transferência Interna (Internal)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `INTERNAL_TRANSFER_CREDIT` | Crédito de transferência interna | `InternalHandler::transferCredit()` |
-| `INTERNAL_TRANSFER_DEBIT` | Débito de transferência interna | `InternalHandler::transferDebit()` |
+| Evento                     | Descrição                        | Evento Laravel       |
+| -------------------------- | -------------------------------- | -------------------- |
+| `INTERNAL_TRANSFER_CREDIT` | Crédito de transferência interna | `AsaasInternalEvent` |
+| `INTERNAL_TRANSFER_DEBIT`  | Débito de transferência interna  | `AsaasInternalEvent` |
 
 ### 🔑 Eventos de Token de Acesso (Access)
 
-| Evento | Descrição | Handler |
-|--------|-----------|---------|
-| `ACCESS_TOKEN_CREATED` | Chave de API criada | `AccessHandler::tokenCreated()` |
-| `ACCESS_TOKEN_ENABLED` | Chave de API reativada | `AccessHandler::tokenEnabled()` |
-| `ACCESS_TOKEN_DISABLED` | Chave de API desabilitada | `AccessHandler::tokenDisabled()` |
-| `ACCESS_TOKEN_DELETED` | Chave de API removida | `AccessHandler::tokenDeleted()` |
-| `ACCESS_TOKEN_EXPIRING_SOON` | Chave de API expirando em breve | `AccessHandler::tokenExpiringSoon()` |
-| `ACCESS_TOKEN_EXPIRED` | Chave de API expirada | `AccessHandler::tokenExpired()` |
+| Evento                       | Descrição                       | Evento Laravel     |
+| ---------------------------- | ------------------------------- | ------------------ |
+| `ACCESS_TOKEN_CREATED`       | Chave de API criada             | `AsaasAccessEvent` |
+| `ACCESS_TOKEN_ENABLED`       | Chave de API reativada          | `AsaasAccessEvent` |
+| `ACCESS_TOKEN_DISABLED`      | Chave de API desabilitada       | `AsaasAccessEvent` |
+| `ACCESS_TOKEN_DELETED`       | Chave de API removida           | `AsaasAccessEvent` |
+| `ACCESS_TOKEN_EXPIRING_SOON` | Chave de API expirando em breve | `AsaasAccessEvent` |
+| `ACCESS_TOKEN_EXPIRED`       | Chave de API expirada           | `AsaasAccessEvent` |
+
+### 🔑 Eventos de Pix Automatico (Pix)
+
+| Evento                                                  | Descrição                                          | Evento Laravel  |
+| ------------------------------------------------------- | -------------------------------------------------- | --------------- |
+| `PIX_AUTOMATIC_RECURRING_ELIGIBILITY_UPDATED`           | Elegibilidade para Pix Automático atualizada       | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_CREATED`         | Autorização de Pix Automático criada               | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_ACTIVATED`       | Autorização de Pix Automático ativada              | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_CANCELLED`       | Autorização de Pix Automático cancelada            | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_EXPIRED`         | Autorização de Pix Automático expirada             | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_AUTHORIZATION_REFUSED`         | Autorização de Pix Automático recusada             | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_PAYMENT_INSTRUCTION_CREATED`   | Instrução de pagamento do Pix Automático criada    | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_PAYMENT_INSTRUCTION_SCHEDULED` | Instrução de pagamento do Pix Automático agendada  | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_PAYMENT_INSTRUCTION_REFUSED`   | Instrução de pagamento do Pix Automático recusada  | `AsaasPixEvent` |
+| `PIX_AUTOMATIC_RECURRING_PAYMENT_INSTRUCTION_CANCELLED` | Instrução de pagamento do Pix Automático cancelada | `AsaasPixEvent` |
 
 ## 🎧 Criando Listeners
 
@@ -270,20 +283,21 @@ protected $listen = [
 namespace App\Listeners;
 
 use SistemAtc\Asaas\Events\AsaasPaymentEvent;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 
 class AsaasPaymentConfirmedListener
 {
     public function handle(AsaasPaymentEvent $event)
     {
         // Verificar o tipo de evento
-        if ($event->eventType === 'PAYMENT_CONFIRMED') {
+        if ($event->eventType === WebhookEventAsaas::PAYMENT_CONFIRMED->value) {
             $payment = $event->payload->payment;
-            
+
             // Processar pagamento confirmado
             $this->processPayment($payment);
         }
     }
-    
+
     private function processPayment($payment)
     {
         // Sua lógica aqui
@@ -296,12 +310,13 @@ class AsaasPaymentConfirmedListener
 
 ### 4. Acessar Dados do Webhook
 
-O evento `AsaasPaymentEvent` contém:
+Os eventos contém:
 
 - `$event->eventType`: Tipo do evento (ex: `PAYMENT_CONFIRMED`)
 - `$event->payload`: Objeto DTO com todos os dados do webhook
 
 **Exemplo para Payment:**
+
 ```php
 $payment = $event->payload->payment;
 $paymentId = $payment->id;
@@ -339,6 +354,7 @@ Não é recomendado, mas se necessário, você pode modificar o `ProcessAsaasWeb
 O middleware `AsaasTokenValid` valida automaticamente o token enviado pelo Asaas no header `asaas-access-token`.
 
 **Como funciona:**
+
 - Compara o token recebido com o configurado em `ASAAS_WEBHOOK_TOKEN`
 - Usa `hash_equals()` para prevenir timing attacks
 - Retorna 401 se o token for inválido
@@ -365,27 +381,28 @@ O middleware `AsaasTokenValid` valida automaticamente o token enviado pelo Asaas
 // app/Listeners/ProcessPaymentListener.php
 
 use SistemAtc\Asaas\Events\AsaasPaymentEvent;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use App\Models\Order;
 
 class ProcessPaymentListener
 {
     public function handle(AsaasPaymentEvent $event)
     {
-        if ($event->eventType !== 'PAYMENT_CONFIRMED') {
+        if ($event->eventType !== WebhookEventAsaas::PAYMENT_CONFIRMED->value) {
             return;
         }
-        
+
         $payment = $event->payload->payment;
         $externalReference = $payment->externalReference; // ID do seu pedido
-        
+
         $order = Order::find($externalReference);
-        
+
         if ($order) {
             $order->update([
                 'status' => 'paid',
                 'paid_at' => now(),
             ]);
-            
+
             // Enviar email de confirmação
             // Liberar acesso ao produto
             // etc.
@@ -400,14 +417,15 @@ class ProcessPaymentListener
 // app/Listeners/ProcessSubscriptionListener.php
 
 use SistemAtc\Asaas\Events\AsaasSubscriptionEvent;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 
 class ProcessSubscriptionListener
 {
     public function handle(AsaasSubscriptionEvent $event)
     {
-        if ($event->eventType === 'SUBSCRIPTION_CREATED') {
+        if ($event->eventType === WebhookEventAsaas::SUBSCRIPTION_CREATED->value) {
             $subscription = $event->payload->subscription;
-            
+
             // Criar registro da assinatura no seu sistema
             // Ativar acesso do usuário
             // etc.
@@ -422,29 +440,30 @@ class ProcessSubscriptionListener
 // app/Listeners/AsaasWebhookListener.php
 
 use SistemAtc\Asaas\Events\AsaasPaymentEvent;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 
 class AsaasWebhookListener
 {
     public function handle(AsaasPaymentEvent $event)
     {
         match ($event->eventType) {
-            'PAYMENT_CONFIRMED' => $this->handlePaymentConfirmed($event),
-            'PAYMENT_OVERDUE' => $this->handlePaymentOverdue($event),
-            'PAYMENT_REFUNDED' => $this->handlePaymentRefunded($event),
+            WebhookEventAsaas::PAYMENT_CONFIRMED->value => $this->handlePaymentConfirmed($event),
+            WebhookEventAsaas::PAYMENT_OVERDUE->value => $this->handlePaymentOverdue($event),
+            WebhookEventAsaas::PAYMENT_REFUNDED->value => $this->handlePaymentRefunded($event),
             default => null,
         };
     }
-    
+
     private function handlePaymentConfirmed($event)
     {
         // Lógica para pagamento confirmado
     }
-    
+
     private function handlePaymentOverdue($event)
     {
         // Lógica para pagamento vencido
     }
-    
+
     private function handlePaymentRefunded($event)
     {
         // Lógica para estorno
@@ -464,8 +483,8 @@ class AsaasWebhookListener
 ### Evento não está sendo processado
 
 1. Verifique se o listener está registrado no `EventServiceProvider`
-2. Verifique se o handler existe para o tipo de evento
-3. Verifique os logs para erros
+2. Verifique se existe suporte para o evento (está listado na seção Eventos Disponíveis)
+3. Verifique os logs do job ProcessAsaasWebhook
 4. Verifique se o evento não foi ignorado por idempotência
 
 ### Token inválido

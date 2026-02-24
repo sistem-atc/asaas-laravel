@@ -33,6 +33,7 @@ use SistemAtc\Asaas\Services\AsaasServiceRegistry;
  * @method \SistemAtc\Asaas\Methods\PaymentWithSummaryData paymentWithSummaryData()
  * @method \SistemAtc\Asaas\Methods\PaymentSplit paymentSplit()
  * @method \SistemAtc\Asaas\Methods\Pix pix()
+ * @method \SistemAtc\Asaas\Methods\PixTransaction pixTransaction()
  * @method \SistemAtc\Asaas\Methods\AutomaticPix automaticPix()
  * @method \SistemAtc\Asaas\Methods\RecurringPix recurringPix()
  * @method \SistemAtc\Asaas\Methods\Subaccount subAccount()
@@ -52,7 +53,6 @@ class Asaas
     public function __construct()
     {
         $environment = config('asaas.environment');
-        
         if (!in_array($environment, ['sandbox', 'production'])) {
             throw new \InvalidArgumentException("Invalid environment: {$environment}. Must be 'sandbox' or 'production'.");
         }

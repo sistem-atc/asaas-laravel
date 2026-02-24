@@ -14,11 +14,11 @@ class SubscriptionWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Subscription $subscription,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Subscription $subscription = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

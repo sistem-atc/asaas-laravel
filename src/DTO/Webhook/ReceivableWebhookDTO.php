@@ -14,11 +14,11 @@ class ReceivableWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?Receivable $anticipation,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?Receivable $anticipation = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }

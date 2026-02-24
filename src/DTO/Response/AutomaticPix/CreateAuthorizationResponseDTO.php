@@ -8,7 +8,7 @@ use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\StatusAutomaticPix;
-use SistemAtc\Asaas\DTO\Shared\Response\ImmediateQrCode;
+use SistemAtc\Asaas\DTO\Shared\Common\ImmediateQrCode;
 
 final class CreateAuthorizationResponseDTO implements DTOInterface
 {

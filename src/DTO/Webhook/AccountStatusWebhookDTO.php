@@ -14,11 +14,11 @@ class AccountStatusWebhookDTO extends BaseEventDTO
     use CastToArray;
 
     public function __construct(
-        ?string $id,
-        ?WebhookEventAsaas $event,
-        ?string $dateCreated,
-        ?Account $account,
-        public readonly ?AccountStatus $accountStatus,
+        ?string $id = null,
+        ?WebhookEventAsaas $event = null,
+        ?string $dateCreated = null,
+        ?Account $account = null,
+        public readonly ?AccountStatus $accountStatus = null,
     ) {
         parent::__construct($id, $event, $dateCreated, $account);
     }
