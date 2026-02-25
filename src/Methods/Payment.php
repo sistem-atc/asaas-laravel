@@ -2,14 +2,24 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\DTO\Request\Payment\ConfirmCashRequestDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\SalesSimulatorRequestsDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\RecoveryLimitPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\SalesSimulatorResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\ListPaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreatePaymentRequestDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\RefundPaymentRequestDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\UpdatePaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\DeletePaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\StatusPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\ViewInformationResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreditCardPaymentRequestDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\DigitableBillLineResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\PayChargeWithCreditCardRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentBilingInformationResponseDTO;
 
@@ -52,34 +62,82 @@ class Payment extends BaseMethods
         return PaymentBilingInformationResponseDTO::fromarray($response);
     }
 
-    public function paymentViewingInformation(){}
+    public function paymentViewingInformation(string $id): ViewInformationResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/viewingInfo");
+        return ViewInformationResponseDTO::fromArray($response);
+    }
 
-    public function retrieveSinglePayment(){}
+    public function retrieveSinglePayment(string $id): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}");
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function updateExistingPayment(){}
+    public function updateExistingPayment(string $id, UpdatePaymentRequestDTO $data): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::PUT, "/payments/{$id}", $data->toArray());
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function deletePayment(){}
+    public function deletePayment(string $id): DeletePaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::DELETE, "/payments/{$id}");
+        return DeletePaymentResponseDTO::fromArray($response);
+    }
 
-    public function restoreRemovedPayment(){}
+    public function restoreRemovedPayment(string $id): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/restore");
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function retrieveStatusPayment(){}
+    public function retrieveStatusPayment(string $id): StatusPaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/status");
+        return StatusPaymentResponseDTO::fromArray($response);
+    }
 
-    public function refundPayment(){}
+    public function refundPayment(string $id, RefundPaymentRequestDTO $data): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/refund", $data->toArray());
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function getDigitableBillLine(){}
+    public function getDigitableBillLine(string $id): DigitableBillLineResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/identificationField");
+        return DigitableBillLineResponseDTO::fromArray($response);
+    }
 
     public function getQRCodeForPixPayments(string $id): QrCodeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/pixQrCode",);
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/pixQrCode");
         return QrCodeResponseDTO::fromArray($response);
     }
 
-    public function confirmCashReceipt(){}
+    public function confirmCashReceipt(string $id, ConfirmCashRequestDTO $data): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/receiveInCash", $data->toArray());
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function undoCashReceipt(){}
+    public function undoCashReceipt(string $id): PaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/undoReceivedInCash");
+        return PaymentResponseDTO::fromArray($response);
+    }
 
-    public function salesSimulator(){}
+    public function salesSimulator(SalesSimulatorRequestsDTO $data): SalesSimulatorResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/simulate", $data->toArray());
+        return SalesSimulatorResponseDTO::fromArray($response);
+    }
 
-    public function recoveryPaymentLimit(){}
+    public function recoveryPaymentLimit(): RecoveryLimitPaymentResponseDTO
+    {
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/limits");
+        return RecoveryLimitPaymentResponseDTO::fromArray($response);
+    }
 
 }

@@ -2,33 +2,44 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\SearchCellPhoneResponseDTO;
+use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\MobilePhoneRecharge\RechargeRequestDTO;
+use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\RechargeResponseDTO;
+use SistemAtc\Asaas\DTO\Request\MobilePhoneRecharge\ListCellPhonesRequestDTO;
+use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\ListCellPhonesResponseDTO;
 
 class MobilePhoneRecharge extends BaseMethods
 {
-    public function requestRecharge()
+    public function requestRecharge(RechargeRequestDTO $data): RechargeResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, "/mobilePhoneRecharges", $data->toArray());
+        return RechargeResponseDTO::fromArray($response);
     }
     
-    public function listCellPhoneTopups()
+    public function listCellPhoneTopups(ListCellPhonesRequestDTO $data): ListCellPhonesResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges", $data->toArray());
+        return ListCellPhonesResponseDTO::fromArray($response);
     }
     
-    public function recoverSingleCellPhoneRecharge()
+    public function recoverSingleCellPhoneRecharge(string $id): RechargeResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges/{$id}");
+        return RechargeResponseDTO::fromArray($response);
     }
     
-    public function cancelCellPhoneRecharge()
+    public function cancelCellPhoneRecharge(string $id): RechargeResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, "/mobilePhoneRecharges/{$id}/cancel");
+        return RechargeResponseDTO::fromArray($response);
     }
     
-    public function searchCellPhoneProvider()
+    public function searchCellPhoneProvider(string $phoneNumber): SearchCellPhoneResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges/{$phoneNumber}/provider");
+        return SearchCellPhoneResponseDTO::fromArray($response);
     }
     
 }
