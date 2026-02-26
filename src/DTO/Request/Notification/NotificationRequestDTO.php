@@ -2,9 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Notification;
 
-use SistemAtc\Asaas\Enum\PaymentOverdue;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\PaymentOverdue;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class NotificationRequestDTO implements DTOInterface

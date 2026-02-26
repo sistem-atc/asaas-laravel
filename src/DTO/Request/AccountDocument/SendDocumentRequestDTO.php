@@ -3,10 +3,10 @@
 namespace SistemAtc\Asaas\DTO\Request\AccountDocument;
 
 use InvalidArgumentException;
+use SistemAtc\Asaas\Traits\CastToMultipart;
 use SistemAtc\Asaas\Attributes\MultipartFile;
 use SistemAtc\Asaas\Enum\TypePendingDocument;
 use SistemAtc\Asaas\Contracts\DTOInterfaceMultipart;
-use SistemAtc\Asaas\Traits\CastToMultipart;
 
 final class SendDocumentRequestDTO implements DTOInterfaceMultipart
 {

@@ -3,9 +3,9 @@
 namespace SistemAtc\Asaas\DTO\Request\Anticipation;
 
 use InvalidArgumentException;
+use SistemAtc\Asaas\Traits\CastToMultipart;
 use SistemAtc\Asaas\Attributes\MultipartFile;
 use SistemAtc\Asaas\Contracts\DTOInterfaceMultipart;
-use SistemAtc\Asaas\Traits\CastToMultipart;
 
 final class RequestAnticipationRequestDTO implements DTOInterfaceMultipart
 {

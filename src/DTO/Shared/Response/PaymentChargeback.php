@@ -2,12 +2,12 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Enum\ChargebackReason;
-use SistemAtc\Asaas\Enum\ChargebackStatus;
 use SistemAtc\Asaas\Enum\DisputeStatus;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\ChargebackReason;
+use SistemAtc\Asaas\Enum\ChargebackStatus;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class PaymentChargeback implements DTOInterface
 {

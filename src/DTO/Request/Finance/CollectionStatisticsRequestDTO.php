@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Finance;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Enum\BillingTypeEscrow;
 use SistemAtc\Asaas\Enum\StatusFinance;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Enum\BillingTypeEscrow;
 
 final class CollectionStatisticsRequestDTO implements DTOInterface
 {

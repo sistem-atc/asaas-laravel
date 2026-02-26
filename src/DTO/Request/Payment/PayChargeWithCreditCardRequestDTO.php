@@ -14,8 +14,8 @@ final class PayChargeWithCreditCardRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?CreditCard $creditCard,
-        public readonly ?CreditCardHolderInfo $creditCardHolderInfo,
-        public readonly ?string $creditCardToken,
+        public readonly ?CreditCard $creditCard = null,
+        public readonly ?CreditCardHolderInfo $creditCardHolderInfo = null,
+        public readonly ?string $creditCardToken = null,
     ) {}
 }

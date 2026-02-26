@@ -3,10 +3,10 @@
 namespace SistemAtc\Asaas\DTO\Response\Bill;
 
 use SistemAtc\Asaas\Attributes\ArrayOf;
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Response\BankSlipInfo;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Response\BankSlipInfo;
 
 final class SimulateBillPaymentResponseDTO implements DTOInterface
 {

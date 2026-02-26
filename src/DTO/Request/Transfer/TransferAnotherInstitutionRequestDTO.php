@@ -2,12 +2,12 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Transfer;
 
-use SistemAtc\Asaas\DTO\Shared\Common\Recurring;
 use SistemAtc\Asaas\Enum\OperationType;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\PixAddressKeyType;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Common\Recurring;
 use SistemAtc\Asaas\DTO\Shared\Request\BankAccount;
 
 final class TransferAnotherInstitutionRequestDTO implements DTOInterface

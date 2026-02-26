@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Enum\EventNotification;
-use SistemAtc\Asaas\Enum\PaymentOverdue;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\PaymentOverdue;
+use SistemAtc\Asaas\Enum\EventNotification;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class Notification implements DTOInterface
 {

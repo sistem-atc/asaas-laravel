@@ -2,8 +2,8 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Payment;
 
-use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
@@ -20,7 +20,7 @@ final class CreatePaymentRequestDTO implements DTOInterface
     public function __construct(
         public readonly string $customer,
         public readonly BillingType $billingType,
-        public readonly ?float $value,
+        public readonly ?float $value = null,
         public readonly string $dueDate,
         public readonly ?string $description = null,
         public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,

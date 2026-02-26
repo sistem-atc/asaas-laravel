@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
-use SistemAtc\Asaas\Enum\DisabledReason;
-use SistemAtc\Asaas\Enum\StatusSplitSubscription;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\DisabledReason;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Enum\StatusSplitSubscription;
 
 class Split implements DTOInterface
 {

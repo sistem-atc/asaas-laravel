@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Request\AutomaticPix;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Request\ImmediateQrCode;
 use SistemAtc\Asaas\Enum\Frequency;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Request\ImmediateQrCode;
 
 final class CreateAuthorizationRequestDTO implements DTOInterface
 {

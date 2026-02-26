@@ -2,7 +2,6 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Checkout;
 
-use SistemAtc\Asaas\DTO\Shared\Request\ItemCheckout;
 use SistemAtc\Asaas\Enum\ChargeType;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
@@ -12,6 +11,7 @@ use SistemAtc\Asaas\DTO\Shared\Common\Callback;
 use SistemAtc\Asaas\DTO\Shared\Common\Customer;
 use SistemAtc\Asaas\DTO\Shared\Common\Installment;
 use SistemAtc\Asaas\DTO\Shared\Common\Subscription;
+use SistemAtc\Asaas\DTO\Shared\Request\ItemCheckout;
 use SistemAtc\Asaas\DTO\Shared\Common\SplitCheckout;
 
 final class CheckoutResponseDTO implements DTOInterface

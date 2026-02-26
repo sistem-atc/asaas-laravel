@@ -2,10 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Webhook;
 
+use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\StatusReceivable;
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\Traits\AutoHydrate;
 
 class Receivable implements DTOInterface
 {

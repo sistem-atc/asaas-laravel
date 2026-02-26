@@ -2,13 +2,13 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Request\PaymentDocument\UpdateSettingsDocumentRequestDTO;
-use SistemAtc\Asaas\DTO\Response\PaymentDocument\DeletePaymentDocumentResponseDTO;
-use SistemAtc\Asaas\DTO\Response\PaymentDocument\ListPaymentDocumentResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Response\PaymentDocument\PaymentDocumentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDocument\ListPaymentDocumentResponseDTO;
 use SistemAtc\Asaas\DTO\Request\PaymentDocument\UploadPaymentDocumentRequestDTO;
+use SistemAtc\Asaas\DTO\Request\PaymentDocument\UpdateSettingsDocumentRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDocument\DeletePaymentDocumentResponseDTO;
 
 class PaymentDocument extends BaseMethods
 {
@@ -18,7 +18,7 @@ class PaymentDocument extends BaseMethods
         return PaymentDocumentResponseDTO::fromArray($response);
     }
     
-    public function listDocumentsaPayment(string $id): ListPaymentDocumentResponseDTO
+    public function listDocumentsPayment(string $id): ListPaymentDocumentResponseDTO
     {
         $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/documents");
         return ListPaymentDocumentResponseDTO::fromArray($response);

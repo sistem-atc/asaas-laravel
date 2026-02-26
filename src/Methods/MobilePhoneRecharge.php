@@ -2,13 +2,13 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\SearchCellPhoneResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\MobilePhoneRecharge\RechargeRequestDTO;
 use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\RechargeResponseDTO;
 use SistemAtc\Asaas\DTO\Request\MobilePhoneRecharge\ListCellPhonesRequestDTO;
 use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\ListCellPhonesResponseDTO;
+use SistemAtc\Asaas\DTO\Response\MobilePhoneRecharge\SearchCellPhoneResponseDTO;
 
 class MobilePhoneRecharge extends BaseMethods
 {

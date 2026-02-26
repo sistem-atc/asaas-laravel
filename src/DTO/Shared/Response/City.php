@@ -2,10 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Response;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\States;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 class City implements DTOInterface
 {

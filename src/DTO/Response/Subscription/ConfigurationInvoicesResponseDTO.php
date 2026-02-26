@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Subscription;
 
-use SistemAtc\Asaas\DTO\Shared\Response\Taxes;
-use SistemAtc\Asaas\Enum\InvoiceIssuancePeriod;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Response\Taxes;
+use SistemAtc\Asaas\Enum\InvoiceIssuancePeriod;
 
 final class ConfigurationInvoicesResponseDTO implements DTOInterface
 {

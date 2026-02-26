@@ -2,9 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Response\EscrowAccount;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 final class EscrowAccountResponseDTO implements DTOInterface
 {

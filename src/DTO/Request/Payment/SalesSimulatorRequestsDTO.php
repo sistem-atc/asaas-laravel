@@ -13,7 +13,7 @@ final class SalesSimulatorRequestsDTO implements DTOInterface
 
     public function __construct(
         public readonly float $value,
-        public readonly ?int $installmentCount,
+        public readonly ?int $installmentCount = null,
         /** @var \SistemAtc\Asaas\Enum\BillingTypeSimulate[] */ public readonly array $billingTypes,
     ) {}
 }

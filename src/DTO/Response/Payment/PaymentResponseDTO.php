@@ -8,12 +8,12 @@ use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Enum\BillingTypeList;
 use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Common\CreditCard;
-use SistemAtc\Asaas\DTO\Shared\Common\Penalty;
 use SistemAtc\Asaas\DTO\Shared\Common\Split;
-use SistemAtc\Asaas\DTO\Shared\Response\PaymentChargeback;
+use SistemAtc\Asaas\DTO\Shared\Common\Penalty;
+use SistemAtc\Asaas\DTO\Shared\Common\CreditCard;
 use SistemAtc\Asaas\DTO\Shared\Response\PaymentEscrow;
 use SistemAtc\Asaas\DTO\Shared\Response\PaymentRefunds;
+use SistemAtc\Asaas\DTO\Shared\Response\PaymentChargeback;
 
 final class PaymentResponseDTO implements DTOInterface
 {

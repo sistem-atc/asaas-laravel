@@ -2,53 +2,74 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\PaymentDunning\ListsDunningRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\HistoryListResponseDTO;
+use SistemAtc\Asaas\DTO\Request\PaymentDunning\ResendDocumentRequestDTO;
+use SistemAtc\Asaas\DTO\Request\PaymentDunning\PaymentDunningRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\PaymentDunningResponseDTO;
+use SistemAtc\Asaas\DTO\Request\PaymentDunning\ListPaymentDunningRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\ListPaymentDunningResponseDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\ListPaymentReceivedResponseDTO;
+use SistemAtc\Asaas\DTO\Request\PaymentDunning\SimulatePaymentDunningRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\ListPaymentsAvaliableResponseDTO;
+use SistemAtc\Asaas\DTO\Response\PaymentDunning\SimulatePaymentDunningResponseDTO;
 
 class PaymentDunning extends BaseMethods
 {
-    public function createPaymentDunning()
+    public function createPaymentDunning(PaymentDunningRequestDTO $multipartData): PaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings", $multipartData->toMultipart());
+        return PaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function listPaymentDunnings()
+    public function listPaymentDunnings(ListPaymentDunningRequestDTO $queryParams): ListPaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, '/paymentDunnings', $queryParams->toArray());
+        return ListPaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function simulatePaymentDunning()
+    public function simulatePaymentDunning(SimulatePaymentDunningRequestDTO $queryParams): SimulatePaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, '/paymentDunnings', $queryParams->toArray());
+        return SimulatePaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function recoverSinglePaymentDunning()
+    public function recoverSinglePaymentDunning(string $id): PaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, '/paymentDunnings/{$id}');
+        return PaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function eventHistoryLists()
+    public function eventHistoryLists(string $id, ListsDunningRequestDTO $queryParams): HistoryListResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/history", $queryParams->toArray());
+        return HistoryListResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsReceived()
+    public function listPaymentsReceived(string $id, ListsDunningRequestDTO $queryParams): ListPaymentReceivedResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/partialPayments", $queryParams->toArray());
+        return ListPaymentReceivedResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsAvailablePaymentDunning()
+    public function listPaymentsAvailablePaymentDunning(ListsDunningRequestDTO $queryParams): ListPaymentsAvaliableResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/paymentsAvailableForDunning", $queryParams->toArray());
+        return ListPaymentsAvaliableResponseDTO::fromArray($response);
     }
     
-    public function resendDocuments()
+    public function resendDocuments(string $id, ResendDocumentRequestDTO $multipartData): PaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings/{$id}/documents", $multipartData->toMultipart());
+        return PaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function cancelPaymentDunning()
+    public function cancelPaymentDunning(string $id): PaymentDunningResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings/{$id}/cancel");
+        return PaymentDunningResponseDTO::fromArray($response);
     }
     
 }

@@ -2,10 +2,10 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Bill;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\StatusBill;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
 
 final class BillResponseDTO implements DTOInterface
 {

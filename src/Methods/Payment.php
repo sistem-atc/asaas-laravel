@@ -2,24 +2,24 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Request\Payment\ConfirmCashRequestDTO;
-use SistemAtc\Asaas\DTO\Request\Payment\SalesSimulatorRequestsDTO;
-use SistemAtc\Asaas\DTO\Response\Payment\RecoveryLimitPaymentResponseDTO;
-use SistemAtc\Asaas\DTO\Response\Payment\SalesSimulatorResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Response\Payment\QrCodeResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\ListPaymentRequestDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\ConfirmCashRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreatePaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\RefundPaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\UpdatePaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\ListPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Request\Payment\SalesSimulatorRequestsDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\DeletePaymentResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\StatusPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\SalesSimulatorResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\ViewInformationResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreditCardPaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\DigitableBillLineResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Payment\RecoveryLimitPaymentResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\PayChargeWithCreditCardRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Payment\PaymentBilingInformationResponseDTO;
 

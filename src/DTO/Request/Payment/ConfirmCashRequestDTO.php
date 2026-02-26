@@ -11,8 +11,8 @@ final class ConfirmCashRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?string $paymentDate,
-        public readonly ?float $value,
-        public readonly ?bool $notifyCustomer,
+        public readonly ?string $paymentDate = null,
+        public readonly ?float $value = null,
+        public readonly ?bool $notifyCustomer = null,
     ) {}
 }

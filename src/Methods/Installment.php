@@ -2,7 +2,6 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Request\Installment\UpdateSplitInstallmentRequestDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Response\Installment\FileResponseDTO;
@@ -12,6 +11,7 @@ use SistemAtc\Asaas\DTO\Request\Installment\RefundInstallmentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Installment\CreateInstallmentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Installment\ListInstallmentResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Installment\DeleteInstallmentResponseDTO;
+use SistemAtc\Asaas\DTO\Request\Installment\UpdateSplitInstallmentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Installment\ListPaymentInstallmentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Installment\ListPaymentInstallmentResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Installment\UpdateInstallmentSplitsResponseDTO;

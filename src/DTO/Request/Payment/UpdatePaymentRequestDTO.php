@@ -2,12 +2,12 @@
 
 namespace SistemAtc\Asaas\DTO\Request\Payment;
 
-use SistemAtc\Asaas\Attributes\ArrayOf;
-use SistemAtc\Asaas\DTO\Shared\Request\Split;
 use SistemAtc\Asaas\Enum\BillingType;
+use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Request\Split;
 use SistemAtc\Asaas\DTO\Shared\Common\Penalty;
 use SistemAtc\Asaas\DTO\Shared\Request\Callback;
 

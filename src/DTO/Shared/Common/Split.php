@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Shared\Common;
 
+use SistemAtc\Asaas\Enum\StatusSplit;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\Enum\CancelationPayment;
-use SistemAtc\Asaas\Enum\StatusSplit;
 
 class Split implements DTOInterface
 {

@@ -11,8 +11,8 @@ use SistemAtc\Asaas\DTO\Response\Anticipation\SimulateAnticipationResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Anticipation\ListAnticipationFilterRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Anticipation\UpdateAutomaticAnticipationRequestDTO;
-use SistemAtc\Asaas\DTO\Response\Anticipation\AutomaticAnticipationConfigResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Anticipation\RetrieveAnticipationLimitsResponseDTO;
+use SistemAtc\Asaas\DTO\Response\Anticipation\AutomaticAnticipationConfigResponseDTO;
 
 class Anticipation extends BaseMethods
 {

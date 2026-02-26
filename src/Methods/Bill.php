@@ -8,8 +8,8 @@ use SistemAtc\Asaas\DTO\Response\Bill\BillResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Bill\ListBillResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Bill\CreateBillRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Bill\SimulateBillPaymentRequestDTO;
-use SistemAtc\Asaas\DTO\Request\Bill\ListBillPaymentsFilterRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Bill\SimulateBillPaymentResponseDTO;
+use SistemAtc\Asaas\DTO\Request\Bill\ListBillPaymentsFilterRequestDTO;
 
 class Bill extends BaseMethods
 {

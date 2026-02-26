@@ -2,14 +2,14 @@
 
 namespace SistemAtc\Asaas\DTO\Response\AccountInfo;
 
-use SistemAtc\Asaas\Contracts\DTOInterface;
-use SistemAtc\Asaas\DTO\Shared\Response\City;
-use SistemAtc\Asaas\DTO\Shared\Response\CommercialInfoExpiration;
-use SistemAtc\Asaas\Enum\StatusRetrieveBusinessData;
-use SistemAtc\Asaas\Enum\TypeCompany;
 use SistemAtc\Asaas\Enum\TypePerson;
+use SistemAtc\Asaas\Enum\TypeCompany;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Response\City;
+use SistemAtc\Asaas\Enum\StatusRetrieveBusinessData;
+use SistemAtc\Asaas\DTO\Shared\Response\CommercialInfoExpiration;
 
 final class RetrieveBusinessDataResponseDTO implements DTOInterface
 {

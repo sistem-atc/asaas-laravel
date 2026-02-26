@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Response\AutomaticPix;
 
-use SistemAtc\Asaas\DTO\Shared\Response\Authorization;
-use SistemAtc\Asaas\Enum\StatusPixPayment;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
+use SistemAtc\Asaas\Enum\StatusPixPayment;
 use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\DTO\Shared\Response\Authorization;
 
 final class SinglePaymentResponseDTO implements DTOInterface
 {
