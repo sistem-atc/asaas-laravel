@@ -2,6 +2,7 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 
 class RecurringPix extends BaseMethods

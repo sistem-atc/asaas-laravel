@@ -15,7 +15,7 @@ final class UpdateSubscriptionCreditCardRequestDTO implements DTOInterface
     public function __construct(
         public readonly CreditCard $creditCard,
         public readonly CreditCardHolderInfo $creditCardHolderInfo,
-        public readonly ?string $creditCardToken,
+        public readonly ?string $creditCardToken = null,
         public readonly string $remoteIp,
     ) {}
 }

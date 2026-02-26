@@ -12,10 +12,10 @@ final class UpdateCheckoutCustomizationRequestDTO implements DTOInterfaceMultipa
     use CastToMultipart;
 
     public function __construct(
-        public readonly ?string $logoBackgroundColor,
-        public readonly ?string $infoBackgroundColor,
-        public readonly ?string $fontColor,
-        public readonly ?bool $enabled,
+        public readonly string $logoBackgroundColor,
+        public readonly string $infoBackgroundColor,
+        public readonly string $fontColor,
+        public readonly ?bool $enabled = null,
         #[MultipartFile(as: 'logoFile')] public readonly ?string $logoFilePath = null,
     ) {
         if ($this->logoFilePath && !file_exists($this->logoFilePath)) {

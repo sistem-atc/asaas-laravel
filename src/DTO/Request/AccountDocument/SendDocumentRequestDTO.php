@@ -14,7 +14,7 @@ final class SendDocumentRequestDTO implements DTOInterfaceMultipart
 
     public function __construct(
         #[MultipartFile(as: 'documentFile')] public readonly string $filePath,
-        public readonly ?TypePendingDocument $type,
+        public readonly ?TypePendingDocument $type = null,
     ) {
         if (!file_exists($this->filePath)) {
             throw new InvalidArgumentException("O arquivo não foi encontrado em: {$this->filePath}");

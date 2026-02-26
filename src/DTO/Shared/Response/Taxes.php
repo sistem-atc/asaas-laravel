@@ -12,12 +12,12 @@ class Taxes implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly bool $retainIss,
-        public readonly float $cofins,
-        public readonly float $csll,
-        public readonly float $inss,
-        public readonly float $ir,
-        public readonly float $pis,
-        public readonly float $iss,
+        public readonly ?bool $retainIss = null,
+        public readonly ?float $cofins = null,
+        public readonly ?float $csll = null,
+        public readonly ?float $inss = null,
+        public readonly ?float $ir = null,
+        public readonly ?float $pis = null,
+        public readonly ?float $iss = null,
     ) {}
 }

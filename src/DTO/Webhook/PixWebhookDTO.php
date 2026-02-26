@@ -2,12 +2,12 @@
 
 namespace SistemAtc\Asaas\DTO\Webhook;
 
-use SistemAtc\Asaas\DTO\Shared\Webhook\PaymentInstruction;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Authorization;
+use SistemAtc\Asaas\DTO\Shared\Webhook\PaymentInstruction;
 
 class PixWebhookDTO extends BaseEventDTO
 {

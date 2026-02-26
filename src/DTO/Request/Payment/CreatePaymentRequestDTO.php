@@ -20,7 +20,7 @@ final class CreatePaymentRequestDTO implements DTOInterface
     public function __construct(
         public readonly string $customer,
         public readonly BillingType $billingType,
-        public readonly ?float $value = null,
+        public readonly float $value,
         public readonly string $dueDate,
         public readonly ?string $description = null,
         public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,

@@ -15,6 +15,6 @@ final class ListTransferRequestDTO implements DTOInterface
         public readonly ?string $dateCreated__le = null,
         public readonly ?string $transferDate__ge = null,
         public readonly ?string $transferDate__le = null,
-        public readonly ?string $type = 0,
+        public readonly ?string $type = null,
     ) {}
 }

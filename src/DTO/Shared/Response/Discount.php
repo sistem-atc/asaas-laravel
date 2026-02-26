@@ -1,13 +1,13 @@
 <?php
 
-namespace SistemAtc\Asaas\DTO\Shared\Common;
+namespace SistemAtc\Asaas\DTO\Shared\Response;
 
 use SistemAtc\Asaas\Enum\DiscountType;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 
-class Penalty implements DTOInterface
+class Discount implements DTOInterface
 {
 
     use CastToArray, AutoHydrate;
@@ -15,7 +15,6 @@ class Penalty implements DTOInterface
     public function __construct(
         public readonly ?float $value = null,
         public readonly ?int $dueDateLimitDays = null,
-        public readonly ?string $limitedDate = null,
         public readonly ?DiscountType $type = null,
     ) {}
 }

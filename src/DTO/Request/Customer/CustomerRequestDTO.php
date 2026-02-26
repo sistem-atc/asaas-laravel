@@ -12,8 +12,8 @@ final class CustomerRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $cpfCnpj = null,
+        public readonly string $name,
+        public readonly string $cpfCnpj,
         public readonly ?string $email = null,
         public readonly ?string $phone = null,
         public readonly ?string $mobilePhone = null,

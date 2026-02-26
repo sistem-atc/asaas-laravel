@@ -11,6 +11,6 @@ final class ResendDocumentRequestDTO implements DTOInterfaceMultipart
     use CastToMultipart;
 
     public function __construct(
-        #[MultipartFile(as: 'documents')] public readonly ?string $documents = null,
+        #[MultipartFile(as: 'documents')] public readonly string $documents,
     ) {}
 }

@@ -11,7 +11,7 @@ final class CreateBillRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $identificationField = null,
+        public readonly string $identificationField,
         public readonly ?string $scheduleDate = null,
         public readonly ?float $value = null,
         public readonly ?string $description = null,

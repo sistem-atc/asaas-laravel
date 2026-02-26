@@ -13,7 +13,7 @@ class UpdateNotificationBatchRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly ?string $customer = null,
+        public readonly string $customer,
         #[ArrayOf(NotificationRequestDTO::class)] public readonly ?array $notifications = null,
     ) {}
 }

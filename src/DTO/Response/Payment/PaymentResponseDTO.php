@@ -2,6 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Payment;
 
+use SistemAtc\Asaas\DTO\Shared\Response\Discount;
+use SistemAtc\Asaas\DTO\Shared\Response\Fine;
+use SistemAtc\Asaas\DTO\Shared\Response\Interest;
 use SistemAtc\Asaas\Enum\StatusPayment;
 use SistemAtc\Asaas\Attributes\ArrayOf;
 use SistemAtc\Asaas\Traits\AutoHydrate;
@@ -56,9 +59,9 @@ final class PaymentResponseDTO implements DTOInterface
         public readonly ?string $transactionReceiptUrl = null,
         public readonly ?string $nossoNumero = null,
         public readonly ?string $bankSlipUrl = null,
-        public readonly ?Penalty $discount = null,
-        public readonly ?Penalty $fine = null,
-        public readonly ?Penalty $interest = null,
+        public readonly ?Discount $discount = null,
+        public readonly ?Fine $fine = null,
+        public readonly ?Interest $interest = null,
         #[ArrayOf(Split::class)] public readonly ?array $split = null,
         public readonly ?bool $postalService = null,
         public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,

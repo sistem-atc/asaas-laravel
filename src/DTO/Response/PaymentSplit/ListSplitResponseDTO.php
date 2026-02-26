@@ -8,7 +8,7 @@ use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Contracts\DTOInterface;
 use SistemAtc\Asaas\DTO\Shared\Common\Split;
 
-final class ListPaidSplitResponseDTO implements DTOInterface
+final class ListSplitResponseDTO implements DTOInterface
 {
 
     use CastToArray, AutoHydrate;

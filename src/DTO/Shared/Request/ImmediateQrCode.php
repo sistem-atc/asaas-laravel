@@ -15,6 +15,6 @@ class ImmediateQrCode implements DTOInterface
         public readonly ?string $pixKey = null,
         public readonly int $expirationSeconds,
         public readonly float $originalValue,
-        public readonly ?string $description,
+        public readonly ?string $description = null,
     ) {}
 }

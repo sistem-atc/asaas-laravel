@@ -13,7 +13,6 @@ class NotificationRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly string $id,
         public readonly ?bool $enabled = null,
         public readonly ?bool $emailEnabledForProvider = null,
         public readonly ?bool $smsEnabledForProvider = null,

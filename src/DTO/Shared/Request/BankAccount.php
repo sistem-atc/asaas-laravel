@@ -16,12 +16,12 @@ class BankAccount implements DTOInterface
         public readonly ?BankCode $bank = null,
         public readonly ?string $accountName = null,
         public readonly string $ownerName,
-        public readonly ?string $ownerBirthDate,
+        public readonly ?string $ownerBirthDate = null,
         public readonly string $cpfCnpj,
         public readonly string $agency,
         public readonly string $account,
         public readonly string $accountDigit,
-        public readonly ?BankAccountType $bankAccountType,
-        public readonly ?string $ispb,
+        public readonly ?BankAccountType $bankAccountType = null,
+        public readonly ?string $ispb = null,
     ) {}
 }

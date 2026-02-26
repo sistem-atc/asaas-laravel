@@ -15,7 +15,7 @@ final class ListPaymentLinkRequestDTO implements DTOInterface
         public readonly ?int $limit = 100,
         public readonly ?bool $active = null,
         public readonly ?bool $includeDeleted = null,
-        public readonly ?string $name,
-        public readonly ?string $externalReference,
+        public readonly ?string $name = null,
+        public readonly ?string $externalReference = null,
     ) {}
 }

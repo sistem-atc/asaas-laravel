@@ -24,7 +24,6 @@ final class CreditCardPaymentRequestDTO implements DTOInterface
         public readonly BillingType $billingType,
         public readonly float $value,
         public readonly string $dueDate,
-        public readonly string $remoteIp,
         public readonly ?string $description = null,
         public readonly ?int $daysAfterDueDateToRegistrationCancellation = null,
         public readonly ?string $externalReference = null,
@@ -42,5 +41,6 @@ final class CreditCardPaymentRequestDTO implements DTOInterface
         public readonly ?CreditCardHolderInfo $creditCardHolderInfo = null,
         public readonly ?string $creditCardToken = null,
         public readonly ?bool $authorizeOnly = null,
-        ) {}
+        public readonly string $remoteIp,
+    ) {}
 }

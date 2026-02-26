@@ -22,7 +22,7 @@ final class PaymentLinkRequestDTO implements DTOInterface
         public readonly BillingType $billingType,
         public readonly ChargeType $chargeType,
         public readonly ?int $dueDateLimitDays = null,
-        public readonly ?CycleSubscription $subscriptionCycle,
+        public readonly ?CycleSubscription $subscriptionCycle = null,
         public readonly ?int $maxInstallmentCount = null,
         public readonly ?string $externalReference = null,
         public readonly ?bool $notificationEnabled = true,

@@ -2,11 +2,11 @@
 
 namespace SistemAtc\Asaas\DTO\Webhook;
 
+use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Bases\BaseEventDTO;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Account;
 use SistemAtc\Asaas\DTO\Shared\Webhook\Payment;
-use SistemAtc\Asaas\Traits\CastToArray;
 
 class PaymentWebhookDTO extends BaseEventDTO
 {

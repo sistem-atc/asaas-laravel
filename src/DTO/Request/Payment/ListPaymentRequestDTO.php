@@ -15,8 +15,8 @@ final class ListPaymentRequestDTO implements DTOInterface
     use CastToArray, AutoHydrate;
 
     public function __construct(
-        public readonly int $offset = 0,
-        public readonly int $limit = 100,
+        public readonly ?int $offset = 0,
+        public readonly ?int $limit = 100,
         public readonly ?string $customer = null,
         public readonly ?string $customerGroupName = null,
         public readonly ?BillingType $billingType = null,

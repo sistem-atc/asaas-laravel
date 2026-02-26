@@ -2,6 +2,9 @@
 
 namespace SistemAtc\Asaas\DTO\Response\Subscription;
 
+use SistemAtc\Asaas\DTO\Shared\Response\Discount;
+use SistemAtc\Asaas\DTO\Shared\Response\Fine;
+use SistemAtc\Asaas\DTO\Shared\Response\Interest;
 use SistemAtc\Asaas\Traits\AutoHydrate;
 use SistemAtc\Asaas\Traits\CastToArray;
 use SistemAtc\Asaas\Attributes\ArrayOf;
@@ -29,9 +32,9 @@ final class SubscriptionResponseDTO implements DTOInterface
         public readonly ?string $endDate = null,
         public readonly ?string $description = null,
         public readonly ?StatusSubscription $status = null,
-        public readonly ?Penalty $discount = null,
-        public readonly ?Penalty $fine = null,
-        public readonly ?Penalty $interest = null,
+        public readonly ?Discount $discount = null,
+        public readonly ?Fine $fine = null,
+        public readonly ?Interest $interest = null,
         public readonly ?bool $deleted = null,
         public readonly ?int $maxPayments = null,
         public readonly ?string $externalReference = null,

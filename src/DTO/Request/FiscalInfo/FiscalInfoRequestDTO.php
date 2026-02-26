@@ -14,7 +14,7 @@ final class FiscalInfoRequestDTO implements DTOInterfaceMultipart
         public readonly string $email,
         public readonly ?string $municipalInscription = null,
         public readonly bool $simplesNacional = true,
-        public readonly bool $culturalProjectsPromoter = false,
+        public readonly ?bool $culturalProjectsPromoter = null,
         public readonly ?string $cnae = null,
         public readonly ?string $specialTaxRegime = null,
         public readonly ?string $serviceListItem = null,
