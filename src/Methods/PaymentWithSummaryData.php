@@ -2,8 +2,10 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\DTO\Response\PaymentWithSummaryData\ListPaymentWithSummaryResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\Payment\ListPaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Request\Payment\CreatePaymentRequestDTO;
 use SistemAtc\Asaas\DTO\Response\PaymentWithSummaryData\PaymentWithSummaryResponseDTO;
 
@@ -15,9 +17,10 @@ class PaymentWithSummaryData extends BaseMethods
         return PaymentWithSummaryResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsWithSummaryData()
+    public function listPaymentsWithSummaryData(ListPaymentRequestDTO $queryParams): ListPaymentWithSummaryResponseDTO
     {
-
+        $response = $this->makeRequest(HttpMethod::GET, "/lean/payments", $queryParams->toArray());
+        return ListPaymentWithSummaryResponseDTO::fromArray($response);
     }
     
     public function createNewPaymentWithCreditCardWithSummaryDataInResponse()
