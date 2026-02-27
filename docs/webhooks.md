@@ -441,6 +441,7 @@ class ProcessSubscriptionListener
 
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\Events\AsaasPaymentEvent;
+use SistemAtc\Asaas\DTO\Webhook\PaymentWebhookDTO;
 
 class AsaasWebhookListener
 {
@@ -454,17 +455,17 @@ class AsaasWebhookListener
         };
     }
 
-    private function handlePaymentConfirmed($data)
+    private function handlePaymentConfirmed(PaymentWebhookDTO $data)
     {
         // Lógica para pagamento confirmado
     }
 
-    private function handlePaymentOverdue($data)
+    private function handlePaymentOverdue(PaymentWebhookDTO $data)
     {
         // Lógica para pagamento vencido
     }
 
-    private function handlePaymentRefunded($data)
+    private function handlePaymentRefunded(PaymentWebhookDTO $data)
     {
         // Lógica para estorno
     }

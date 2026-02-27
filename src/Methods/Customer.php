@@ -55,5 +55,4 @@ class Customer extends BaseMethods
         $response = $this->makeRequest(HttpMethod::GET, "/customers/{$id}/notifications");
         return RetrieveNotificationCustomerResponseDTO::fromArray($response);
     }
-
 }

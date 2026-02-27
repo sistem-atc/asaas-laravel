@@ -48,6 +48,9 @@ Asaas::accountDocument()->removeSentDocument(
 ): RemoveDocumentsResponseDTO
 ```
 
+## Referencia
+
+- [Documentacao Oficial - Envio de Documentos](https://docs.asaas.com/docs/envio-de-documentos)
 
 ## Como montar os DTOs
 
@@ -55,9 +58,10 @@ Asaas::accountDocument()->removeSentDocument(
 
 ```php
 use SistemAtc\Asaas\DTO\Request\AccountDocument\SendDocumentRequestDTO;
+use SistemAtc\Asaas\Enum\TypePendingDocument;
 
 $dto = SendDocumentRequestDTO::fromArray([
-    // Campos do documento
-    // Ex.: 'file' => storage_path('app/documentos/arquivo.pdf'),
+    'filePath' => storage_path('app/documentos/arquivo.pdf'),
+    'type' => TypePendingDocument::CPF,
 ]);
 ```

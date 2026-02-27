@@ -57,6 +57,9 @@ Asaas::automaticPix()->listPaymentInstruction(
 ): ListAuthorizationPaymentResponseDTO
 ```
 
+## Referencia
+
+- [Documentacao Oficial - Pix Automatico](https://docs.asaas.com/docs/pix-automatico)
 
 ## Como montar os DTOs
 
@@ -64,9 +67,19 @@ Asaas::automaticPix()->listPaymentInstruction(
 
 ```php
 use SistemAtc\Asaas\DTO\Request\AutomaticPix\CreateAuthorizationRequestDTO;
+use SistemAtc\Asaas\DTO\Shared\Request\ImmediateQrCode;
+use SistemAtc\Asaas\Enum\Frequency;
 
 $dto = CreateAuthorizationRequestDTO::fromArray([
-    // Campos da autorizacao Pix Automático
+    'frequency' => Frequency::MONTHLY,
+    'contractId' => 'contract_123',
+    'startDate' => '2026-02-01',
+    'customerId' => 'cus_123',
+    'immediateQrCode' => ImmediateQrCode::fromArray([
+        'expirationSeconds' => 600,
+        'originalValue' => 120.50,
+        'description' => 'Assinatura mensal',
+    ]),
 ]);
 ```
 
@@ -74,10 +87,12 @@ $dto = CreateAuthorizationRequestDTO::fromArray([
 
 ```php
 use SistemAtc\Asaas\DTO\Request\AutomaticPix\ListAuthorizationRequestDTO;
+use SistemAtc\Asaas\Enum\StatusPix;
 
 $dto = ListAuthorizationRequestDTO::fromArray([
     'offset' => 0,
     'limit' => 50,
+    'status' => StatusPix::ACTIVE,
 ]);
 ```
 
@@ -85,9 +100,11 @@ $dto = ListAuthorizationRequestDTO::fromArray([
 
 ```php
 use SistemAtc\Asaas\DTO\Request\AutomaticPix\ListAuthorizationPaymentsRequestDTO;
+use SistemAtc\Asaas\Enum\StatusPixPayment;
 
 $dto = ListAuthorizationPaymentsRequestDTO::fromArray([
-    'offset' => 0,
-    'limit' => 50,
+    'authorizationId' => 'aut_123',
+    'customerId' => 'cus_123',
+    'status' => StatusPixPayment::SCHEDULED,
 ]);
 ```

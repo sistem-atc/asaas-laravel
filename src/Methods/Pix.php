@@ -55,6 +55,5 @@ class Pix extends BaseMethods
     {
         $response = $this->makeRequest(HttpMethod::GET, 'pix/tokenBucket/addressKey');
         return AvailableTokenBucketCheckResponseDTO::fromArray($response);
-    }
-    
+    }  
 }

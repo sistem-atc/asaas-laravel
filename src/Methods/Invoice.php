@@ -48,6 +48,4 @@ class Invoice extends BaseMethods
         $response = $this->makeRequest(HttpMethod::POST, "/invoices/{$id}/cancel", $data->toArray());
         return InvoiceResponseDTO::fromArray($response);
     }
-    
-
 }

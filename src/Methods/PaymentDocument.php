@@ -41,5 +41,4 @@ class PaymentDocument extends BaseMethods
         $response = $this->makeRequest(HttpMethod::DELETE, "/payments/{$id}/documents/{$documentId}");
         return DeletePaymentDocumentResponseDTO::fromArray($response);
     }
-    
 }

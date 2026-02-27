@@ -70,6 +70,5 @@ class PaymentDunning extends BaseMethods
     {
         $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings/{$id}/cancel");
         return PaymentDunningResponseDTO::fromArray($response);
-    }
-    
+    }   
 }

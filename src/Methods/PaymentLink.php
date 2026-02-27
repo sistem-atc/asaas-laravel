@@ -79,6 +79,5 @@ class PaymentLink extends BaseMethods
     {
         $response = $this->makeRequest(HttpMethod::PUT, "/paymentLinks/{$paymentLinkId}/images/{$imageId}/setAsMain");
         return ImagePaymentLinkResponseDTO::fromArray($response);
-    }
-    
+    }   
 }

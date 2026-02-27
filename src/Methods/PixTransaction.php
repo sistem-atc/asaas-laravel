@@ -42,5 +42,4 @@ class PixTransaction extends BaseMethods
         $response = $this->makeRequest(HttpMethod::POST, "/pix/transactions/{$id}/cancel");
         return PayQrCodeResponseDTO::fromArray($response);
     }
-    
 }

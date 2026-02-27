@@ -19,6 +19,5 @@ class PaymentRefund extends BaseMethods
     {
         $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/bankSlip/refund");
         return RefundBankSlipResponseDTO::fromArray($response);
-    }
-    
+    }   
 }

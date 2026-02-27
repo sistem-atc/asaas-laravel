@@ -139,5 +139,4 @@ class Payment extends BaseMethods
         $response = $this->makeRequest(HttpMethod::GET, "/payments/limits");
         return RecoveryLimitPaymentResponseDTO::fromArray($response);
     }
-
 }

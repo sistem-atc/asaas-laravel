@@ -41,5 +41,4 @@ class MobilePhoneRecharge extends BaseMethods
         $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges/{$phoneNumber}/provider");
         return SearchCellPhoneResponseDTO::fromArray($response);
     }
-    
 }

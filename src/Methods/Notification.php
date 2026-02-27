@@ -22,5 +22,4 @@ class Notification extends BaseMethods
         $response = $this->makeRequest(HttpMethod::PUT,"/notifications/batch",$data->toArray());
         return UpdateNotificationBatchResponseDTO::fromArray($response);
     }
-    
 }
