@@ -13,13 +13,13 @@ class Notification extends BaseMethods
 {
     public function updateExistingNotification(string $id, NotificationRequestDTO $data): NotificationResponse
     {
-        $response = $this->makeRequest(HttpMethod::PUT,"/notifications/{$id}",$data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT,"/notifications/{$id}",$data);
         return NotificationResponse::fromArray($response);
     }
     
     public function updateExistingNotificationsinBatch(UpdateNotificationBatchRequestDTO $data): UpdateNotificationBatchResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT,"/notifications/batch",$data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT,"/notifications/batch",$data);
         return UpdateNotificationBatchResponseDTO::fromArray($response);
     }
 }

@@ -18,13 +18,13 @@ class Subaccount extends BaseMethods
 {
     public function createSubaccount(SubAccountRequestDTO $data): SubAccountResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/accounts', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/accounts', $data);
         return SubAccountResponseDTO::fromArray($response);
     }
     
-    public function listSubaccounts(ListSubAccountRequestDTO $queryParams): ListSubAccountResponseDTO
+    public function listSubaccounts(ListSubAccountRequestDTO $data): ListSubAccountResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/accounts", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/accounts", $data);
         return ListSubAccountResponseDTO::fromArray($response);
     }
     
@@ -36,7 +36,7 @@ class Subaccount extends BaseMethods
     
     public function createAPIkeyForSubaccount(string $id, ApiKeySubAccountRequestDTO $data): ApiKeySubAccountResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/accounts/{$id}/accessTokens", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/accounts/{$id}/accessTokens", $data);
         return ApiKeySubAccountResponseDTO::fromArray($response);
     }
     
@@ -48,7 +48,7 @@ class Subaccount extends BaseMethods
     
     public function updateAPIkeyForSubaccount(string $id, string $accessTokenId, UpdateApiKeyRequestDTO $data): UpdateApiKeySubAccountResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/accounts/{$id}/accessTokens/{$accessTokenId}", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/accounts/{$id}/accessTokens/{$accessTokenId}", $data);
         return UpdateApiKeySubAccountResponseDTO::fromArray($response); 
     }
     

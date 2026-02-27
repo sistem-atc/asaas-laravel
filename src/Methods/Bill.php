@@ -16,19 +16,19 @@ class Bill extends BaseMethods
 
     public function createBill(CreateBillRequestDTO $data): BillResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/bill', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/bill', $data);
         return BillResponseDTO::fromArray($response);
     }
 
-    public function listBill(ListBillPaymentsFilterRequestDTO $queryParams): ListBillResponseDTO
+    public function listBill(ListBillPaymentsFilterRequestDTO $data): ListBillResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/bill', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/bill', $data);
         return ListBillResponseDTO::fromArray($response);
     }
 
     public function simulateBillPayment(SimulateBillPaymentRequestDTO $data): SimulateBillPaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/bill/simulate", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/bill/simulate", $data);
         return SimulateBillPaymentResponseDTO::fromArray($response);
     }
 

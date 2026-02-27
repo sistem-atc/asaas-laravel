@@ -15,19 +15,19 @@ class Transfer extends BaseMethods
 {
     public function transferAnotherInstitutionAccountOrPixKey(TransferAnotherInstitutionRequestDTO $data): TranferAnotherResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/transfers", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/transfers", $data);
         return TranferAnotherResponseDTO::fromArray($response);
     }
 
-    public function listTransfers(ListTransferRequestDTO $queryParams): ListTransferResponseDTO
+    public function listTransfers(ListTransferRequestDTO $data): ListTransferResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/transfers', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/transfers', $data);
         return ListTransferResponseDTO::fromArray($response);
     }
     
     public function transferAsaasAccount(TransferAsaasAccountRequestDTO $data): TransferAsaasResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/transfers", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/transfers", $data);
         return TransferAsaasResponseDTO::fromArray($response);
     }
     

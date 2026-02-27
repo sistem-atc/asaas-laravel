@@ -14,13 +14,13 @@ class MobilePhoneRecharge extends BaseMethods
 {
     public function requestRecharge(RechargeRequestDTO $data): RechargeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/mobilePhoneRecharges", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/mobilePhoneRecharges", $data);
         return RechargeResponseDTO::fromArray($response);
     }
     
     public function listCellPhoneTopups(ListCellPhonesRequestDTO $data): ListCellPhonesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/mobilePhoneRecharges", $data);
         return ListCellPhonesResponseDTO::fromArray($response);
     }
     

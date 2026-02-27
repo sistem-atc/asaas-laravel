@@ -15,13 +15,13 @@ class PixTransaction extends BaseMethods
 {
     public function payQRCode(PayQrCodeRequestDTO $data): PayQrCodeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/pay', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/pay', $data);
         return PayQrCodeResponseDTO::fromArray($response);
     }
     
     public function decodeQRCodePayment(DecodeQrCodeRequestDTO $data): DecodeQrCodeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/decode', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/decode', $data);
         return DecodeQrCodeResponseDTO::fromArray($response);
     }
     
@@ -31,9 +31,9 @@ class PixTransaction extends BaseMethods
         return PayQrCodeResponseDTO::fromArray($response);
     }
     
-    public function listTransactions(ListTransactionsRequestDTO $queryParams): ListTransactionResponseDTO
+    public function listTransactions(ListTransactionsRequestDTO $data): ListTransactionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/pix/transactions', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/transactions', $data);
         return ListTransactionResponseDTO::fromArray($response);
     }
     

@@ -2,6 +2,7 @@
 
 namespace SistemAtc\Asaas\Methods;
 
+use SistemAtc\Asaas\DTO\Request\AccountInfo\DeleteWhiteLabelRequestDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Shared\Common\AccountStatus;
@@ -24,13 +25,13 @@ class AccountInfo extends BaseMethods
 
     public function updateBusinessData(UpdateBusinessDataRequestDTO $data): RetrieveBusinessDataResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/myAccount/commercialInfo/', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/myAccount/commercialInfo/', $data);
         return RetrieveBusinessDataResponseDTO::fromArray($response);
     }
 
     public function savePaymentCheckoutCustomization(UpdateCheckoutCustomizationRequestDTO $data): AccountStatus
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/myAccount/paymentCheckoutConfig/', $data->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, '/myAccount/paymentCheckoutConfig/', $data);
         return AccountStatus::fromArray($response);
     }
 
@@ -64,9 +65,9 @@ class AccountInfo extends BaseMethods
         return RetrieveWalletIdResponseDTO::fromArray($response);
     }
 
-    public function deleteWhiteLabelSubaccount(string $removeReason): DeleteWhiteLabelSubaccountResponseDTO
+    public function deleteWhiteLabelSubaccount(DeleteWhiteLabelRequestDTO $data): DeleteWhiteLabelSubaccountResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::DELETE, '/myAccount/?' . http_build_query(['removeReason' => $removeReason]));
+        $response = $this->makeRequest(HttpMethod::DELETE, '/myAccount', $data);
         return DeleteWhiteLabelSubaccountResponseDTO::fromArray($response);
     }
 }

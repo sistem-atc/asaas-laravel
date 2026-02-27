@@ -18,9 +18,9 @@ class AccountDocument extends BaseMethods
         return CheckPendingDocumentsResponseDTO::fromArray($response);
     }
 
-    public function sendDocuments(string $id, SendDocumentRequestDTO $multipartData): SendDocumentsResponseDTO
+    public function sendDocuments(string $id, SendDocumentRequestDTO $data): SendDocumentsResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/myAccount/documents/{$id}", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/myAccount/documents/{$id}", $data);
         return SendDocumentsResponseDTO::fromArray($response);
     }
 
@@ -30,9 +30,9 @@ class AccountDocument extends BaseMethods
         return SendDocumentsResponseDTO::fromArray($response);
     }
 
-    public function updateSentDocument(string $documentId, SendDocumentRequestDTO $multipartData): SendDocumentsResponseDTO
+    public function updateSentDocument(string $documentId, SendDocumentRequestDTO $data): SendDocumentsResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/myAccount/documents/files/{$documentId}", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/myAccount/documents/files/{$documentId}", $data);
         return SendDocumentsResponseDTO::fromArray($response);
     }
 

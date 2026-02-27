@@ -15,19 +15,19 @@ class Invoice extends BaseMethods
 {
     public function scheduleInvoice(ScheduleInvoiceRequestDTO $data): InvoiceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/invoices", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/invoices", $data);
         return InvoiceResponseDTO::fromArray($response);
     }
 
-    public function listInvoices(ListInvoicesRequestDTO $queryParams): ListInvoiceResponseDTO
+    public function listInvoices(ListInvoicesRequestDTO $data): ListInvoiceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/invoices", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/invoices", $data);
         return ListInvoiceResponseDTO::fromArray($response);
     }
     
     public function updateInvoice(string $id, UpdateInvoiceRequestDTO $data): InvoiceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/invoices/$id", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/invoices/$id", $data);
         return InvoiceResponseDTO::fromArray($response);
     }
     
@@ -45,7 +45,7 @@ class Invoice extends BaseMethods
     
     public function cancelInvoice(string $id, CancelInvoiceRequestDTO $data): InvoiceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/invoices/{$id}/cancel", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/invoices/{$id}/cancel", $data);
         return InvoiceResponseDTO::fromArray($response);
     }
 }

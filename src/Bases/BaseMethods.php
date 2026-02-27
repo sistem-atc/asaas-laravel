@@ -5,6 +5,8 @@ namespace SistemAtc\Asaas\Bases;
 use Illuminate\Support\Facades\Log;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use Illuminate\Http\Client\PendingRequest;
+use SistemAtc\Asaas\Contracts\DTOInterface;
+use SistemAtc\Asaas\Contracts\DTOInterfaceMultipart;
 use SistemAtc\Asaas\Exceptions\AsaasRequestException;
 
 abstract class BaseMethods
@@ -16,7 +18,12 @@ abstract class BaseMethods
         $this->httpClient = $httpClient;
     }
 
-    protected function makeRequest(HttpMethod $method, string $endpoint, array $data = [], bool $returnRaw = false): array|string
+    protected function makeRequest(
+        HttpMethod $method, 
+        string $endpoint, 
+        DTOInterface|DTOInterfaceMultipart|null $data = null, 
+        bool $returnRaw = false
+    ): array|string|bool
     {
         if (str_contains($endpoint, '..') || str_contains($endpoint, '//')) {
             throw new \InvalidArgumentException("Invalid endpoint: {$endpoint}");
@@ -28,19 +35,30 @@ abstract class BaseMethods
 
         $client = $this->httpClient;
 
-        $isMultipart = isset($data[0]['name'], $data[0]['contents']);
-        if ($isMultipart) {
-           $client = $client->asMultipart();
+        if ($data instanceof DTOInterfaceMultipart) {
+            $client = $client->asMultipart();
+            $payload = $data->toMultipart();
+        } elseif ($data instanceof DTOInterface) {
+            $client = $client->asJson();
+            $payload = $data->toArray();
+        } else {
+            $client = $client->acceptJson();
         }
-
-        $response = $client->{$method->value}($endpoint, $data);
+        
+        $response = $payload === null ? $client->{$method->value}($endpoint) : $client->{$method->value}($endpoint, $payload);
 
         if ($response->failed()) {
             $this->handleError($response);
         }
 
-        if ($returnRaw || $response->header('Content-Type') === 'application/pdf') {
-           return $response->body();
+        if ($response->noContent()) {
+            return true;
+        }
+
+        $contentType = (string) $response->header('Content-Type');
+
+        if ($returnRaw || str_contains($contentType, 'application/pdf')) {
+            return $response->body();
         }
 
         return $response->json() ?? [];

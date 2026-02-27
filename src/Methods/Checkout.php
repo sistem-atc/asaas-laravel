@@ -12,7 +12,7 @@ class Checkout extends BaseMethods
 
     public function createCheckout(CreateNewCheckoutRequestDTO $data): CheckoutResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/checkouts", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/checkouts", $data);
         return CheckoutResponseDTO::fromArray($response);
     }
 

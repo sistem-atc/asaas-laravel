@@ -70,10 +70,8 @@ class Asaas
             throw new \RuntimeException("Asaas access token is not configured for environment: {$environment}");
         }
 
-        $this->client = Http::asJson()
-            ->baseUrl($this->baseUrl . '/' . $this->version)
+        $this->client = Http::baseUrl($this->baseUrl . '/' . $this->version)
             ->withHeaders([
-                'Content-Type' => 'application/json',
                 'access_token' => $this->accessToken,
             ]);
     }

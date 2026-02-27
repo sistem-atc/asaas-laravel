@@ -15,13 +15,13 @@ class Chargeback extends BaseMethods
 
     public function createChargebackDispute(string $id, CreateChargebackDisputeRequestDTO $data): ChargebackDisputeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/chargebacks/{$id}/dispute", $data->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/chargebacks/{$id}/dispute", $data);
         return ChargebackDisputeResponseDTO::fromArray($response);
     }
 
-    public function listChargebacks(ListChargebacksRequestDTO $queryParams): ListChargebackResponseDTO
+    public function listChargebacks(ListChargebacksRequestDTO $data): ListChargebackResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/chargebacks', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/chargebacks', $data);
         return ListChargebackResponseDTO::fromArray($response);
     }
 

@@ -11,7 +11,7 @@ class CreditCard extends BaseMethods
 {
     public function tokenization(CreditCardTokenizationRequestDTO $data): CommonCreditCard
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/creditCard/tokenization', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/creditCard/tokenization', $data);
         return CommonCreditCard::fromArray($response);
     }
 }

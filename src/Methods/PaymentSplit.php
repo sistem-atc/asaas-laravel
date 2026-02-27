@@ -16,9 +16,9 @@ class PaymentSplit extends BaseMethods
         return Split::fromArray($response);
     }
     
-    public function listPaidSplits(ListSplitsRequestDTO $queryParams): ListSplitResponseDTO
+    public function listPaidSplits(ListSplitsRequestDTO $data): ListSplitResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/payments/splits/paid", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/splits/paid", $data);
         return ListSplitResponseDTO::fromArray($response);
     }
     
@@ -28,9 +28,9 @@ class PaymentSplit extends BaseMethods
         return Split::fromArray($response);
     }
     
-    public function listReceivedSplits(ListSplitsRequestDTO $queryParams)
+    public function listReceivedSplits(ListSplitsRequestDTO $data)
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/payments/splits/received", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/splits/received", $data);
         return ListSplitResponseDTO::fromArray($response);
     }
 }

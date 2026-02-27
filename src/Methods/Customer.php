@@ -14,15 +14,15 @@ use SistemAtc\Asaas\DTO\Response\Customer\RetrieveNotificationCustomerResponseDT
 class Customer extends BaseMethods
 {
 
-    public function createNewCustomer(CustomerRequestDTO $customer): CustomerCreateResponseDTO
+    public function createNewCustomer(CustomerRequestDTO $data): CustomerCreateResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/customers', $customer->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/customers', $data);
         return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function listCustomers(ListCustomerRequestDTO $queryParams): ListCustomerResponseDTO
+    public function listCustomers(ListCustomerRequestDTO $data): ListCustomerResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/customers', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/customers', $data);
         return ListCustomerResponseDTO::fromArray( $response);
     }
 
@@ -32,9 +32,9 @@ class Customer extends BaseMethods
         return CustomerCreateResponseDTO::fromArray($response);
     }
 
-    public function updateExistingCustomer(CustomerRequestDTO $customer): CustomerCreateResponseDTO
+    public function updateExistingCustomer(string $id, CustomerRequestDTO $data): CustomerCreateResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/customers/{$customer->asaas_id}", $customer->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/customers/{$id}", $data);
         return CustomerCreateResponseDTO::fromArray($response);
     }
 

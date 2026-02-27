@@ -25,25 +25,25 @@ class Anticipation extends BaseMethods
 
     public function requestAnticipation(RequestAnticipationRequestDTO $data): RetrieveAnticipationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/anticipations", $data->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/anticipations", $data);
         return RetrieveAnticipationResponseDTO::fromArray($response);
     }
 
-    public function listAnticipations(ListAnticipationFilterRequestDTO $queryParams): ListAnticipationResponseDTO
+    public function listAnticipations(ListAnticipationFilterRequestDTO $data): ListAnticipationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/anticipations', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/anticipations', $data);
         return ListAnticipationResponseDTO::fromArray($response);
     }
 
     public function simulateAnticipation(SimulateAnticipationRequestDTO $data): SimulateAnticipationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/anticipations/simulate", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/anticipations/simulate", $data);
         return SimulateAnticipationResponseDTO::fromArray($response);
     }
 
     public function updateStatusAutomaticAnticipation(UpdateAutomaticAnticipationRequestDTO $data): AutomaticAnticipationConfigResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/anticipations/configurations", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/anticipations/configurations", $data);
         return AutomaticAnticipationConfigResponseDTO::fromArray($response);
     }
 

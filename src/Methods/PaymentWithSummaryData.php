@@ -18,19 +18,19 @@ class PaymentWithSummaryData extends BaseMethods
 {
     public function createNewPaymentWithSummaryDataResponse(CreatePaymentRequestDTO $data): PaymentWithSummaryResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments", $data);
         return PaymentWithSummaryResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsWithSummaryData(ListPaymentRequestDTO $queryParams): ListPaymentWithSummaryResponseDTO
+    public function listPaymentsWithSummaryData(ListPaymentRequestDTO $data): ListPaymentWithSummaryResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/lean/payments", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/lean/payments", $data);
         return ListPaymentWithSummaryResponseDTO::fromArray($response);
     }
     
     public function createNewPaymentWithCreditCardWithSummaryDataInResponse(CreditCardPaymentRequestDTO $data): PaymentWithSummaryCreditCardResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments", $data);
         return PaymentWithSummaryCreditCardResponseDTO::fromArray($response);
     }
     
@@ -66,13 +66,13 @@ class PaymentWithSummaryData extends BaseMethods
     
     public function refundPaymentWithSummaryDataInResponse(string $id, RefundPaymentRequestDTO $data): PaymentWithSummaryResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments/{$id}/refund", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments/{$id}/refund", $data);
         return PaymentWithSummaryResponseDTO::fromArray($response); 
     }
     
     public function confirmCashReceiptWithSummaryDataInResponse(string $id, ConfirmCashRequestDTO $data): PaymentWithSummaryResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments/{$id}/receiveInCash", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/lean/payments/{$id}/receiveInCash", $data);
         return PaymentWithSummaryResponseDTO::fromArray($response); 
     }
     

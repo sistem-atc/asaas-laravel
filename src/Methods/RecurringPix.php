@@ -12,9 +12,9 @@ use SistemAtc\Asaas\DTO\Response\RecurringPix\ListItemsRecurrenceResponseDTO;
 
 class RecurringPix extends BaseMethods
 {
-    public function listRecurrences(ListRecurrencesRequestDTO $queryParams): ListRecurrenceResponseDTO
+    public function listRecurrences(ListRecurrencesRequestDTO $data): ListRecurrenceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/pix/transactions/recurrings', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/transactions/recurrings', $data);
         return ListRecurrenceResponseDTO::fromArray($response);
     }
     
@@ -30,9 +30,9 @@ class RecurringPix extends BaseMethods
         return SingleRecurrenceResponseDTO::fromArray($response);
     }
     
-    public function listRecurrenceItems(string $id, ListRecurrencesItemsRequestDTO $queryParams): ListItemsRecurrenceResponseDTO
+    public function listRecurrenceItems(string $id, ListRecurrencesItemsRequestDTO $data): ListItemsRecurrenceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/pix/transactions/recurrings/{$id}/items", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/pix/transactions/recurrings/{$id}/items", $data);
         return ListItemsRecurrenceResponseDTO::fromArray($response);
     }
     

@@ -17,13 +17,13 @@ class AutomaticPix extends BaseMethods
 
     public function createAuthorization(CreateAuthorizationRequestDTO $data): CreateAuthorizationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/pix/automatic/authorizations", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/pix/automatic/authorizations", $data);
         return CreateAuthorizationResponseDTO::fromArray($response);
     }
 
-    public function listAuthorization(ListAuthorizationRequestDTO $queryParams): ListAuthorizationResponseDTO
+    public function listAuthorization(ListAuthorizationRequestDTO $data): ListAuthorizationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/authorizations', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/authorizations', $data);
         return ListAuthorizationResponseDTO::fromArray($response);
     }
 
@@ -45,9 +45,9 @@ class AutomaticPix extends BaseMethods
         return SinglePaymentResponseDTO::fromArray($response);
     }
 
-    public function listPaymentInstruction(ListAuthorizationPaymentsRequestDTO $queryParams): ListAuthorizationPaymentResponseDTO
+    public function listPaymentInstruction(ListAuthorizationPaymentsRequestDTO $data): ListAuthorizationPaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/paymentInstructions', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/automatic/paymentInstructions', $data);
         return ListAuthorizationPaymentResponseDTO::fromArray($response);
     }
 }

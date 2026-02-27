@@ -16,9 +16,9 @@ class Finance extends BaseMethods
         return BalanceResponseDTO::fromArray($response);
     }
 
-    public function collectionsStatistics(CollectionStatisticsRequestDTO $queryParams): CollectionStatisticsResponseDTO
+    public function collectionsStatistics(CollectionStatisticsRequestDTO $data): CollectionStatisticsResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/finance/payment/statistics', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/finance/payment/statistics', $data);
         return CollectionStatisticsResponseDTO::fromArray($response);
     }
 

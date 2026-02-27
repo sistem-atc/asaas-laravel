@@ -18,21 +18,21 @@ use SistemAtc\Asaas\DTO\Response\PaymentDunning\SimulatePaymentDunningResponseDT
 
 class PaymentDunning extends BaseMethods
 {
-    public function createPaymentDunning(PaymentDunningRequestDTO $multipartData): PaymentDunningResponseDTO
+    public function createPaymentDunning(PaymentDunningRequestDTO $data): PaymentDunningResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings", $data);
         return PaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function listPaymentDunnings(ListPaymentDunningRequestDTO $queryParams): ListPaymentDunningResponseDTO
+    public function listPaymentDunnings(ListPaymentDunningRequestDTO $data): ListPaymentDunningResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/paymentDunnings', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/paymentDunnings', $data);
         return ListPaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function simulatePaymentDunning(SimulatePaymentDunningRequestDTO $queryParams): SimulatePaymentDunningResponseDTO
+    public function simulatePaymentDunning(SimulatePaymentDunningRequestDTO $data): SimulatePaymentDunningResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/paymentDunnings', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/paymentDunnings', $data);
         return SimulatePaymentDunningResponseDTO::fromArray($response);
     }
     
@@ -42,27 +42,27 @@ class PaymentDunning extends BaseMethods
         return PaymentDunningResponseDTO::fromArray($response);
     }
     
-    public function eventHistoryLists(string $id, ListsDunningRequestDTO $queryParams): HistoryListResponseDTO
+    public function eventHistoryLists(string $id, ListsDunningRequestDTO $data): HistoryListResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/history", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/history", $data);
         return HistoryListResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsReceived(string $id, ListsDunningRequestDTO $queryParams): ListPaymentReceivedResponseDTO
+    public function listPaymentsReceived(string $id, ListsDunningRequestDTO $data): ListPaymentReceivedResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/partialPayments", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/{$id}/partialPayments", $data);
         return ListPaymentReceivedResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsAvailablePaymentDunning(ListsDunningRequestDTO $queryParams): ListPaymentsAvaliableResponseDTO
+    public function listPaymentsAvailablePaymentDunning(ListsDunningRequestDTO $data): ListPaymentsAvaliableResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/paymentsAvailableForDunning", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentDunnings/paymentsAvailableForDunning", $data);
         return ListPaymentsAvaliableResponseDTO::fromArray($response);
     }
     
-    public function resendDocuments(string $id, ResendDocumentRequestDTO $multipartData): PaymentDunningResponseDTO
+    public function resendDocuments(string $id, ResendDocumentRequestDTO $data): PaymentDunningResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings/{$id}/documents", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentDunnings/{$id}/documents", $data);
         return PaymentDunningResponseDTO::fromArray($response);
     }
     

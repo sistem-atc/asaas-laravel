@@ -13,6 +13,7 @@ use SistemAtc\Asaas\DTO\Response\Subscription\ListSubscriptionResponseDTO;
 use SistemAtc\Asaas\DTO\Response\Subscription\DeleteSubscriptionResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Subscription\ConfigurationInvoicesRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Subscription\DeleteConfigurationResponseDTO;
+use SistemAtc\Asaas\DTO\Request\Subscription\ListInvoiceSubscriptionRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Subscription\ConfigurationInvoicesResponseDTO;
 use SistemAtc\Asaas\DTO\Request\Subscription\ListPaymentSubscriptionRequestDTO;
 use SistemAtc\Asaas\DTO\Response\Subscription\SubscriptionCreditCardResponseDTO;
@@ -27,19 +28,19 @@ class Subscription extends BaseMethods
 {
     public function createNewSubscription(CreateSubscriptionRequestDTO $data): SubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/subscriptions', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/subscriptions', $data);
         return SubscriptionResponseDTO::fromArray($response);
     }
 
     public function list(ListSubscriptionRequestDTO $data): ListSubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/subscriptions', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/subscriptions', $data);
         return ListSubscriptionResponseDTO::fromArray($response);
     }
 
     public function createSubscriptionWithCreditCard(CreateSubscriptionCreditCardRequestDTO $data): SubscriptionCreditCardResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/subscriptions', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/subscriptions', $data);
         return SubscriptionCreditCardResponseDTO::fromArray($response);
 
     }
@@ -52,7 +53,7 @@ class Subscription extends BaseMethods
     
     public function update(string $id, UpdateSubscriptionRequestDTO $data): SubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}", $data->ToArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}", $data);
         return SubscriptionResponseDTO::fromArray($response);
     }
 
@@ -64,25 +65,25 @@ class Subscription extends BaseMethods
 
     public function updateCreditCard(string $id, UpdateSubscriptionCreditCardRequestDTO $data): SubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/creditCard", $data->ToArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/creditCard", $data);
         return SubscriptionResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsSubscription(string $id, ListPaymentSubscriptionRequestDTO $queryParams): ListPaymentSubscriptionResponseDTO
+    public function listPaymentsSubscription(string $id, ListPaymentSubscriptionRequestDTO $data): ListPaymentSubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/subscriptions/{$id}/payments", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/subscriptions/{$id}/payments", $data);
         return ListPaymentSubscriptionResponseDTO::fromArray($response);
     }
     
-    public function generateSubscriptionBooklet(string $id, BookletPaymentSubscriptionRequestDTO $queryParams): FileResponseDTO
+    public function generateSubscriptionBooklet(string $id, BookletPaymentSubscriptionRequestDTO $data): FileResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/subscriptions/{$id}/paymentBook", $queryParams->toArray(), true);
+        $response = $this->makeRequest(HttpMethod::GET, "/subscriptions/{$id}/paymentBook", $data, true);
         return new FileResponseDTO($response);
     }
     
     public function createConfigurationForIssuingInvoices(string $id, ConfigurationInvoicesRequestDTO $data): ConfigurationInvoicesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/subscriptions/{$id}/invoiceSettings", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/subscriptions/{$id}/invoiceSettings", $data);
         return ConfigurationInvoicesResponseDTO::fromArray($response);
     }
     
@@ -100,13 +101,13 @@ class Subscription extends BaseMethods
     
     public function updateConfigurationForIssuingInvoices(string $id, UpdateConfigurationInvoicesRequestDTO $data): ConfigurationInvoicesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/invoiceSettings", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/invoiceSettings", $data);
         return ConfigurationInvoicesResponseDTO::fromArray($response);
     }
     
-    public function listInvoicesForSubscriptionCharges(string $id,  $queryParams): ListInvoicesForSubscriptionResponseDTO
+    public function listInvoicesForSubscriptionCharges(string $id, ListInvoiceSubscriptionRequestDTO $data): ListInvoicesForSubscriptionResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/invoices", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/subscriptions/{$id}/invoices", $data);
         return ListInvoicesForSubscriptionResponseDTO::fromArray($response);
     }
 }

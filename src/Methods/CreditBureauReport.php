@@ -14,13 +14,13 @@ class CreditBureauReport extends BaseMethods
 
     public function makeConsultation(MakeConsultationRequestDTO $data): MakeConsultationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/creditBureauReport", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/creditBureauReport", $data);
         return MakeConsultationResponseDTO::fromArray($response);
     }
 
-    public function listCreditBureauReports(ListCreditBureauReportsRequestDTO $queryParams): ListCreditBureauReportsResponseDTO
+    public function listCreditBureauReports(ListCreditBureauReportsRequestDTO $data): ListCreditBureauReportsResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/creditBureauReport', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/creditBureauReport', $data);
         return ListCreditBureauReportsResponseDTO::fromArray($response);
     }
 

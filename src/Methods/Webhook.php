@@ -15,13 +15,13 @@ class Webhook extends BaseMethods
 {
     public function createNewWebhook(CreateRequestDTO $data): WebhookResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/webhooks", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/webhooks", $data);
         return WebhookResponseDTO::fromArray($response);
     }
 
-    public function listWebhooks(ListWebhooksRequestDTO $queryParams): ListWebhookResponseDTO
+    public function listWebhooks(ListWebhooksRequestDTO $data): ListWebhookResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/webhooks', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/webhooks', $data);
         return ListWebhookResponseDTO::fromArray($response);
     }
     
@@ -33,7 +33,7 @@ class Webhook extends BaseMethods
     
     public function updateExistingWebhook(string $id, UpdateWebhookRequestDTO $data): WebhookResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/webhooks/{$id}", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/webhooks/{$id}", $data);
         return WebhookResponseDTO::fromArray($response);
     }
     

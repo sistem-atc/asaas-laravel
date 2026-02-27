@@ -28,19 +28,19 @@ class Payment extends BaseMethods
 
     public function createNewPayment(CreatePaymentRequestDTO $data): PaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data);
         return PaymentResponseDTO::fromArray($response);
     }
 
-    public function listPayments(ListPaymentRequestDTO $queryParams): ListPaymentResponseDTO
+    public function listPayments(ListPaymentRequestDTO $data): ListPaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/payments', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/payments', $data);
         return ListPaymentResponseDTO::fromarray($response);
     }
 
     public function createNewPaymentWithCreditCard(CreditCardPaymentRequestDTO $data): PaymentResponseDTO 
     {
-        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST,'/payments',$data);
         return PaymentResponseDTO::fromArray($response);
     }
 
@@ -52,7 +52,7 @@ class Payment extends BaseMethods
 
     public function payChargeWithCreditCard(string $id, PayChargeWithCreditCardRequestDTO $data): PaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/payWithCreditCard", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/payWithCreditCard", $data);
         return PaymentResponseDTO::fromArray($response);
     }
 
@@ -76,7 +76,7 @@ class Payment extends BaseMethods
 
     public function updateExistingPayment(string $id, UpdatePaymentRequestDTO $data): PaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/payments/{$id}", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/payments/{$id}", $data);
         return PaymentResponseDTO::fromArray($response);
     }
 
@@ -100,7 +100,7 @@ class Payment extends BaseMethods
 
     public function refundPayment(string $id, RefundPaymentRequestDTO $data): PaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/refund", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/refund", $data);
         return PaymentResponseDTO::fromArray($response);
     }
 
@@ -118,7 +118,7 @@ class Payment extends BaseMethods
 
     public function confirmCashReceipt(string $id, ConfirmCashRequestDTO $data): PaymentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/receiveInCash", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/receiveInCash", $data);
         return PaymentResponseDTO::fromArray($response);
     }
 
@@ -130,7 +130,7 @@ class Payment extends BaseMethods
 
     public function salesSimulator(SalesSimulatorRequestsDTO $data): SalesSimulatorResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/simulate", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/simulate", $data);
         return SalesSimulatorResponseDTO::fromArray($response);
     }
 

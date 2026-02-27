@@ -28,9 +28,9 @@ class FiscalInfo extends BaseMethods
         return ListMunicipalConfigurationResponseDTO::fromArray($response);
     }
 
-    public function createAndUpdateTaxInformation(FiscalInfoRequestDTO $multipartData): TaxInformationResponseDTO
+    public function createAndUpdateTaxInformation(FiscalInfoRequestDTO $data): TaxInformationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/fiscalInfo", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/fiscalInfo", $data);
         return TaxInformationResponseDTO::fromArray($response);
         
     }
@@ -41,45 +41,45 @@ class FiscalInfo extends BaseMethods
         return TaxInformationResponseDTO::fromArray($response);
     }
 
-    public function listMunicipalServices(ListMunicipalServiceRequestDTO $queryParams): ListMunicipalServicesResponseDTO
+    public function listMunicipalServices(ListMunicipalServiceRequestDTO $data): ListMunicipalServicesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/services', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/services', $data);
         return ListMunicipalServicesResponseDTO::fromArray($response);
     }
 
-    public function listNBSCodes(ListNbsCodesRequestDTO $queryParams): ListNbsCodesResponseDTO
+    public function listNBSCodes(ListNbsCodesRequestDTO $data): ListNbsCodesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/nbsCodes', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/nbsCodes', $data);
         return ListNbsCodesResponseDTO::fromArray($response);
     }
 
     public function configureInvoiceIssuingPortal(ConfgureInvoiceRequestDTO $data): ConfigureInvoiceResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/fiscalInfo/nationalPortal", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/fiscalInfo/nationalPortal", $data);
         return ConfigureInvoiceResponseDTO::fromArray($response);
     }
 
-    public function listFederalServiceCodes(ListCodesRequestDTO $queryParams): ListCodesResponseDTO
+    public function listFederalServiceCodes(ListCodesRequestDTO $data): ListCodesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/federalServiceCodes', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/federalServiceCodes', $data);
         return ListCodesResponseDTO::fromArray($response);
     }
 
-    public function listOperationIndicatorCodes(ListCodesRequestDTO $queryParams): ListCodesResponseDTO
+    public function listOperationIndicatorCodes(ListCodesRequestDTO $data): ListCodesResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/operationIndicatorCodes', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/operationIndicatorCodes', $data);
         return ListCodesResponseDTO::fromArray($response);
     }
 
-    public function listTaxClassificationCodes(ListTaxClassificationRequestDTO $queryParams): ListTaxClassificationResponseDTO
+    public function listTaxClassificationCodes(ListTaxClassificationRequestDTO $data): ListTaxClassificationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/taxClassificationCodes', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/taxClassificationCodes', $data);
         return ListTaxClassificationResponseDTO::fromArray($response);
     }
 
-    public function listTaxSituationCodes(ListCodesRequestDTO $queryParams): ListTaxSituationResponseDTO
+    public function listTaxSituationCodes(ListCodesRequestDTO $data): ListTaxSituationResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/taxSituationCodes', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/fiscalInfo/taxSituationCodes', $data);
         return ListTaxSituationResponseDTO::fromArray($response);
     }
 }

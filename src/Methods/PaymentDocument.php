@@ -12,9 +12,9 @@ use SistemAtc\Asaas\DTO\Response\PaymentDocument\DeletePaymentDocumentResponseDT
 
 class PaymentDocument extends BaseMethods
 {
-    public function uploadPaymentDocuments(string $id, UploadPaymentDocumentRequestDTO $multipartData): PaymentDocumentResponseDTO
+    public function uploadPaymentDocuments(string $id, UploadPaymentDocumentRequestDTO $data): PaymentDocumentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/documents", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/documents", $data);
         return PaymentDocumentResponseDTO::fromArray($response);
     }
     
@@ -26,7 +26,7 @@ class PaymentDocument extends BaseMethods
     
     public function updateSettingsaDocumentPayment(string $id, string $documentId, UpdateSettingsDocumentRequestDTO $data): PaymentDocumentResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/payments/{$id}/documents/{$documentId}", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/payments/{$id}/documents/{$documentId}", $data);
         return PaymentDocumentResponseDTO::fromArray($response);
     }
     

@@ -17,19 +17,19 @@ class PaymentLink extends BaseMethods
 {
     public function createPaymentsLink(PaymentLinkRequestDTO $data): PaymentLinkResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/paymentLinks", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentLinks", $data);
         return PaymentLinkResponseDTO::fromArray($response);
     }
     
-    public function listPaymentsLinks(ListPaymentLinkRequestDTO $queryParams): ListPaymentLinkResponseDTO
+    public function listPaymentsLinks(ListPaymentLinkRequestDTO $data): ListPaymentLinkResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, "/paymentLinks", $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, "/paymentLinks", $data);
         return ListPaymentLinkResponseDTO::fromArray($response);
     }
     
     public function updatePaymentsLink(string $id, PaymentLinkRequestDTO $data): PaymentLinkResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::PUT, "/paymentLinks/{$id}", $data->toArray());
+        $response = $this->makeRequest(HttpMethod::PUT, "/paymentLinks/{$id}", $data);
         return PaymentLinkResponseDTO::fromArray($response);
     }
     
@@ -51,9 +51,9 @@ class PaymentLink extends BaseMethods
         return PaymentLinkResponseDTO::fromArray($response);
     }
     
-    public function addImagePaymentsLink(string $id, AddImagePaymentLinkRequestDTO $multipartData): ImagePaymentLinkResponseDTO
+    public function addImagePaymentsLink(string $id, AddImagePaymentLinkRequestDTO $data): ImagePaymentLinkResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/paymentLinks/{$id}/images", $multipartData->toMultipart());
+        $response = $this->makeRequest(HttpMethod::POST, "/paymentLinks/{$id}/images", $data);
         return ImagePaymentLinkResponseDTO::fromArray($response);
     }
     

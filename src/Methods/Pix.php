@@ -17,13 +17,13 @@ class Pix extends BaseMethods
 {
     public function createKey(CreatePixAddressKeyRequestDTO $data): PixAddressKeyResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/pix/addressKeys', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/pix/addressKeys', $data);
         return PixAddressKeyResponseDTO::fromArray($response);
     }
     
-    public function listKeys(ListKeysRequestDTO $queryParams): ListKeysResponseDTO
+    public function listKeys(ListKeysRequestDTO $data): ListKeysResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::GET, '/pix/addressKeys', $queryParams->toArray());
+        $response = $this->makeRequest(HttpMethod::GET, '/pix/addressKeys', $data);
         return ListKeysResponseDTO::fromArray($response);
     }
     
@@ -41,7 +41,7 @@ class Pix extends BaseMethods
     
     public function createQrCodeStatic(CreateQRCodeStaticRequestDTO $data): QRCodeStaticResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/static', $data->toArray());
+        $response = $this->makeRequest(HttpMethod::POST, '/pix/qrCodes/static', $data);
         return QRCodeStaticResponseDTO::fromArray($response);
     }
 
