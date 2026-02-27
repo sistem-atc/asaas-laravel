@@ -216,10 +216,10 @@ Consulte a [documentação completa de webhooks](docs/webhooks.md) para:
 
 5. **Implemente a lógica:**
    ```php
-   public function handle(AsaasPaymentEvent $event)
+   public function handle(AsaasPaymentEvent $payload)
    {
-       if ($event->event === WebhookEventAsaas::PAYMENT_CONFIRMED) {
-           $payment = $event->data->payment;
+       if ($payload->event === WebhookEventAsaas::PAYMENT_CONFIRMED) {
+           $payment = $payload->data->payment;
            // Processar pagamento confirmado
        }
    }
