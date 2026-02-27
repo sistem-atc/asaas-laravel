@@ -14,9 +14,9 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
         
         try {
             $dto = new UpdateCheckoutCustomizationRequestDTO(
-                logoBackgroundColor: '#FF0000',
-                infoBackgroundColor: '#00FF00',
-                fontColor: '#0000FF',
+                logoBackgroundColor: "#FF0000",
+                infoBackgroundColor: "#FF0000",
+                fontColor: "#FF0000",
                 enabled: true,
                 logoFilePath: $filePath,
             );
@@ -32,9 +32,9 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
     public function test_can_create_without_logo(): void
     {
         $dto = new UpdateCheckoutCustomizationRequestDTO(
-            logoBackgroundColor: '#FF0000',
-            infoBackgroundColor: null,
-            fontColor: null,
+            logoBackgroundColor: "#FF0000",
+            infoBackgroundColor: "#FF0000",
+            fontColor: "#FF0000",
             enabled: false,
             logoFilePath: null,
         );
@@ -48,9 +48,9 @@ class UpdateCheckoutCustomizationDTOTest extends TestCase
     {
         expect(function () {
             new UpdateCheckoutCustomizationRequestDTO(
-                logoBackgroundColor: '#FF0000',
-                infoBackgroundColor: null,
-                fontColor: null,
+                logoBackgroundColor: "#FF0000",
+                infoBackgroundColor: "#FF0000",
+                fontColor: "#FF0000",
                 enabled: true,
                 logoFilePath: '/nonexistent/logo.png',
             );

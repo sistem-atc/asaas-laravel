@@ -3,9 +3,9 @@
 namespace SistemAtc\Asaas\Events;
 
 use Illuminate\Queue\SerializesModels;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use Illuminate\Foundation\Events\Dispatchable;
 use SistemAtc\Asaas\DTO\Webhook\BillWebhookDTO;
-use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 
 class AsaasBillEvent
 {
@@ -13,7 +13,7 @@ class AsaasBillEvent
     use Dispatchable, SerializesModels;
 
     public function __construct(
-        public WebhookEventDTOInterface $event,
+        public WebhookEventAsaas $event,
         public BillWebhookDTO $data
     ) {}
 }

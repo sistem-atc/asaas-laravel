@@ -60,8 +60,6 @@ trait CastToMultipart
             ];
         }
 
-        return [
-            'multipart' => $fields
-        ];
+        return $fields;
     }
 }

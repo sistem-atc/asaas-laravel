@@ -11,7 +11,15 @@ test('it sends correct headers when creating a customer', function () {
 
     config(['asaas.api_key' => 'minha-chave-secreta']);
 
-    $customerDTO = CustomerRequestDTO::fromArray(['name' => 'Kleber']);
+    $data = [
+        'name' => 'John Doe',
+        'cpfCnpj' => '24971563792',
+        'email' => 'john@example.com',
+        'phone' => '4738010919',
+        'mobilePhone' => '4799376637',
+    ];
+    
+    $customerDTO = CustomerRequestDTO::fromArray($data);
     
     Asaas::customer()->createNewCustomer($customerDTO);
 

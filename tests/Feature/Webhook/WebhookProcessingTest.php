@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Event;
+use SistemAtc\Asaas\Enum\WebhookEventAsaas;
 use SistemAtc\Asaas\Jobs\ProcessAsaasWebhook;
 use SistemAtc\Asaas\Events\AsaasPaymentEvent;
 use SistemAtc\Asaas\DTO\Webhook\PaymentWebhookDTO;
@@ -14,9 +15,9 @@ test('it processes the payload and dispatches the specialized payment event', fu
     $job = new ProcessAsaasWebhook($payload, 'token-de-teste');
     $job->handle();
     
-    Event::assertDispatched(AsaasPaymentEvent::class, function ($event) {
-        return $event->type === 'PAYMENT_RECEIVED' 
-            && $event->dto instanceof PaymentWebhookDTO
-            && $event->dto->payment->id === 'pay_080225913252';
+    Event::assertDispatched(AsaasPaymentEvent::class, function ($payload) {
+        return $payload->event === WebhookEventAsaas::PAYMENT_RECEIVED
+            && $payload->data instanceof PaymentWebhookDTO
+            && $payload->data->payment->id === 'pay_080225913252';
     });
 });
