@@ -102,7 +102,7 @@ A documentacao completa de webhooks esta em:
 
 Para configurar o token e o endpoint no painel do Asaas, use a referencia visual abaixo:
 
-![Token de webhook no painel Asaas](https://ibb.co/99G0y218)
+![Token de webhook no painel Asaas](https://i.ibb.co/Fbn18Jyx/Webhook-Asaas.png)
 
 ## Testes
 
