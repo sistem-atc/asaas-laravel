@@ -1,4 +1,4 @@
-# Pacote em desenvolvimento.
+# Pacote em fase de testes.
 
 # Asaas Laravel
 
