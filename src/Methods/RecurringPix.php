@@ -2,13 +2,13 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Response\RecurringPix\ListItemsRecurrenceResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
 use SistemAtc\Asaas\DTO\Request\RecurringPix\ListRecurrencesRequestDTO;
 use SistemAtc\Asaas\DTO\Response\RecurringPix\ListRecurrenceResponseDTO;
 use SistemAtc\Asaas\DTO\Response\RecurringPix\SingleRecurrenceResponseDTO;
 use SistemAtc\Asaas\DTO\Request\RecurringPix\ListRecurrencesItemsRequestDTO;
+use SistemAtc\Asaas\DTO\Response\RecurringPix\ListItemsRecurrenceResponseDTO;
 
 class RecurringPix extends BaseMethods
 {

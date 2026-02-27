@@ -290,8 +290,8 @@ class AsaasPaymentConfirmedListener
     public function handle(AsaasPaymentEvent $event)
     {
         // Verificar o tipo de evento
-        if ($event->eventType === WebhookEventAsaas::PAYMENT_CONFIRMED->value) {
-            $payment = $event->payload->payment;
+        if ($event->event === WebhookEventAsaas::PAYMENT_CONFIRMED) {
+            $payment = $event->data->payment;
 
             // Processar pagamento confirmado
             $this->processPayment($payment);
@@ -312,13 +312,13 @@ class AsaasPaymentConfirmedListener
 
 Os eventos contém:
 
-- `$event->eventType`: Tipo do evento (ex: `PAYMENT_CONFIRMED`)
-- `$event->payload`: Objeto DTO com todos os dados do webhook
+- `$event->event`: Tipo do evento (ex: `PAYMENT_CONFIRMED`) -- Sempre utilizar o enum para garantia de tipos
+- `$event->data`: Objeto DTO com todos os dados do webhook
 
 **Exemplo para Payment:**
 
 ```php
-$payment = $event->payload->payment;
+$payment = $event->data->payment;
 $paymentId = $payment->id;
 $value = $payment->value;
 $status = $payment->status;
@@ -388,12 +388,12 @@ class ProcessPaymentListener
 {
     public function handle(AsaasPaymentEvent $event)
     {
-        if ($event->eventType !== WebhookEventAsaas::PAYMENT_CONFIRMED->value) {
+        if ($event->event !== WebhookEventAsaas::PAYMENT_CONFIRMED) {
             return;
         }
 
-        $payment = $event->payload->payment;
-        $externalReference = $payment->externalReference; // ID do seu pedido
+        $payment = $event->data->payment;
+        $externalReference = $payment->externalReference; // ID do seu pedido, caso tenha sido enviado na request
 
         $order = Order::find($externalReference);
 
@@ -423,8 +423,8 @@ class ProcessSubscriptionListener
 {
     public function handle(AsaasSubscriptionEvent $event)
     {
-        if ($event->eventType === WebhookEventAsaas::SUBSCRIPTION_CREATED->value) {
-            $subscription = $event->payload->subscription;
+        if ($event->event === WebhookEventAsaas::SUBSCRIPTION_CREATED) {
+            $subscription = $event->data->subscription;
 
             // Criar registro da assinatura no seu sistema
             // Ativar acesso do usuário
@@ -439,32 +439,32 @@ class ProcessSubscriptionListener
 ```php
 // app/Listeners/AsaasWebhookListener.php
 
-use SistemAtc\Asaas\Events\AsaasPaymentEvent;
 use SistemAtc\Asaas\Enum\WebhookEventAsaas;
+use SistemAtc\Asaas\Events\AsaasPaymentEvent;
 
 class AsaasWebhookListener
 {
     public function handle(AsaasPaymentEvent $event)
     {
-        match ($event->eventType) {
-            WebhookEventAsaas::PAYMENT_CONFIRMED->value => $this->handlePaymentConfirmed($event),
-            WebhookEventAsaas::PAYMENT_OVERDUE->value => $this->handlePaymentOverdue($event),
-            WebhookEventAsaas::PAYMENT_REFUNDED->value => $this->handlePaymentRefunded($event),
-            default => null,
+        match ($event->event) {
+            WebhookEventAsaas::PAYMENT_CONFIRMED  => $this->handlePaymentConfirmed($event->data),
+            WebhookEventAsaas::PAYMENT_OVERDUE    => $this->handlePaymentOverdue($event->data),
+            WebhookEventAsaas::PAYMENT_REFUNDED   => $this->handlePaymentRefunded($event->data),
+            default                               => null,
         };
     }
 
-    private function handlePaymentConfirmed($event)
+    private function handlePaymentConfirmed($data)
     {
         // Lógica para pagamento confirmado
     }
 
-    private function handlePaymentOverdue($event)
+    private function handlePaymentOverdue($data)
     {
         // Lógica para pagamento vencido
     }
 
-    private function handlePaymentRefunded($event)
+    private function handlePaymentRefunded($data)
     {
         // Lógica para estorno
     }

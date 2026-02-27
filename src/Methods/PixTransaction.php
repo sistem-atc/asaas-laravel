@@ -2,14 +2,14 @@
 
 namespace SistemAtc\Asaas\Methods;
 
-use SistemAtc\Asaas\DTO\Request\PixTransaction\DecodeQrCodeRequestDTO;
-use SistemAtc\Asaas\DTO\Request\PixTransaction\ListTransactionsRequestDTO;
-use SistemAtc\Asaas\DTO\Request\PixTransaction\PayQrCodeRequestDTO;
-use SistemAtc\Asaas\DTO\Response\PixTransaction\DecodeQrCodeResponseDTO;
-use SistemAtc\Asaas\DTO\Response\PixTransaction\ListTransactionResponseDTO;
-use SistemAtc\Asaas\DTO\Response\PixTransaction\PayQrCodeResponseDTO;
 use SistemAtc\Asaas\Enum\HttpMethod;
 use SistemAtc\Asaas\Bases\BaseMethods;
+use SistemAtc\Asaas\DTO\Request\PixTransaction\PayQrCodeRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PixTransaction\PayQrCodeResponseDTO;
+use SistemAtc\Asaas\DTO\Request\PixTransaction\DecodeQrCodeRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PixTransaction\DecodeQrCodeResponseDTO;
+use SistemAtc\Asaas\DTO\Request\PixTransaction\ListTransactionsRequestDTO;
+use SistemAtc\Asaas\DTO\Response\PixTransaction\ListTransactionResponseDTO;
 
 class PixTransaction extends BaseMethods
 {

@@ -104,6 +104,7 @@ $cliente = $asaas->customer()->create(...);
 Este pacote implementa os seguintes métodos da API Asaas:
 
 #### ✅ Clientes
+
 - [Criar Cliente](docs/methods/customer.md#criar-cliente)
 - [Listar Clientes](docs/methods/customer.md#listar-clientes)
 - [Buscar Cliente](docs/methods/customer.md#buscar-cliente)
@@ -113,15 +114,18 @@ Este pacote implementa os seguintes métodos da API Asaas:
 - [Notificações do Cliente](docs/methods/customer.md#notificações-do-cliente)
 
 #### ✅ Cobranças (Payments)
+
 - [Criar Cobrança](docs/methods/payment.md#criar-cobrança)
 - [Listar Cobranças](docs/methods/payment.md#listar-cobranças)
 - [Capturar Pré-autorização](docs/methods/payment.md#capturar-pré-autorização)
 - [Gerar QR Code PIX](docs/methods/payment.md#gerar-qr-code-pix)
 
 #### ✅ Assinaturas (Subscriptions)
+
 - [Criar Assinatura](docs/methods/subscription.md#criar-assinatura)
 
 #### ✅ Contas (Bills)
+
 - [Criar Conta](docs/methods/bill.md#criar-conta)
 - [Listar Contas](docs/methods/bill.md#listar-contas)
 - [Buscar Conta](docs/methods/bill.md#buscar-conta)
@@ -129,6 +133,7 @@ Este pacote implementa os seguintes métodos da API Asaas:
 - [Cancelar Conta](docs/methods/bill.md#cancelar-conta)
 
 #### ✅ Antecipações
+
 - [Solicitar Antecipação](docs/methods/anticipation.md#solicitar-antecipação)
 - [Listar Antecipações](docs/methods/anticipation.md#listar-antecipações)
 - [Buscar Antecipação](docs/methods/anticipation.md#buscar-antecipação)
@@ -138,6 +143,7 @@ Este pacote implementa os seguintes métodos da API Asaas:
 - [Cancelar Antecipação](docs/methods/anticipation.md#cancelar-antecipação)
 
 #### ✅ Informações da Conta
+
 - [Buscar Dados Comerciais](docs/methods/accountinfo.md#buscar-dados-comerciais)
 - [Atualizar Dados Comerciais](docs/methods/accountinfo.md#atualizar-dados-comerciais)
 - [Personalizar Checkout](docs/methods/accountinfo.md#personalizar-checkout)
@@ -148,6 +154,7 @@ Este pacote implementa os seguintes métodos da API Asaas:
 - [Remover Subconta White Label](docs/methods/accountinfo.md#remover-subconta-white-label)
 
 #### ✅ PIX
+
 - [Criar QR Code Estático](docs/methods/pix.md#criar-qr-code-estático)
 
 ## 🪝 Webhooks
@@ -157,6 +164,7 @@ O sistema de webhooks deste pacote é completo e robusto, suportando **mais de 1
 ### 📖 Documentação Completa de Webhooks
 
 Consulte a [documentação completa de webhooks](docs/webhooks.md) para:
+
 - Como configurar webhooks
 - Todos os eventos disponíveis
 - Como criar listeners personalizados
@@ -167,32 +175,51 @@ Consulte a [documentação completa de webhooks](docs/webhooks.md) para:
 ### 🚀 Início Rápido de Webhooks
 
 1. **Configure a URL do webhook no painel do Asaas:**
+
    ```
    https://seudominio.com.br/api/asaas-events
    ```
 
-2. **Crie um listener:**
+2. **Defina um token no painel Asaas conforme imagem:**
+
+   ```bash
+   https://files.readme.io/1151556f343ba745635c3bb784c6623b8aeff4cd640a5c15abed19054445672f-image_1.png
+   ```
+
+3. **Crie um listener:**
+
    ```bash
    php artisan make:listener AsaasPaymentConfirmedListener
    ```
 
-3. **Registre o listener no `EventServiceProvider`:**
+4. **Registre o listener no `EventServiceProvider (Laravel 10) ou AppServiceProvider (Laravel 11+)`:**
+
    ```php
    use SistemAtc\Asaas\Events\AsaasPaymentEvent;
 
+   'Laravel 10'
    protected $listen = [
        AsaasPaymentEvent::class => [
            AsaasPaymentConfirmedListener::class,
        ],
    ];
+
+   'Laravel 11 +'
+   public function boot(): void
+   {
+      Event::listen(
+        AsaasPaymentEvent::class,
+        AsaasPaymentConfirmedListener::class,
+      );
+   }
    ```
 
-4. **Implemente a lógica:**
+5. **Implemente a lógica:**
    ```php
    public function handle(AsaasPaymentEvent $event)
    {
-       if ($event->eventType === 'PAYMENT_CONFIRMED') {
-           $payment = $event->payload->payment;
+       if ($event->event === WebhookEventAsaas::PAYMENT_CONFIRMED) {
+           $payment = $event->data->payment;
            // Processar pagamento confirmado
        }
    }

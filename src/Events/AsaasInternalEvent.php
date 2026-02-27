@@ -5,6 +5,7 @@ namespace SistemAtc\Asaas\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use SistemAtc\Asaas\DTO\Webhook\InternalWebhookDTO;
+use SistemAtc\Asaas\Contracts\WebhookEventDTOInterface;
 
 class AsaasInternalEvent
 {
@@ -12,7 +13,7 @@ class AsaasInternalEvent
     use Dispatchable, SerializesModels;
 
     public function __construct(
-        public string $type,
-        public InternalWebhookDTO $dto
+        public WebhookEventDTOInterface $event,
+        public InternalWebhookDTO $data
     ) {}
 }

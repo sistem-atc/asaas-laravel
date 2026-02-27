@@ -34,7 +34,7 @@ abstract class BaseAsaasHandler
     {
         if ($this->eventClass && method_exists($this->eventClass, 'dispatch')) {
             $eventType = $eventDTO->getEventType();
-            ($this->eventClass)::dispatch($eventType->value, $eventDTO);
+            ($this->eventClass)::dispatch($eventType, $eventDTO);
         }
     }
 
