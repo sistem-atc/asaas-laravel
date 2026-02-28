@@ -112,7 +112,7 @@ class Payment extends BaseMethods
 
     public function getQRCodeForPixPayments(string $id): QrCodeResponseDTO
     {
-        $response = $this->makeRequest(HttpMethod::POST, "/payments/{$id}/pixQrCode");
+        $response = $this->makeRequest(HttpMethod::GET, "/payments/{$id}/pixQrCode");
         return QrCodeResponseDTO::fromArray($response);
     }
 
