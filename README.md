@@ -30,15 +30,18 @@ ASAAS_BASE_URL=https://api.asaas.com
 ASAAS_API_VERSION=v3
 ASAAS_ACCESS_TOKEN=seu-token-de-producao
 ASAAS_PIX_KEY=sua-chave-pix-producao
+GROUP_NAME_ASAAS="group_customers"
 
 ASAAS_SANDBOX_BASE_URL=https://sandbox.asaas.com
 ASAAS_SANDBOX_API_VERSION=v3
 ASAAS_SANDBOX_ACCESS_TOKEN=seu-token-de-sandbox
 ASAAS_SANDBOX_PIX_KEY=sua-chave-pix-sandbox
+GROUP_NAME_SANDBOX_ASAAS="group_customers"
 
 ASAAS_WEBHOOK_TOKEN=seu-token-secreto-webhook
 ASAAS_IDEMPOTENCY_TTL=86400
-ASAAS_ROUTE_EVENTS=/asaas-events
+ASAAS_ROUTE_EVENTS="/asaas-events"
+ASAAS_ROUTE_EVENTS_NAME="asaas.webhook"
 ```
 
 ## Uso Basico
