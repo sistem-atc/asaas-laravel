@@ -12,7 +12,7 @@ final class ViewInformationResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?string $invoiceViewedDate,
-        public readonly ?string $boletoViewedDate,
+        public readonly ?string $invoiceViewedDate = null,
+        public readonly ?string $boletoViewedDate = null,
     ) {}
 }

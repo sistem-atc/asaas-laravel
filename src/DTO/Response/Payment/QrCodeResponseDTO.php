@@ -12,9 +12,10 @@ final class QrCodeResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?string $encodedImage,
-        public readonly ?string $payload,
-        public readonly ?string $expirationDate,
-        public readonly ?string $description,
+        public readonly ?bool $success = null,
+        public readonly ?string $encodedImage = null,
+        public readonly ?string $payload = null,
+        public readonly ?string $expirationDate = null,
+        public readonly ?string $description = null,
     ) {}
 }

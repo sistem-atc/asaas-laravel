@@ -12,8 +12,8 @@ final class DigitableBillLineResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?string $identificationField,
-        public readonly ?string $nossoNumero,
-        public readonly ?string $barCode,
+        public readonly ?string $identificationField = null,
+        public readonly ?string $nossoNumero = null,
+        public readonly ?string $barCode = null,
     ) {}
 }

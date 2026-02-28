@@ -13,6 +13,6 @@ final class StatusPaymentResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?StatusPayment $status,
+        public readonly ?StatusPayment $status = null,
     ) {}
 }

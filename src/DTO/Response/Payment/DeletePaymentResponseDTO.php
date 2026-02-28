@@ -12,7 +12,7 @@ final class DeletePaymentResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?bool $deleted,
-        public readonly ?string $id,
+        public readonly ?bool $deleted = null,
+        public readonly ?string $id = null,
     ) {}
 }

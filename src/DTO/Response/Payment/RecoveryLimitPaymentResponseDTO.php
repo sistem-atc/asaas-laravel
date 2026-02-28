@@ -13,6 +13,6 @@ final class RecoveryLimitPaymentResponseDTO implements DTOInterface
     use CastToArray, AutoHydrate;
     
     public function __construct(
-        public readonly ?Daily $creation,
+        public readonly ?Daily $creation = null,
     ) {}
 }
